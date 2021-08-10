@@ -12,6 +12,7 @@ const User = require('../models/User');
 // @route   GET api/auth
 // @desc    Get logged in user
 // access   private
+// Get Logged in user
 router.get('/', Auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
@@ -25,6 +26,7 @@ router.get('/', Auth, async (req, res) => {
 // @route   POST api/auth
 // @desc    Auth user & get token
 // access   Public
+// Login User
 router.post(
   '/',
   [
@@ -53,6 +55,7 @@ router.post(
       const payload = {
         user: {
           id: user.id,
+          admin: user.admin,
         },
       };
       jwt.sign(

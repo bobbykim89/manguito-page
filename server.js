@@ -18,6 +18,8 @@ app.get('/', (req, res) => res.json({ msg: 'Welcome to Manguito Page!' }));
 // Define Routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/posts', require('./routes/posts'));
+app.use('/api/posts/', require('./routes/comments'));
 
 // Serve static assets in production
 const PORT = process.env.PORT || 5000;
