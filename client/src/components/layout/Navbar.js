@@ -9,24 +9,21 @@ import logo from './logo.png';
 const Navbar = ({ title, home, gallery, about, signup }) => {
   const [navBarOpen, setNavbarOpen] = useState(false);
   return (
-    <nav
-      id='Contact'
-      className='w-screen top-0 absolute md:sticky flex flex-wrap items-center bg-green-200 z-50'
-    >
+    <nav className='w-full top-0 absolute md:sticky flex flex-wrap items-center bg-green-200 z-50'>
       <div className='container flex flex-wrap items-center py-2 md:py-4 align-middle justify-between'>
         <div className='flex flex-shrink-0 mr-6'>
-          <a href='#Home'>
+          <Link to='/'>
             <span className='inline-block text-green-600 text-2xl font-bold pl-6'>
               <div className='inline-block w-6 align-middle'>
                 <img src={logo} alt='logo' />
               </div>{' '}
               {title}
             </span>
-          </a>
+          </Link>
         </div>
         <div className='block lg:hidden'>
           <button
-            className='flex items-center px-3 py-2 mr-1 text-xl font-bold text-green-600'
+            className='flex items-center px-3 py-2 text-xl font-bold text-green-600'
             type='button'
             onClick={() => setNavbarOpen(!navBarOpen)}
           >
@@ -40,30 +37,30 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
           }
         >
           <div className='flex flex-row pt-2 lg:pt-1 lg:flex-grow mx-auto justify-center lg:justify-start'>
-            <a
-              href='/'
-              className='block lg:inline-block text-yellow-500 font-semibold align-middle text-lg hover:text-yellow-400 mr-4'
+            <Link
+              to='/'
+              className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300 mr-4'
             >
               {home}
-            </a>
-            <span className='inline-block lg:hidden align-middle pt-1 text-yellow-500 text-sm pr-4'>
+            </Link>
+            <span className='inline-block lg:hidden align-middle pt-1 text-red-400 text-sm pr-4'>
               |
             </span>
             <a
               href='/'
-              className='block lg:inline-block text-yellow-500 font-semibold align-middle text-lg hover:text-yellow-400 mr-4'
+              className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300 mr-4'
             >
               {gallery}
             </a>
-            <span className='inline-block lg:hidden align-middle pt-1 text-yellow-500 text-sm pr-4'>
+            <span className='inline-block lg:hidden align-middle pt-1 text-red-400 text-sm pr-4'>
               |
             </span>
-            <a
-              href='/'
-              className='block lg:inline-block text-yellow-500 font-semibold align-middle text-lg hover:text-yellow-400'
+            <Link
+              to='/about'
+              className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300'
             >
               {about}
-            </a>
+            </Link>
           </div>
           <div className='flex flex-wrap pt-3 pb-2 lg:pt-1 justify-center'>
             <a
@@ -74,7 +71,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
             </a>
             <a
               href='/'
-              className='inline-block text-green-500 font-semibold align-middle text-sm mx-2 px-4 py-1 bg-yellow-400 rounded hover:bg-yellow-300'
+              className='inline-block text-white font-semibold align-middle text-sm mx-2 px-4 py-1 bg-red-300 rounded hover:bg-red-200 transition ease-in duration-150'
             >
               {signup}
             </a>
