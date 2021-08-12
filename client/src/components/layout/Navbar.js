@@ -46,12 +46,12 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
             <span className='inline-block lg:hidden align-middle pt-1 text-red-400 text-sm pr-4'>
               |
             </span>
-            <a
-              href='/'
+            <Link
+              to='/gallery'
               className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300 mr-4'
             >
               {gallery}
-            </a>
+            </Link>
             <span className='inline-block lg:hidden align-middle pt-1 text-red-400 text-sm pr-4'>
               |
             </span>
@@ -63,18 +63,18 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
             </Link>
           </div>
           <div className='flex flex-wrap pt-3 pb-2 lg:pt-1 justify-center'>
-            <a
-              href='/'
+            <Link
+              to='/login'
               className='inline-block text-green-600 align-middle text-xl mx-2 hover:text-white'
             >
               <FontAwesomeIcon icon={faSignInAlt} />
-            </a>
-            <a
-              href='/'
+            </Link>
+            <Link
+              to='/signup'
               className='inline-block text-white font-semibold align-middle text-sm mx-2 px-4 py-1 bg-red-300 rounded hover:bg-red-200 transition ease-in duration-150'
             >
               {signup}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
