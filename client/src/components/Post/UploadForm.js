@@ -76,7 +76,7 @@ const UploadForm = () => {
             <input
               type='submit'
               value='Submit'
-              className='px-4 py-2 bg-green-400 hover:bg-green-300 text-lg text-white font-semibold tracking-wider'
+              className='block w-full px-4 py-2 bg-green-400 hover:bg-green-300 text-lg text-white font-semibold tracking-wider'
             />
           </div>
         </form>

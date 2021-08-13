@@ -1,20 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import Moment from 'react-moment';
 import { PostContext } from '../../context/post/PostContext';
 
-const Postitem = ({ post }) => {
+const Postitem = ({ post, setPost }) => {
   const postContext = useContext(PostContext);
-  const { deletePost, setCurrent, clearCurrent, updatePost } = postContext;
-
-  //   useEffect(() => {
-  //     if (current !== null) {
-  //       setContent(current);
-  //     } else {
-  //       setContent({
-  //         content: '',
-  //       });
-  //     }
-  //   }, [postContext, current]);
+  const { deletePost, clearCurrent, updatePost, setCurrent } = postContext;
 
   const [toggleEdit, setToggleEdit] = useState(false);
 
@@ -23,17 +13,21 @@ const Postitem = ({ post }) => {
   };
 
   const editHandler = () => {
-    setCurrent(post);
     handleToggler();
   };
 
-  const { id, image, content } = post;
+  const { id, image, content, name } = post;
 
-  const onChange = (e) => {};
+  // Need to configure onChange Function to enable editing
+  const onChange = (e) => {
+    setPost({ ...post, [e.target.name]: e.target.value });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    updatePost(content);
+    updatePost(post);
+    clearCurrent();
+    setCurrent(post);
   };
 
   const onDelete = () => {
@@ -48,6 +42,7 @@ const Postitem = ({ post }) => {
       <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3'>
         <div className={toggleEdit ? 'hidden' : 'block'}>
           <p>{content}</p>
+          <small className='flex justify-end text-gray-500'>{name} </small>
           <small className='flex justify-end text-gray-500 mb-4'>
             <Moment format='MMMM Do YYYY h:mm:ss a'>{Date.now()}</Moment>
           </small>
@@ -57,6 +52,7 @@ const Postitem = ({ post }) => {
             <textarea
               name='content'
               value={content}
+              onChange={onChange}
               cols='40'
               rows='3'
               className='block w-full border-gray-500 mb-2'

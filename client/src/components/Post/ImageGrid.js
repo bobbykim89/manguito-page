@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PostContext } from '../../context/post/PostContext';
 
 const ImageGrid = ({ posts }) => {
+  const postContext = useContext(PostContext);
+  const { setCurrent } = postContext;
   return (
     <div className='grid grid-cols-3 gap-2 mx-auto my-8'>
       {posts.map((post) => (
@@ -8,6 +11,7 @@ const ImageGrid = ({ posts }) => {
           <img
             src={post.image}
             alt='grid'
+            onClick={() => setCurrent(post)}
             className='object-cover object-center max-w-6/4'
           />
         </div>

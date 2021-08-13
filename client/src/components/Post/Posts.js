@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ImageGrid from './ImageGrid';
 import UploadForm from './UploadForm';
 import Postitem from './Postitem';
@@ -6,7 +6,23 @@ import { PostContext } from '../../context/post/PostContext';
 
 const Posts = () => {
   const postContext = useContext(PostContext);
-  const { posts } = postContext;
+  const { posts, current } = postContext;
+  useEffect(() => {
+    if (current !== null) {
+      setPost(current);
+    } else {
+      setPost({
+        image: '',
+        content: '',
+      });
+    }
+  }, [postContext, current]);
+
+  const [post, setPost] = useState({
+    image: '',
+    content: '',
+  });
+
   return (
     <section className='bg-pink-100 py-20'>
       <div className='w-full md:w-1/2 mx-auto'>
@@ -16,9 +32,10 @@ const Posts = () => {
         <UploadForm />
         <ImageGrid posts={posts} />
 
-        {posts.map((post) => (
+        {current && <Postitem post={post} setPost={setPost} />}
+        {/* {posts.map((post) => (
           <Postitem key={post.id} post={post} />
-        ))}
+        ))} */}
       </div>
     </section>
   );
