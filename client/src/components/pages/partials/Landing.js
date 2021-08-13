@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import banner from './banner.jpg';
+import { Link } from 'react-router-dom';
 
 const Landing = ({ landingHeader, landingP, landingLink }) => {
   return (
@@ -14,12 +15,12 @@ const Landing = ({ landingHeader, landingP, landingLink }) => {
             </h2>
             <p className='text-center text-lg font-semibold mb-6'>{landingP}</p>
             <div className='flex justify-center'>
-              <a
-                href='/'
+              <Link
+                to='/gallery'
                 className='bg-transparent hover:bg-white text-white font-bold hover:text-red-300 py-2 px-4 border-2 border-white hover:border-transparent rounded inline-block mt-5 transition ease-in duration-150'
               >
                 {landingLink}
-              </a>
+              </Link>
             </div>
           </div>
           {/* Right */}
