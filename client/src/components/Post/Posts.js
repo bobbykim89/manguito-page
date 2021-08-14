@@ -29,10 +29,15 @@ const Posts = () => {
         <h1 className='text-3xl text-center font-semibold tracking-wider text-green-600'>
           This is a beautiful day!
         </h1>
-        <UploadForm />
-        <ImageGrid posts={posts} />
 
-        {current && <Postitem post={post} setPost={setPost} />}
+        <UploadForm />
+        {!current ? (
+          <ImageGrid posts={posts} />
+        ) : (
+          <Postitem post={post} setPost={setPost} />
+        )}
+
+        {/* {current && } */}
         {/* {posts.map((post) => (
           <Postitem key={post.id} post={post} />
         ))} */}

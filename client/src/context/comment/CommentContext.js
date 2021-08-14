@@ -6,20 +6,35 @@ import { ADD_COMMENT, DELETE_COMMENT } from '../types';
 export const CommentContext = createContext();
 
 const CommentState = (props) => {
-  const initialState = { comments: [] };
+  const initialState = {
+    comments: [
+      {
+        id: '1',
+        commentId: '11',
+        name: 'Pollito',
+        text: 'A tweet!',
+      },
+      {
+        id: '1',
+        commentId: '22',
+        name: 'Manguito',
+        text: 'Pio Pio!',
+      },
+    ],
+  };
 
   const [state, dispatch] = useReducer(commentReducer, initialState);
   // Get Comment
 
   // Add Comment
   const addComment = (comment) => {
-    comment.id = uuidv4();
+    comment.commentId = uuidv4();
     dispatch({ type: ADD_COMMENT, payload: comment });
   };
 
   // Delete Comment
-  const deleteComment = (id) => {
-    dispatch({ type: DELETE_COMMENT, payload: id });
+  const deleteComment = (commentId) => {
+    dispatch({ type: DELETE_COMMENT, payload: commentId });
   };
 
   return (

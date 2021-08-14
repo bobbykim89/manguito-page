@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { PostContext } from '../../context/post/PostContext';
 
-const UploadForm = () => {
+const UploadForm = ({ postId }) => {
   const postContext = useContext(PostContext);
 
   const { addPost } = postContext;
@@ -16,6 +16,7 @@ const UploadForm = () => {
   const [post, setPost] = useState({
     image: '',
     content: '',
+    name: 'Bobby Kim',
   });
 
   const { image, content } = post;
@@ -27,6 +28,7 @@ const UploadForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     addPost(post);
+    handleToggler();
     setPost({
       image: '',
       content: '',

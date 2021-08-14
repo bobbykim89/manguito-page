@@ -1,14 +1,15 @@
-import React, { createContext } from 'react';
+import React, { useContext } from 'react';
 import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
 import { CommentContext } from '../../context/comment/CommentContext';
 
 const Comments = ({ postId }) => {
-  const commentContext = createContext(CommentContext);
+  const commentContext = useContext(CommentContext);
+  const { comments } = commentContext;
   return (
     <section>
-      <CommentForm />
-      <CommentItem />
+      <CommentForm postId={postId} />
+      <CommentItem comments={comments} />
     </section>
   );
 };
