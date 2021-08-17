@@ -1,11 +1,18 @@
 import React, { useContext, useState } from 'react';
 import Moment from 'react-moment';
 import { PostContext } from '../../context/post/PostContext';
+import { AuthContext } from '../../context/auth/AuthContext';
+import { AlertContext } from '../../context/alert/AlertContext';
 import Comments from '../comment/Comments';
 
 const Postitem = ({ post, setPost }) => {
   const postContext = useContext(PostContext);
+  const authContext = useContext(AuthContext);
+  const alertContext = useContext(AlertContext);
+
   const { deletePost, clearCurrent, updatePost, setCurrent } = postContext;
+  const { isAuthenticated, user } = authContext;
+  const { setAlert } = alertContext;
 
   const [toggleEdit, setToggleEdit] = useState(false);
 
@@ -29,14 +36,31 @@ const Postitem = ({ post, setPost }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    updatePost(post);
-    clearCurrent();
-    setCurrent(post);
+    if (!isAuthenticated) {
+      setAlert('Please login');
+      clearCurrent();
+    } else if (!user.admin) {
+      setAlert('Sorry You are not authorized to do so');
+      clearCurrent();
+    } else {
+      updatePost(post);
+      clearCurrent();
+      setCurrent(post);
+    }
   };
 
   const onDelete = () => {
-    deletePost(id);
-    clearCurrent();
+    if (!isAuthenticated) {
+      setAlert('Please login');
+      clearCurrent();
+    } else if (!user.admin) {
+      setAlert('Sorry You are not authorized to do so');
+      clearCurrent();
+    } else {
+      deletePost(id);
+      clearCurrent();
+      setAlert('Successfully deleted a post');
+    }
   };
   return (
     <section className='bg-white  pb-4 pt-3'>
@@ -48,8 +72,8 @@ const Postitem = ({ post, setPost }) => {
           close
         </i>
       </div>
-      <div className='px-4 grid grid-flow-row md:grid-cols-2 gap-4'>
-        <div className='w-full md:row-span-3'>
+      <div className='px-4 grid grid-flow-row lg:grid-cols-2 gap-4'>
+        <div className='w-full'>
           <img src={image} alt='pollito' className='rounded' />
         </div>
         <div>
@@ -88,23 +112,25 @@ const Postitem = ({ post, setPost }) => {
                 </div>
               </form>
             </div>
-            <div className={toggleEdit ? '' : 'block text-right'}>
-              <i
-                className='material-icons text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
-                onClick={editHandler}
-              >
-                {toggleEdit ? '' : 'edit'}
-              </i>
-              <i
-                className='material-icons text-gray-500 hover:text-gray-400 cursor-pointer'
-                onClick={onDelete}
-              >
-                {toggleEdit ? '' : 'delete'}
-              </i>
+            <div className={user && user.admin ? ' block' : ' hidden'}>
+              <div className={toggleEdit ? '' : 'block text-right'}>
+                <i
+                  className='material-icons text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
+                  onClick={editHandler}
+                >
+                  {toggleEdit ? '' : 'edit'}
+                </i>
+                <i
+                  className='material-icons text-gray-500 hover:text-gray-400 cursor-pointer'
+                  onClick={onDelete}
+                >
+                  {toggleEdit ? '' : 'delete'}
+                </i>
+              </div>
             </div>
           </div>
           <div className=''>
-            <Comments postId={id} />
+            <Comments />
           </div>
         </div>
       </div>

@@ -1,18 +1,26 @@
 import React, { useContext, useState } from 'react';
 import { CommentContext } from '../../context/comment/CommentContext';
 import { PostContext } from '../../context/post/PostContext';
+import { AuthContext } from '../../context/auth/AuthContext';
+import { AlertContext } from '../../context/alert/AlertContext';
 
 const CommentForm = () => {
   const commentContext = useContext(CommentContext);
   const postContext = useContext(PostContext);
+  const authContext = useContext(AuthContext);
+  const alertContext = useContext(AlertContext);
+
   const { addComment } = commentContext;
-  const { current } = postContext;
+  const { current, clearCurrent } = postContext;
+  const { isAuthenticated, user } = authContext;
+  const { setAlert } = alertContext;
 
   const [comment, setComment] = useState({
     commentId: '',
     text: '',
-    name: 'Bobby Kim',
-    id: '',
+    name: user && user.name,
+    author: user && user._id,
+    id: current && current.id,
   });
   const { text } = comment;
 
@@ -22,11 +30,18 @@ const CommentForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    comment.id = current.id;
-    addComment(comment);
-    setComment({
-      text: '',
-    });
+    if (!isAuthenticated) {
+      setAlert('Please login');
+      clearCurrent();
+      setComment({
+        text: '',
+      });
+    } else {
+      addComment(comment);
+      setComment({
+        text: '',
+      });
+    }
   };
   return (
     <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3'>
@@ -37,7 +52,7 @@ const CommentForm = () => {
           value={text}
           onChange={onChange}
           className='block w-full border-gray-500 mb-2'
-          placeholder='Please write comment here'
+          placeholder=' Please write comment here'
         ></textarea>
         <div className='text-right'>
           <button

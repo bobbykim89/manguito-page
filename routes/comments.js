@@ -38,6 +38,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         author: req.user.id,
+        post: req.params.id,
       });
       const comment = await newComment.save();
       posting.comments.unshift(newComment);

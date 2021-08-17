@@ -1,12 +1,60 @@
-import React, { useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCrown,
+  faSignInAlt,
+  faSignOutAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import Hamburger from 'hamburger-react';
 import logo from './logo.png';
+import { AuthContext } from '../../context/auth/AuthContext';
 
 const Navbar = ({ title, home, gallery, about, signup }) => {
+  const authContext = useContext(AuthContext);
+
+  const { isAuthenticated, logout, user } = authContext;
+
+  const onLogout = () => {
+    logout();
+  };
+
+  const authLinks = (
+    <Fragment>
+      <li className='inline-block text-green-600 align-middle text-lg mx-2'>
+        {user && user.name}{' '}
+        {user && user.admin ? (
+          <FontAwesomeIcon icon={faCrown} className='text-yellow-400' />
+        ) : (
+          ''
+        )}
+      </li>
+      <li className='inline-block text-green-600 align-middle text-xl mx-2 hover:text-white'>
+        <a onClick={onLogout} href='/'>
+          <FontAwesomeIcon icon={faSignOutAlt} />
+        </a>
+      </li>
+    </Fragment>
+  );
+
+  const guestLinks = (
+    <Fragment>
+      <Link
+        to='/login'
+        className='inline-block text-green-600 align-middle text-xl mx-2 hover:text-white'
+      >
+        <FontAwesomeIcon icon={faSignInAlt} />
+      </Link>
+      <Link
+        to='/signup'
+        className='inline-block text-white font-semibold align-middle text-sm mx-2 px-4 py-1 bg-red-300 rounded hover:bg-red-200 transition ease-in duration-150'
+      >
+        {signup}
+      </Link>
+    </Fragment>
+  );
+
   const [navBarOpen, setNavbarOpen] = useState(false);
   return (
     <nav className='w-full top-0 absolute md:sticky flex flex-wrap items-center bg-green-200 z-50'>
@@ -62,19 +110,9 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
               {about}
             </Link>
           </div>
+          {/* Auth Section */}
           <div className='flex flex-wrap pt-3 pb-2 lg:pt-1 justify-center'>
-            <Link
-              to='/login'
-              className='inline-block text-green-600 align-middle text-xl mx-2 hover:text-white'
-            >
-              <FontAwesomeIcon icon={faSignInAlt} />
-            </Link>
-            <Link
-              to='/signup'
-              className='inline-block text-white font-semibold align-middle text-sm mx-2 px-4 py-1 bg-red-300 rounded hover:bg-red-200 transition ease-in duration-150'
-            >
-              {signup}
-            </Link>
+            {isAuthenticated ? authLinks : guestLinks}
           </div>
         </div>
       </div>

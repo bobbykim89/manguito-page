@@ -4,6 +4,15 @@ import { PostContext } from '../../context/post/PostContext';
 const ImageGrid = ({ posts }) => {
   const postContext = useContext(PostContext);
   const { setCurrent } = postContext;
+
+  if (posts !== null && posts.length === 0) {
+    return (
+      <h1 className='text-xl text-center font-semibold text-green-600'>
+        No post yet! Time to add picture of Manguito!
+      </h1>
+    );
+  }
+
   return (
     <div className='grid grid-cols-3 gap-2 mx-auto my-8'>
       {posts.map((post) => (

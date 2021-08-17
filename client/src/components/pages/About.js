@@ -8,21 +8,21 @@ const About = () => {
   return (
     <section className='h-screen bg-yellow-100 py-20 text-gray-500 font-semibold'>
       <div className='lg:w-2/3 mx-auto px-4'>
-        <div className='inline-block items-center flex flex-wrap md:flex-nowrap justify-between'>
+        <div className='inline-block items-center grid grid-flow-row lg:grid-cols-2'>
           {/* Left */}
-          <div className='inline-block flex w-full flex-wrap mx-auto justify-center lg:justify-start'>
+          <div className='inline-block flex flex-wrap mx-auto justify-center lg:justify-start'>
             <img
               src={about}
               alt='bird on monitor'
-              className='inline-block rounded-full my-8 w-1/2'
+              className='inline-block rounded-full my-8 w-2/3'
             />
           </div>
-          <div className='flex flex-col w-full md:w-2/3 inline-block px-2 mx-auto'>
+          <div className='flex flex-col inline-block px-2 mx-auto'>
             <h2 className='text-2xl md:text-3xl tracking-wider text-center'>
               About Manguito Page
             </h2>
             <div className='mb-4'>
-              <p className='text-md'>App to tell story about Manguito</p>
+              <p className='text-md'>Photo blog app for Manguito</p>
               <p className='text-md'>Version: 0.1.0(Beta)</p>
               <p className='text-md'>Made by: Bobby Kim</p>
             </div>

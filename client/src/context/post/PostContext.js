@@ -8,8 +8,6 @@ import {
   UPDATE_POST,
   SET_CURRENT,
   CLEAR_CURRENT,
-  SET_ALERT,
-  REMOVE_ALERT,
 } from '../types';
 
 export const PostContext = createContext();

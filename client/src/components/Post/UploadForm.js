@@ -2,11 +2,17 @@ import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { PostContext } from '../../context/post/PostContext';
+import { AuthContext } from '../../context/auth/AuthContext';
+import { AlertContext } from '../../context/alert/AlertContext';
 
-const UploadForm = ({ postId }) => {
+const UploadForm = () => {
   const postContext = useContext(PostContext);
+  const authContext = useContext(AuthContext);
+  const alertContext = useContext(AlertContext);
 
   const { addPost } = postContext;
+  const { isAuthenticated, user } = authContext;
+  const { setAlert } = alertContext;
 
   const [toggleForm, setToggleForm] = useState(false);
   const handleToggler = (e) => {
@@ -16,7 +22,8 @@ const UploadForm = ({ postId }) => {
   const [post, setPost] = useState({
     image: '',
     content: '',
-    name: 'Bobby Kim',
+    name: user && user.name,
+    author: user && user._id,
   });
 
   const { image, content } = post;
@@ -27,12 +34,21 @@ const UploadForm = ({ postId }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addPost(post);
-    handleToggler();
-    setPost({
-      image: '',
-      content: '',
-    });
+    if (!user.admin) {
+      setAlert("You don't have admin privilege");
+      handleToggler();
+      setPost({
+        image: '',
+        content: '',
+      });
+    } else {
+      addPost(post);
+      handleToggler();
+      setPost({
+        image: '',
+        content: '',
+      });
+    }
   };
   return (
     <section className='mx-2 md:mx-8 my-12'>
@@ -84,7 +100,10 @@ const UploadForm = ({ postId }) => {
         </form>
       </div>
       <div
-        className='flex text-4xl justify-center align-middle font-semibold text-green-400 hover:text-green-300'
+        className={
+          'flex text-4xl justify-center align-middle font-semibold text-green-400 hover:text-green-300' +
+          (isAuthenticated ? ' block' : ' hidden')
+        }
         onClick={handleToggler}
       >
         {toggleForm ? (

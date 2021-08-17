@@ -5,8 +5,6 @@ import {
   UPDATE_POST,
   SET_CURRENT,
   CLEAR_CURRENT,
-  SET_ALERT,
-  REMOVE_ALERT,
 } from '../types';
 
 const variable = (state, action) => {

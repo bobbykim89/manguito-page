@@ -1,6 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { AlertContext } from '../../context/alert/AlertContext';
+import { AuthContext } from '../../context/auth/AuthContext';
 
 const Signup = (props) => {
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+
+  const { setAlert } = alertContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/gallery');
+    }
+    if (
+      error ===
+      'Following email address is already in use, Please use different Email'
+    ) {
+      setAlert(error);
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
+
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -20,13 +42,17 @@ const Signup = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (name === '' || email === '' || password === '') {
-      console.log('Please enter all fields');
+      setAlert('Please enter all fields');
     } else if (password !== password2) {
-      console.log('Passwords do not match. Please Check again');
+      setAlert('Please check password again');
     } else if (!agree) {
-      console.log('Please agree with terms and conditions');
+      setAlert('Please click on checkbox');
     } else {
-      console.log(name, email, password, agree);
+      register({
+        name,
+        email,
+        password,
+      });
     }
   };
 
@@ -94,6 +120,7 @@ const Signup = (props) => {
               onChange={onChange}
               required
               minLength='6'
+              maxLength='16'
               className='block w-full p-2 border-2 border-indigo-400'
             />
           </div>

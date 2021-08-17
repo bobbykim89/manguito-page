@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator');
 
 const Post = require('../models/Post');
 const User = require('../models/User');
+const Comment = require('../models/Comment');
 const Auth = require('../middleware/Auth');
 
 // @route GET api/posts
@@ -98,7 +99,13 @@ router.delete('/:id', Auth, async (req, res) => {
     if (posting.author.toString() !== id) {
       return res.status(401).json({ msg: 'Not Authorized' });
     }
-
+    if (posting.comments) {
+      await Comment.deleteMany({
+        _id: {
+          $in: posting.comments,
+        },
+      });
+    }
     await Post.findByIdAndRemove(req.params.id);
     res.json({ msg: 'Posting has been deleted' });
   } catch (err) {

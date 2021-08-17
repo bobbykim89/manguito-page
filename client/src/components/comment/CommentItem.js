@@ -2,39 +2,58 @@ import React, { useContext } from 'react';
 import Moment from 'react-moment';
 import { CommentContext } from '../../context/comment/CommentContext';
 import { PostContext } from '../../context/post/PostContext';
+import { AuthContext } from '../../context/auth/AuthContext';
+import { AlertContext } from '../../context/alert/AlertContext';
 
-const CommentItem = ({ comments }) => {
+const CommentItem = ({ comment }) => {
   const postContext = useContext(PostContext);
   const commentContext = useContext(CommentContext);
-  const { current } = postContext;
+  const authContext = useContext(AuthContext);
+  const alertContext = useContext(AlertContext);
+
+  const { clearCurrent } = postContext;
   const { deleteComment } = commentContext;
-  const filteredComments = comments.filter(
-    (comment) => comment.id === current.id
-  );
+  const { isAuthenticated, user } = authContext;
+  const { setAlert } = alertContext;
+
+  const handleDelete = () => {
+    if (!isAuthenticated) {
+      setAlert('Please login');
+      clearCurrent();
+    } else if (user._id === comment.author || user.admin) {
+      deleteComment(comment.commentId);
+      clearCurrent();
+      setAlert('Successfully deleted a comment');
+    } else {
+      setAlert('Sorry, You are not authorized to do so');
+      clearCurrent();
+    }
+  };
+
   return (
     <div>
-      {filteredComments.map((comment) => (
+      <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3'>
+        <p>{comment.text}</p>
+        <small className='flex justify-end text-gray-500'>{comment.name}</small>
+        <small className='flex justify-end text-gray-500 mb-4'>
+          <Moment format='MMMM Do YYYY h:mm:ss a'>{Date.now()}</Moment>
+        </small>
         <div
-          key={comment.commentId}
-          className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3'
+          className={
+            'text-right' +
+            ((user && user._id === comment.author) || (user && user.admin)
+              ? ''
+              : ' hidden')
+          }
         >
-          <p>{comment.text}</p>
-          <small className='flex justify-end text-gray-500'>
-            {comment.name}
-          </small>
-          <small className='flex justify-end text-gray-500 mb-4'>
-            <Moment format='MMMM Do YYYY h:mm:ss a'>{Date.now()}</Moment>
-          </small>
-          <div className='text-right'>
-            <i
-              className='material-icons text-gray-500 hover:text-gray-400 cursor-pointer'
-              onClick={() => deleteComment(comment.commentId)}
-            >
-              delete
-            </i>
-          </div>
+          <i
+            className='material-icons text-gray-500 hover:text-gray-400 cursor-pointer'
+            onClick={handleDelete}
+          >
+            delete
+          </i>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
