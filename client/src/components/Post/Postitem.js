@@ -24,11 +24,7 @@ const Postitem = ({ post, setPost }) => {
     handleToggler();
   };
 
-  const closeModal = () => {
-    clearCurrent();
-  };
-
-  const { id, image, content, name } = post;
+  const { _id, image, content, name, date } = post;
 
   const onChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -57,17 +53,17 @@ const Postitem = ({ post, setPost }) => {
       setAlert('Sorry You are not authorized to do so');
       clearCurrent();
     } else {
-      deletePost(id);
+      deletePost(_id);
       clearCurrent();
       setAlert('Successfully deleted a post');
     }
   };
   return (
-    <section className='bg-white  pb-4 pt-3'>
-      <div className='text-right pb-3'>
+    <section className='bg-white  pb-4 shadow-xl'>
+      <div className='text-right pb-3 sticky pt-3 bg-white top-0'>
         <i
           className='material-icons align-middle text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
-          onClick={closeModal}
+          onClick={() => clearCurrent()}
         >
           close
         </i>
@@ -82,7 +78,7 @@ const Postitem = ({ post, setPost }) => {
               <p>{content}</p>
               <small className='flex justify-end text-gray-500'>{name} </small>
               <small className='flex justify-end text-gray-500 mb-4'>
-                <Moment format='MMMM Do YYYY h:mm:ss a'>{Date.now()}</Moment>
+                <Moment format='MMMM Do YYYY h:mm:ss a'>{date}</Moment>
               </small>
             </div>
             <div className={toggleEdit ? 'block' : 'hidden'}>
@@ -129,7 +125,7 @@ const Postitem = ({ post, setPost }) => {
               </div>
             </div>
           </div>
-          <div className=''>
+          <div>
             <Comments />
           </div>
         </div>

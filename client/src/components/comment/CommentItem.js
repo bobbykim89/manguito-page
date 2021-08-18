@@ -5,13 +5,13 @@ import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 import { AlertContext } from '../../context/alert/AlertContext';
 
-const CommentItem = ({ comment }) => {
+const CommentItem = ({ comment, current }) => {
   const postContext = useContext(PostContext);
   const commentContext = useContext(CommentContext);
   const authContext = useContext(AuthContext);
   const alertContext = useContext(AlertContext);
 
-  const { clearCurrent } = postContext;
+  const { clearCurrent, setCurrent } = postContext;
   const { deleteComment } = commentContext;
   const { isAuthenticated, user } = authContext;
   const { setAlert } = alertContext;
@@ -21,9 +21,10 @@ const CommentItem = ({ comment }) => {
       setAlert('Please login');
       clearCurrent();
     } else if (user._id === comment.author || user.admin) {
-      deleteComment(comment.commentId);
+      deleteComment(comment._id);
       clearCurrent();
       setAlert('Successfully deleted a comment');
+      setCurrent(current);
     } else {
       setAlert('Sorry, You are not authorized to do so');
       clearCurrent();
@@ -36,7 +37,7 @@ const CommentItem = ({ comment }) => {
         <p>{comment.text}</p>
         <small className='flex justify-end text-gray-500'>{comment.name}</small>
         <small className='flex justify-end text-gray-500 mb-4'>
-          <Moment format='MMMM Do YYYY h:mm:ss a'>{Date.now()}</Moment>
+          <Moment format='MMMM Do YYYY h:mm:ss a'>{comment.date}</Moment>
         </small>
         <div
           className={

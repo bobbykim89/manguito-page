@@ -6,7 +6,7 @@ const Spinner = () => (
     <img
       src={spinner}
       alt='Loading...'
-      style={{ width: '200px', margin: 'auto', display: 'block' }}
+      className='w-20 lg:w-40 mx-auto block'
     />
   </Fragment>
 );

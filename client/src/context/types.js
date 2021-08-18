@@ -5,11 +5,13 @@ export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const SET_CURRENT = 'SET_CURRENT';
 export const CLEAR_CURRENT = 'CLEAR_CURRENT';
+export const POST_ERROR = 'POST_ERROR';
 
 // CommentContext Types
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const COMMENT_ERROR = 'COMMENT_ERROR';
 
 // Auth Types
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';

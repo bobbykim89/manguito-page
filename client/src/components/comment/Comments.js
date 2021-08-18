@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useEffect } from 'react';
 import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
 import { CommentContext } from '../../context/comment/CommentContext';
@@ -11,19 +11,25 @@ const Comments = () => {
   const authContext = useContext(AuthContext);
 
   const { current } = postContext;
-  const { comments } = commentContext;
+  const { comments, getComments } = commentContext;
   const { isAuthenticated } = authContext;
 
-  const filteredComments = comments.filter(
-    (comment) => comment.id === current.id
-  );
+  useEffect(() => {
+    getComments();
+    // eslint-disable-next-line
+  }, []);
 
-  if (filteredComments !== null && filteredComments.length === 0) {
+  if (comments !== null && comments.length !== 0) {
+    const filteredComments = comments.filter(
+      (comment) => comment.post === current._id
+    );
     return (
       <Fragment>
         {isAuthenticated ? <CommentForm /> : ''}
-        <p className='ml-2 mb-4'>Comments:</p>
-        <p className='text-center mb-4'>No comment yet!</p>
+        <p className='ml-2'>Comments:</p>
+        {filteredComments.map((comment) => (
+          <CommentItem key={comment._id} comment={comment} current={current} />
+        ))}
       </Fragment>
     );
   }
@@ -31,10 +37,9 @@ const Comments = () => {
   return (
     <Fragment>
       {isAuthenticated ? <CommentForm /> : ''}
-      <p className='ml-2'>Comments:</p>
-      {filteredComments.map((comment) => (
-        <CommentItem key={comment.commentId} comment={comment} />
-      ))}
+      <p className='ml-2 mb-4'>Comments:</p>
+
+      <p className='text-center mb-4'>No comment yet!</p>
     </Fragment>
   );
 };

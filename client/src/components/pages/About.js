@@ -6,7 +6,7 @@ import about from './partials/about.jpg';
 
 const About = () => {
   return (
-    <section className='h-screen bg-yellow-100 py-20 text-gray-500 font-semibold'>
+    <section className='bg-yellow-100 py-20 text-gray-500 font-semibold min-h-90v lg:min-h-85v'>
       <div className='lg:w-2/3 mx-auto px-4'>
         <div className='inline-block items-center grid grid-flow-row lg:grid-cols-2'>
           {/* Left */}

@@ -7,12 +7,12 @@ const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 const Auth = require('../middleware/Auth');
 
-// @route GET api/posts/:id/comments
-// @ desc GET all posts
+// @route GET api/comments
+// @ desc GET all comments
 // access Public
-router.get('/:id/comments', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const comments = await Comment.find({}).sort({ date: -1 });
+    const comments = await Comment.find({});
     res.json(comments);
   } catch (err) {
     console.err(err.message);
@@ -20,11 +20,11 @@ router.get('/:id/comments', async (req, res) => {
   }
 });
 
-// @route POST api/posts
-// @desc  ADD new post
+// @route POST api/comments
+// @desc  ADD new comment
 // @access  Private
 router.post(
-  '/:id/comments',
+  '/',
   [Auth, [check('body', 'Please write down something').not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
@@ -33,14 +33,15 @@ router.post(
     }
     try {
       const user = await User.findById(req.user.id).select('-password');
-      const posting = await Post.findById(req.params.id);
+
       const newComment = new Comment({
         text: req.body.text,
         name: user.name,
         author: req.user.id,
-        post: req.params.id,
+        post: req.body.post,
       });
       const comment = await newComment.save();
+      const posting = await Post.findById(req.body.post);
       posting.comments.unshift(newComment);
       await posting.save();
       res.json(comment);
@@ -51,26 +52,37 @@ router.post(
   }
 );
 
-// @route DELETE api/posts/:id/comments/:comment_id
-// @desc  Delete post
+// @route DELETE api/comments/:comment_id
+// @desc  Delete comment
 // access Private
-router.delete('/:id/comments/:comment_id', Auth, async (req, res) => {
-  const { id, comment_id } = req.params;
-  const posting = await Post.findById(id);
-  const comment = await Comment.findById(comment_id);
+router.delete('/:id', Auth, async (req, res) => {
+  const { id, admin } = req.user;
 
-  // Make sure comment exists
-  if (!comment) {
-    return res.status(404).json({ msg: 'Comment does not exist' });
+  try {
+    const comment = await Comment.findById(req.params.id);
+    // Make sure comment exists
+    if (!comment) {
+      return res.status(404).json({ msg: 'Comment does not exist' });
+    }
+    // Check User and proceed
+    if (comment.author.toString() === id || admin) {
+      // Delete Comment from both Post and Comment Schema
+      await Comment.findByIdAndDelete(req.params.id);
+      if (comment.post) {
+        await Post.findByIdAndUpdate(comment.post, {
+          $pull: { comments: req.params.id },
+        });
+      }
+
+      res.json({ msg: 'Comment Successfully Deleted :D' });
+    } else {
+      // Block if it does not meet credential
+      return res.status(404).json({ msg: 'Current user is not authorized' });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
-  // Check User
-  if (comment.author.toString() !== req.user.id) {
-    return res.status(404).json({ msg: 'Current user is not authorized' });
-  }
-  // Delete Comment from both Post and Comment Schema
-  await Post.findByIdAndUpdate(id, { $pull: { comments: comment_id } });
-  await Comment.findByIdAndDelete(comment_id);
-  res.json('Comment Successfully Deleted :D');
 });
 
 module.exports = router;

@@ -11,7 +11,7 @@ const Posts = () => {
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
-    if (authContext.isAuthenticated) {
+    if (authContext.token !== null) {
       authContext.loadUser();
     }
     if (current !== null) {
@@ -30,27 +30,25 @@ const Posts = () => {
     content: '',
   });
 
+  if (current) {
+    return (
+      <section className='bg-black bg-opacity-70 pt-20 lg:py-20 min-h-80v'>
+        <div className='w-full mx-auto md:w-2/3'>
+          <Postitem post={post} setPost={setPost} />
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className='bg-pink-100 py-20'>
-      <div
-        className={
-          'w-full mx-auto' + (current !== null ? ' md:w-2/3' : ' md:w-1/2')
-        }
-      >
+    <section className='mt-4 lg:mt-0 bg-pink-100 py-20 lg:py-16 min-h-90v lg:min-h-85v'>
+      <div className='w-full mx-auto md:w-1/2'>
         <h1 className='text-3xl text-center font-semibold tracking-wider text-green-600'>
           This is a beautiful day!
         </h1>
         <UploadForm />
-        {!current ? (
-          <ImageGrid posts={posts} />
-        ) : (
-          <Postitem post={post} setPost={setPost} />
-        )}
 
-        {/* {current && } */}
-        {/* {posts.map((post) => (
-          <Postitem key={post.id} post={post} />
-        ))} */}
+        <ImageGrid posts={posts} />
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 import postReducer from './postReducer';
 import {
   GET_POSTS,
@@ -8,62 +8,67 @@ import {
   UPDATE_POST,
   SET_CURRENT,
   CLEAR_CURRENT,
+  POST_ERROR,
 } from '../types';
 
 export const PostContext = createContext();
 
 const PostState = (props) => {
   const initialState = {
-    posts: [
-      {
-        id: '1',
-        image:
-          'https://images.unsplash.com/photo-1586584358204-201ff934ee45?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80',
-        content: 'Pollito is evil!',
-        name: 'Bobby Kim',
-      },
-      {
-        id: '2',
-        image:
-          'https://images.unsplash.com/photo-1578493853264-d130498360a4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-        content: 'Manguito is evil!',
-        name: 'Bobby Kim',
-      },
-      {
-        id: '3',
-        image:
-          'https://images.unsplash.com/photo-1457014749444-4dfbbd2426d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-        content: 'Pollito is cute!',
-        name: 'Bobby Kim',
-      },
-      {
-        id: '4',
-        image:
-          'https://images.unsplash.com/photo-1457014749444-4dfbbd2426d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-        content: 'Manguito is cute!',
-        name: 'Bobby Kim',
-      },
-      {
-        id: '5',
-        image:
-          'https://images.unsplash.com/photo-1611430943765-c730609ebb03?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80',
-        content: 'Pollito is evil cute!',
-        name: 'Bobby Kim',
-      },
-    ],
+    posts: null,
     current: null,
+    error: null,
   };
   const [state, dispatch] = useReducer(postReducer, initialState);
 
+  // Get Posts
+  const getPosts = async () => {
+    try {
+      const res = await axios.get('api/posts');
+      dispatch({ type: GET_POSTS, payload: res.data });
+    } catch (err) {
+      dispatch({ type: POST_ERROR, payload: err.response.msg });
+    }
+  };
+
   // Add Post
-  const addPost = (post) => {
-    post.id = uuidv4();
-    dispatch({ type: ADD_POST, payload: post });
+  const addPost = async (post) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.post('api/posts', post, config);
+      dispatch({ type: ADD_POST, payload: res.data });
+    } catch (err) {
+      dispatch({ type: POST_ERROR, payload: err.response.msg });
+    }
   };
 
   // Delete Post
-  const deletePost = (id) => {
-    dispatch({ type: DELETE_POST, payload: id });
+  const deletePost = async (id) => {
+    try {
+      await axios.delete(`api/posts/${id}`);
+      dispatch({ type: DELETE_POST, payload: id });
+    } catch (err) {
+      dispatch({ type: POST_ERROR, payload: err.response.msg });
+    }
+  };
+
+  //Update Post
+  const updatePost = async (post) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.put(`api/posts/${post._id}`, post, config);
+      dispatch({ type: UPDATE_POST, payload: res.data });
+    } catch (err) {
+      dispatch({ type: POST_ERROR, payload: err.response.msg });
+    }
   };
 
   // Set Current Post
@@ -76,15 +81,13 @@ const PostState = (props) => {
     dispatch({ type: CLEAR_CURRENT });
   };
 
-  //Update Post
-  const updatePost = (post) => {
-    dispatch({ type: UPDATE_POST, payload: post });
-  };
   return (
     <PostContext.Provider
       value={{
         posts: state.posts,
         current: state.current,
+        error: state.error,
+        getPosts,
         addPost,
         deletePost,
         setCurrent,
