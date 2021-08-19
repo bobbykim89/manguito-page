@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
@@ -26,20 +27,29 @@ function App() {
       <PostState>
         <CommentState>
           <AlertState>
-            <Router>
-              <Fragment>
-                <Navbar />
-                <Alerts />
-                <Switch>
-                  <Route exact path='/' component={Home} />
-                  <Route exact path='/gallery' component={Posts} />
-                  <Route exact path='/about' component={About} />
-                  <Route exact path='/login' component={Login} />
-                  <Route exact path='/signup' component={Signup} />
-                </Switch>
-                <Footer />
-              </Fragment>
-            </Router>
+            <HelmetProvider>
+              <Helmet>
+                <title>Manguito page</title>
+                <meta
+                  name='description'
+                  content='Welcome to Manguito page! This is little photo blog app for Manguito, my peachfaced lovebird!'
+                />
+              </Helmet>
+              <Router>
+                <Fragment>
+                  <Navbar />
+                  <Alerts />
+                  <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route exact path='/gallery' component={Posts} />
+                    <Route exact path='/about' component={About} />
+                    <Route exact path='/login' component={Login} />
+                    <Route exact path='/signup' component={Signup} />
+                  </Switch>
+                  <Footer />
+                </Fragment>
+              </Router>
+            </HelmetProvider>
           </AlertState>
         </CommentState>
       </PostState>

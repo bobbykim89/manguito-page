@@ -25,7 +25,16 @@ router.get('/', async (req, res) => {
 // @access  Private
 router.post(
   '/',
-  [Auth, [check('body', 'Please write down something').not().isEmpty()]],
+  [
+    Auth,
+    [
+      check('body', 'Please write down something')
+        .not()
+        .isEmpty()
+        .trim()
+        .escape(),
+    ],
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty) {

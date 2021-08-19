@@ -30,7 +30,11 @@ router.post(
     Auth,
     upload.single('image'),
     [
-      check('content', 'You need to write down some content').not().isEmpty(),
+      check('content', 'You need to write down some content')
+        .not()
+        .isEmpty()
+        .trim()
+        .escape(),
       check('image', 'Please upload an image file').not().isEmpty(),
     ],
   ],
@@ -65,28 +69,42 @@ router.post(
 // @desc  Update post
 // access Private
 // Update Post
-router.put('/:id', Auth, async (req, res) => {
-  const { id } = req.user;
+router.put(
+  '/:id',
+  [
+    Auth,
+    [
+      check('content', 'Please write some content')
+        .not()
+        .isEmpty()
+        .trim()
+        .escape(),
+    ],
+  ],
+  async (req, res) => {
+    const { id } = req.user;
 
-  try {
-    let posting = await Post.findById(req.params.id);
-    if (!posting) return res.status(404).json({ msg: 'Posting not found :(' });
+    try {
+      let posting = await Post.findById(req.params.id);
+      if (!posting)
+        return res.status(404).json({ msg: 'Posting not found :(' });
 
-    // Making sure user is authorized
-    if (posting.author.toString() !== id) {
-      return res.status(401).json({ msg: 'Not Authorized' });
+      // Making sure user is authorized
+      if (posting.author.toString() !== id) {
+        return res.status(401).json({ msg: 'Not Authorized' });
+      }
+      posting = await Post.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+      });
+      res.json(posting);
+      console.log(req.params);
+      console.log(req.body);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
     }
-    posting = await Post.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    res.json(posting);
-    console.log(req.params);
-    console.log(req.body);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
   }
-});
+);
 
 // @route DELETE api/posts
 // @desc  Delete post
