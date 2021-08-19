@@ -45,7 +45,7 @@ const CommentForm = () => {
     }
   };
   return (
-    <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3'>
+    <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3 shadow'>
       <form onSubmit={onSubmit}>
         <textarea
           name='text'

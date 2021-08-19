@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
+const { upload, cloudinary } = require('../cloudinary/config');
 
 const Post = require('../models/Post');
 const User = require('../models/User');
@@ -27,6 +28,7 @@ router.post(
   '/',
   [
     Auth,
+    upload.single('image'),
     [
       check('content', 'You need to write down some content').not().isEmpty(),
       check('image', 'Please upload an image file').not().isEmpty(),
@@ -44,12 +46,14 @@ router.post(
       const user = await User.findById(req.user.id).select('-password');
       const newPost = new Post({
         content: req.body.content,
-        image: req.body.image,
+        image: req.file.path,
+        imageId: req.file.filename,
         name: user.name,
-        author: req.user.id,
+        author: user.id,
       });
       const posting = await newPost.save();
       res.json(posting);
+      console.log(posting);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
@@ -106,6 +110,8 @@ router.delete('/:id', Auth, async (req, res) => {
         },
       });
     }
+    // Remove Cloudinary image
+    await cloudinary.uploader.destroy(posting.imageId);
     await Post.findByIdAndRemove(req.params.id);
     res.json({ msg: 'Posting has been deleted' });
   } catch (err) {

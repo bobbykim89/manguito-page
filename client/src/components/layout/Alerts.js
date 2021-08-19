@@ -11,7 +11,7 @@ const Alerts = () => {
     alertContext.alerts.map((alert) => (
       <div
         key={alert.id}
-        className='px-3 py-3 text-white text-center bg-red-500'
+        className='px-3 py-3 text-white text-center bg-red-500 shadow-md'
       >
         <FontAwesomeIcon icon={faInfoCircle} /> {alert.msg}
       </div>

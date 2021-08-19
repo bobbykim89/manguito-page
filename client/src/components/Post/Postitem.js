@@ -69,11 +69,11 @@ const Postitem = ({ post, setPost }) => {
         </i>
       </div>
       <div className='px-4 grid grid-flow-row lg:grid-cols-2 gap-4'>
-        <div className='w-full'>
+        <div className='w-full shadow'>
           <img src={image} alt='pollito' className='rounded' />
         </div>
         <div>
-          <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3'>
+          <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3 shadow'>
             <div className={toggleEdit ? 'hidden' : 'block'}>
               <p>{content}</p>
               <small className='flex justify-end text-gray-500'>{name} </small>

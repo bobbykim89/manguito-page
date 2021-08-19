@@ -19,18 +19,36 @@ const UploadForm = () => {
     setToggleForm(!toggleForm);
   };
 
+  const [filename, setFilename] = useState('Please Select File:');
+
   const [post, setPost] = useState({
-    image: '',
+    image: null,
     content: '',
-    name: user && user.name,
-    author: user && user._id,
+    name: '',
+    author: '',
   });
 
-  const { image, content } = post;
+  const { content } = post;
 
   const onChange = (e) => {
-    setPost({ ...post, [e.target.name]: e.target.value });
+    if (e.target.type === 'file') {
+      setPost({ ...post, image: e.target.files[0] });
+      setFilename(e.target.files[0].name);
+    } else {
+      setPost({
+        ...post,
+        content: e.target.value,
+        name: user && user.name,
+        author: user && user._id,
+      });
+    }
   };
+
+  let postForm = new FormData();
+  postForm.append('image', post.image);
+  postForm.append('content', content);
+  postForm.append('name', post.name);
+  postForm.append('author', post.author);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -38,16 +56,17 @@ const UploadForm = () => {
       setAlert("You don't have admin privilege");
       handleToggler();
       setPost({
-        image: '',
+        image: null,
         content: '',
       });
     } else {
-      addPost(post);
+      addPost(postForm);
       handleToggler();
       setPost({
-        image: '',
+        image: null,
         content: '',
       });
+      setFilename('Please Select File:');
     }
   };
   return (
@@ -56,27 +75,36 @@ const UploadForm = () => {
         <form
           onSubmit={onSubmit}
           className='flex flex-col mb-6 border-dashed border-4 rounded-lg border-red-300 px-4 py-4 md:px-8 md:py-8'
+          encType='multipart/form-data'
         >
           <div className='mb-4'>
             <label
               htmlFor='image'
-              className='text-indigo-500 text-lg font-semibold'
+              className='block w-full pl-2 border-2 border-red-300'
             >
-              Please Select File:
+              <div className='grid grid-cols-4'>
+                <span className='col-span-3 py-2 text-green-600 text-lg font-semibold'>
+                  {filename}
+                </span>
+                <span className='text-center text-white bg-green-400 hover:bg-green-300 text-lg font-semibold py-2 tracking-wider shadow-md'>
+                  Browse
+                </span>
+              </div>
+              <input
+                type='file'
+                id='image'
+                name='image'
+                onChange={onChange}
+                accept='image/*'
+                className='hidden'
+                required
+              />
             </label>
-            <input
-              type='text'
-              name='image'
-              value={image}
-              onChange={onChange}
-              className='block w-full p-2 border-2 border-red-300'
-              required
-            />
           </div>
           <div className='mb-4'>
             <label
               htmlFor='content'
-              className='text-indigo-500 text-lg font-semibold'
+              className='text-green-600 text-lg font-semibold'
             >
               Please Write something
             </label>

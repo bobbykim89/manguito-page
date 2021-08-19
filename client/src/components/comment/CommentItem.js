@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import Moment from 'react-moment';
 import { CommentContext } from '../../context/comment/CommentContext';
 import { PostContext } from '../../context/post/PostContext';
@@ -32,8 +32,8 @@ const CommentItem = ({ comment, current }) => {
   };
 
   return (
-    <div>
-      <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3'>
+    <Fragment>
+      <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3 shadow'>
         <p>{comment.text}</p>
         <small className='flex justify-end text-gray-500'>{comment.name}</small>
         <small className='flex justify-end text-gray-500 mb-4'>
@@ -55,7 +55,7 @@ const CommentItem = ({ comment, current }) => {
           </i>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

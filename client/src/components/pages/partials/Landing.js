@@ -17,7 +17,7 @@ const Landing = ({ landingHeader, landingP, landingLink }) => {
             <div className='flex justify-center'>
               <Link
                 to='/gallery'
-                className='bg-transparent hover:bg-white text-white font-bold hover:text-red-300 py-2 px-4 border-2 border-white hover:border-transparent rounded inline-block mt-5 transition ease-in duration-150'
+                className='bg-transparent hover:bg-white text-white font-bold hover:text-red-300 py-2 px-4 border-2 border-white hover:border-transparent rounded inline-block mt-5 transition ease-in duration-150 shadow'
               >
                 {landingLink}
               </Link>

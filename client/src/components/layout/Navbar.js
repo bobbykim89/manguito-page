@@ -18,6 +18,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
 
   const onLogout = () => {
     logout();
+    setNavbarOpen(false);
   };
 
   const authLinks = (
@@ -42,13 +43,15 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
     <Fragment>
       <Link
         to='/login'
+        onClick={() => setNavbarOpen(false)}
         className='inline-block text-green-600 align-middle text-xl mx-2 hover:text-white'
       >
         <FontAwesomeIcon icon={faSignInAlt} />
       </Link>
       <Link
         to='/signup'
-        className='inline-block text-white font-semibold align-middle text-sm mx-2 px-4 py-1 bg-red-300 rounded hover:bg-red-200 transition ease-in duration-150'
+        onClick={() => setNavbarOpen(false)}
+        className='inline-block text-white font-semibold align-middle text-sm mx-2 px-4 py-1 bg-red-300 rounded hover:bg-red-200 transition ease-in duration-150 shadow-md'
       >
         {signup}
       </Link>
@@ -56,8 +59,9 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
   );
 
   const [navBarOpen, setNavbarOpen] = useState(false);
+
   return (
-    <nav className='w-full top-0 absolute md:sticky flex flex-wrap items-center bg-green-200 z-50'>
+    <nav className='w-full top-0 absolute md:sticky flex flex-wrap items-center bg-green-200 z-50 shadow-md'>
       <div className='container flex flex-wrap items-center py-2 md:py-4 align-middle justify-between'>
         <div className='flex flex-shrink-0 mr-6'>
           <Link to='/'>
@@ -87,6 +91,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
           <div className='flex flex-row pt-2 lg:pt-1 lg:flex-grow mx-auto justify-center lg:justify-start'>
             <Link
               to='/'
+              onClick={() => setNavbarOpen(false)}
               className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300 mr-4'
             >
               {home}
@@ -96,6 +101,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
             </span>
             <Link
               to='/gallery'
+              onClick={() => setNavbarOpen(false)}
               className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300 mr-4'
             >
               {gallery}
@@ -105,6 +111,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
             </span>
             <Link
               to='/about'
+              onClick={() => setNavbarOpen(false)}
               className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300'
             >
               {about}
