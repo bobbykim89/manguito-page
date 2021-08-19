@@ -36,7 +36,7 @@ Info.propTypes = {
 Info.defaultProps = {
   infoTitle: "Here is Manguito's Story",
   infoText:
-    "We found Manguito in late May. He was barely a baby bird, looking really fragile, cant even chew banana. Honestly I didn't think he will make it over night. Luckily he survived the night and became more active everyday. These days he is almost grown up bird, chirping and flying around the house, glued to my wife mostly and bothering her work :D",
+    "We found Manguito in late May. He was barely a baby bird, looking really fragile, cant even chew banana. Honestly I didn't think he will make it over night. Luckily he survived the night and he got more active. These days he is almost grown up bird, chirping and flying around the house, glued to my wife mostly and bothering her doing her work and stealing our food :D",
 };
 
 export default Info;

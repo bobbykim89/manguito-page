@@ -31,7 +31,7 @@ const About = () => {
                 About Manguito Page
               </h2>
               <div className='mb-4'>
-                <p className='text-md'>Photo blog app for Manguito</p>
+                <p className='text-md'>Photo blog for Manguito</p>
                 <p className='text-md'>Version: 0.1.0(Beta)</p>
                 <p className='text-md'>Made by: Bobby Kim</p>
               </div>

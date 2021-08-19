@@ -46,7 +46,7 @@ Landing.propTypes = {
 Landing.defaultProps = {
   landingHeader: "Welcome to Manguito's home!",
   landingP:
-    'Manguito is tiny Peach faced lovebird who likes to chirp and play! Moreover he is evil :D',
+    'Manguito is tiny Peach faced lovebird who likes to chirp and play! Moreover, he is so cute but also very evil :D',
   landingLink: 'Heading to Photo Gallery',
 };
 export default Landing;

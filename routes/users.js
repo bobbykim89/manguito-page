@@ -21,8 +21,13 @@ router.post(
       .normalizeEmail(),
     check(
       'password',
-      'Please enter a password with 6 to 16 characters'
-    ).isLength({ min: 6, max: 16 }),
+      'Password must be greater than 8 characters and contain numbers, lowercase letters and uppercase letters'
+    ).isStrongPassword({
+      minLength: 8,
+      minLowercase: 1,
+      minNumbers: 1,
+      minUppercase: 1,
+    }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
