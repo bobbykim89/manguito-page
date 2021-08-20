@@ -31,11 +31,12 @@ const styleSrcUrls = [
   'https://use.fontawesome.com',
 ];
 const connectSrcUrls = [];
-const fontSrcUrls = [];
+const defaultSrcUrls = ['https://manguitopage.herokuapp.com'];
+const fontSrcUrls = ['https://fonts.googleapis.com'];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: [],
+      defaultSrc: ["'self'", ...defaultSrcUrls],
       connectSrc: ["'self'", ...connectSrcUrls],
       scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
