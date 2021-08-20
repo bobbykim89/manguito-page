@@ -1,7 +1,7 @@
 {
   "name": "manguito-page",
   "version": "1.0.0",
-  "description": "A simple network page for little Manguito",
+  "description": "a simple network page for little manguito",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -17,7 +17,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@craco/craco": "^6.2.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.26.3",
     "dotenv": "^10.0.0",
