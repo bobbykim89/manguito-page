@@ -27,9 +27,17 @@ const Comments = () => {
       <Fragment>
         {isAuthenticated ? <CommentForm /> : ''}
         <p className='ml-2 font-semibold'>Comments:</p>
-        {filteredComments.map((comment) => (
-          <CommentItem key={comment._id} comment={comment} current={current} />
-        ))}
+        {filteredComments.length ? (
+          filteredComments.map((comment) => (
+            <CommentItem
+              key={comment._id}
+              comment={comment}
+              current={current}
+            />
+          ))
+        ) : (
+          <p className='text-center mb-4'>No comment yet!</p>
+        )}
       </Fragment>
     );
   }
