@@ -3,8 +3,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const express = require('express');
 const path = require('path');
-// const mongoSanitize = require('express-mongo-sanitize');
-// const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 const connectDB = require('./config/db');
 const app = express();
 
