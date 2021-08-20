@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, Fragment } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ImageGrid from './ImageGrid';
 import UploadForm from './UploadForm';
-import Postitem from './Postitem';
+import PostItem from './PostItem';
 import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 
@@ -43,7 +43,7 @@ const Posts = () => {
         </Helmet>
         <section className='bg-black bg-opacity-70 pt-20 lg:py-20 min-h-80v'>
           <div className='w-full mx-auto md:w-2/3'>
-            <Postitem post={post} setPost={setPost} />
+            <PostItem post={post} setPost={setPost} />
           </div>
         </section>
       </Fragment>

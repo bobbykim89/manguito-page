@@ -5,8 +5,9 @@ import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 import { AlertContext } from '../../context/alert/AlertContext';
 import Comments from '../comment/Comments';
+import PropTypes from 'prop-types';
 
-const Postitem = ({ post, setPost }) => {
+const PostItem = ({ post, setPost }) => {
   const postContext = useContext(PostContext);
   const authContext = useContext(AuthContext);
   const alertContext = useContext(AlertContext);
@@ -143,4 +144,8 @@ const Postitem = ({ post, setPost }) => {
   );
 };
 
-export default Postitem;
+PostItem.propTypes = {
+  post: PropTypes.object.isRequired,
+};
+
+export default PostItem;

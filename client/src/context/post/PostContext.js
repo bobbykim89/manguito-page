@@ -15,7 +15,7 @@ export const PostContext = createContext();
 
 const PostState = (props) => {
   const initialState = {
-    posts: null,
+    posts: [],
     current: null,
     error: null,
   };
