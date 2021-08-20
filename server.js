@@ -17,52 +17,52 @@ app.use(express.json({ extended: false }));
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static('client/public'));
+  app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
-// app.use(mongoSanitize());
-// app.use(helmet());
+app.use(mongoSanitize());
+app.use(helmet());
 
-// const scriptSrcUrls = [
-//   'https://cdn.jsdelivr.net',
-//   'https://kit.fontawesome.com',
-//   'https://cdnjs.cloudflare.com',
-//   'https://cdn.jsdelivr.net',
-// ];
-// const styleSrcUrls = [
-//   'https://kit-free.fontawesome.com',
-//   'https://cdn.jsdelivr.net',
-//   'https://api.tiles.mapbox.com',
-//   'https://fonts.googleapis.com',
-//   'https://use.fontawesome.com',
-// ];
-// const connectSrcUrls = [];
-// const fontSrcUrls = [];
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: [],
-//       connectSrc: ["'self'", ...connectSrcUrls],
-//       scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-//       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-//       workerSrc: ["'self'", 'blob:'],
-//       childSrc: ['blob:'],
-//       objectSrc: [],
-//       imgSrc: [
-//         "'self'",
-//         'blob:',
-//         'data:',
-//         'https://res.cloudinary.com/dwgni1x3t/', // CLOUDINARY ACCOUNT
-//         'https://images.unsplash.com',
-//       ],
-//       fontSrc: ["'self'", ...fontSrcUrls],
-//     },
-//   })
-// );
+const scriptSrcUrls = [
+  'https://cdn.jsdelivr.net',
+  'https://kit.fontawesome.com',
+  'https://cdnjs.cloudflare.com',
+  'https://cdn.jsdelivr.net',
+];
+const styleSrcUrls = [
+  'https://kit-free.fontawesome.com',
+  'https://cdn.jsdelivr.net',
+  'https://api.tiles.mapbox.com',
+  'https://fonts.googleapis.com',
+  'https://use.fontawesome.com',
+];
+const connectSrcUrls = [];
+const fontSrcUrls = [];
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [],
+      connectSrc: ["'self'", ...connectSrcUrls],
+      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+      workerSrc: ["'self'", 'blob:'],
+      childSrc: ['blob:'],
+      objectSrc: [],
+      imgSrc: [
+        "'self'",
+        'blob:',
+        'data:',
+        'https://res.cloudinary.com/dwgni1x3t/', // CLOUDINARY ACCOUNT
+        'https://images.unsplash.com',
+      ],
+      fontSrc: ["'self'", ...fontSrcUrls],
+    },
+  })
+);
 
 // Define Routes
 app.use('/api/users', require('./routes/users'));
