@@ -35,7 +35,7 @@ const Landing = ({ landingHeader, landingP, landingLink }) => {
           {/* Right */}
           <div
             className='inline-block flex flex-wrap w-full md:w-3/5 mx-auto mb-8 justify-center'
-            data-aos='fade-left'
+            data-aos='fade-up'
           >
             <img
               src={banner}
