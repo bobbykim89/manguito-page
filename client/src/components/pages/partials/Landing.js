@@ -2,8 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import banner from './banner.jpg';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Landing = ({ landingHeader, landingP, landingLink }) => {
+  AOS.init({
+    delay: 300,
+    duration: 1400,
+    once: false,
+    easing: 'ease',
+  });
+
   return (
     <section className='py-20 md:px-10 bg-red-300 text-white'>
       <div className='container w-full md:w-4/5 mx-auto'>
@@ -24,7 +33,10 @@ const Landing = ({ landingHeader, landingP, landingLink }) => {
             </div>
           </div>
           {/* Right */}
-          <div className='inline-block flex flex-wrap w-full md:w-3/5 mx-auto mb-8 justify-center'>
+          <div
+            className='inline-block flex flex-wrap w-full md:w-3/5 mx-auto mb-8 justify-center'
+            data-aos='fade-left'
+          >
             <img
               src={banner}
               alt='banner'
@@ -47,6 +59,6 @@ Landing.defaultProps = {
   landingHeader: "Welcome to Manguito's home!",
   landingP:
     'Manguito is tiny Peach faced lovebird who likes to chirp and play! Moreover, he is so cute but also very evil :D',
-  landingLink: 'Heading to Photo Gallery',
+  landingLink: 'Head to Photo Gallery',
 };
 export default Landing;

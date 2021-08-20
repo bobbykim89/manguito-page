@@ -1,14 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import info from './info.jpg';
 
 const Info = ({ infoTitle, infoText }) => {
+  AOS.init({
+    delay: 300,
+    duration: 1400,
+    once: false,
+    easing: 'ease',
+    offset: 300,
+  });
+
   return (
     <section className='bg-blue-200 py-20 text-indigo-400'>
       <div className='container md:w-5/6 mx-auto px-4'>
         <div className='inline-block items-center flex flex-wrap justify-center'>
           {/* LEFT */}
-          <div className='inline-block flex flex-wrap w-full md:w-2/5 mx-auto mb-8 justify-center'>
+          <div
+            className='inline-block flex flex-wrap w-full md:w-2/5 mx-auto mb-8 justify-center'
+            data-aos='fade-right'
+          >
             <img
               src={info}
               alt='Manguito2'

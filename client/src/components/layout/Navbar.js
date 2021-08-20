@@ -6,24 +6,34 @@ import {
   faCrown,
   faSignInAlt,
   faSignOutAlt,
+  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import Hamburger from 'hamburger-react';
 import logo from './logo.png';
 import { AuthContext } from '../../context/auth/AuthContext';
+import { PostContext } from '../../context/post/PostContext';
 
 const Navbar = ({ title, home, gallery, about, signup }) => {
   const authContext = useContext(AuthContext);
+  const postContext = useContext(PostContext);
 
   const { isAuthenticated, logout, user } = authContext;
+  const { clearCurrent } = postContext;
 
   const onLogout = () => {
     logout();
     setNavbarOpen(false);
   };
 
+  const clickHandler = () => {
+    setNavbarOpen(false);
+    clearCurrent();
+  };
+
   const authLinks = (
     <Fragment>
-      <li className='inline-block text-green-600 align-middle text-lg mx-2'>
+      <li className='inline-block text-green-600 align-middle text-lg mx-2 font-semibold'>
+        <span>Welcome! </span>
         {user && user.name}{' '}
         {user && user.admin ? (
           <FontAwesomeIcon icon={faCrown} className='text-yellow-400' />
@@ -31,9 +41,12 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
           ''
         )}
       </li>
-      <li className='inline-block text-green-600 align-middle text-xl mx-2 hover:text-white'>
+      <li className='inline-block text-green-600 align-middle text-xl mx-2 hover:text-white transition ease-in duration-150'>
         <a onClick={onLogout} href='/'>
           <FontAwesomeIcon icon={faSignOutAlt} />
+          <span className='hidden md:inline ml-2 text-lg font-semibold'>
+            Logout
+          </span>
         </a>
       </li>
     </Fragment>
@@ -43,17 +56,23 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
     <Fragment>
       <Link
         to='/login'
-        onClick={() => setNavbarOpen(false)}
-        className='inline-block text-green-600 align-middle text-xl mx-2 hover:text-white'
+        onClick={clickHandler}
+        className='inline-block text-green-600 align-middle text-xl mx-3 hover:text-white transition ease-in duration-150'
       >
         <FontAwesomeIcon icon={faSignInAlt} />
+        <span className='hidden md:inline ml-2 text-lg font-semibold'>
+          Login
+        </span>
       </Link>
       <Link
         to='/signup'
-        onClick={() => setNavbarOpen(false)}
-        className='inline-block text-white font-semibold align-middle text-sm mx-2 px-4 py-1 bg-red-300 rounded hover:bg-red-200 transition ease-in duration-150 shadow-md'
+        onClick={clickHandler}
+        className='inline-block text-green-600 align-middle text-xl mx-3 hover:text-white transition ease-in duration-150'
       >
-        {signup}
+        <FontAwesomeIcon icon={faUserPlus} />
+        <span className='hidden md:inline ml-2 text-lg font-semibold'>
+          Signup
+        </span>
       </Link>
     </Fragment>
   );
@@ -61,7 +80,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
   const [navBarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <nav className='w-full top-0 absolute md:sticky flex flex-wrap items-center bg-green-200 z-50 shadow-md'>
+    <nav className='w-full top-0 md:sticky flex flex-wrap items-center bg-green-200 z-50 shadow-md'>
       <div className='container flex flex-wrap items-center py-2 md:py-4 align-middle justify-between'>
         <div className='flex flex-shrink-0 mr-6'>
           <Link to='/'>
@@ -91,7 +110,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
           <div className='flex flex-row pt-2 lg:pt-1 lg:flex-grow mx-auto justify-center lg:justify-start'>
             <Link
               to='/'
-              onClick={() => setNavbarOpen(false)}
+              onClick={clickHandler}
               className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300 mr-4'
             >
               {home}
@@ -101,7 +120,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
             </span>
             <Link
               to='/gallery'
-              onClick={() => setNavbarOpen(false)}
+              onClick={clickHandler}
               className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300 mr-4'
             >
               {gallery}
@@ -111,14 +130,14 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
             </span>
             <Link
               to='/about'
-              onClick={() => setNavbarOpen(false)}
+              onClick={clickHandler}
               className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300'
             >
               {about}
             </Link>
           </div>
           {/* Auth Section */}
-          <div className='flex flex-wrap pt-3 pb-2 lg:pt-1 justify-center'>
+          <div className='flex flex-wrap pt-3 pb-2 lg:pb-0 lg:pt-1 justify-center'>
             {isAuthenticated ? authLinks : guestLinks}
           </div>
         </div>

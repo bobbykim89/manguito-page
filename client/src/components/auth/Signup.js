@@ -66,7 +66,7 @@ const Signup = (props) => {
           content='Thank you for signing up at Manguito Page!'
         />
       </Helmet>
-      <section className='bg-blue-200 py-32 h-screen'>
+      <section className='bg-blue-200 py-20 min-h-85v'>
         <div className='container w-11/12 md:w-1/3 bg-blue-400 mx-auto px-4 md:px-8 py-8 rounded shadow-lg'>
           <h1 className='mx-auto text-4xl text-white font-bold text-center mb-4 tracking-wider'>
             Signup

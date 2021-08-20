@@ -11,7 +11,7 @@ const UploadForm = () => {
   const alertContext = useContext(AlertContext);
 
   const { addPost } = postContext;
-  const { isAuthenticated, user } = authContext;
+  const { user } = authContext;
   const { setAlert } = alertContext;
 
   const [toggleForm, setToggleForm] = useState(false);
@@ -130,7 +130,7 @@ const UploadForm = () => {
       <div
         className={
           'flex text-4xl justify-center align-middle font-semibold text-green-400 hover:text-green-300' +
-          (isAuthenticated ? ' block' : ' hidden')
+          (user !== null && user.admin ? ' block' : ' hidden')
         }
         onClick={handleToggler}
       >

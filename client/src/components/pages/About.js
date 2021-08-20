@@ -3,9 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
 import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { Helmet } from 'react-helmet-async';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import about from './partials/about.jpg';
 
 const About = () => {
+  AOS.init({
+    delay: 300,
+    duration: 1400,
+    once: false,
+    easing: 'ease',
+  });
+
   return (
     <Fragment>
       <Helmet>
@@ -19,7 +28,10 @@ const About = () => {
         <div className='lg:w-2/3 mx-auto px-4'>
           <div className='inline-block items-center grid grid-flow-row lg:grid-cols-2'>
             {/* Left */}
-            <div className='inline-block flex flex-wrap mx-auto justify-center lg:justify-start'>
+            <div
+              className='inline-block flex flex-wrap mx-auto justify-center lg:justify-start'
+              data-aos='flip-left'
+            >
               <img
                 src={about}
                 alt='bird on monitor'
