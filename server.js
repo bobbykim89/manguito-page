@@ -32,7 +32,10 @@ const styleSrcUrls = [
 ];
 const connectSrcUrls = [];
 const defaultSrcUrls = ['https://manguitopage.herokuapp.com'];
-const fontSrcUrls = ['https://fonts.googleapis.com'];
+const fontSrcUrls = [
+  'https://fonts.googleapis.com',
+  'https://fonts.gstatic.com',
+];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
