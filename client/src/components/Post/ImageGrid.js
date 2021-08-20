@@ -11,7 +11,7 @@ const ImageGrid = ({ posts }) => {
     // eslint-disable-next-line
   }, []);
 
-  if (posts !== null && posts.length === 0 && !loading) {
+  if (posts.length === 0 && !loading) {
     return (
       <h1 className='text-xl text-center font-semibold text-green-600'>
         No post yet! Time to add picture of Manguito!
@@ -21,7 +21,7 @@ const ImageGrid = ({ posts }) => {
 
   return (
     <Fragment>
-      {posts !== null && !loading ? (
+      {posts.length !== 0 && !loading ? (
         <div className='grid grid-cols-3 gap-2 mx-auto my-8'>
           {posts.map((post) => (
             <div
