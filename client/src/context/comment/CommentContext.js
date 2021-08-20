@@ -12,7 +12,7 @@ export const CommentContext = createContext();
 
 const CommentState = (props) => {
   const initialState = {
-    comments: null,
+    comments: [],
     error: null,
   };
 

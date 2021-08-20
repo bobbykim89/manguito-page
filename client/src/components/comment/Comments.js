@@ -19,7 +19,7 @@ const Comments = () => {
     // eslint-disable-next-line
   }, []);
 
-  if (comments !== null && comments.length !== 0) {
+  if (comments.length !== 0) {
     const filteredComments = comments.filter(
       (comment) => comment.post === current._id
     );
