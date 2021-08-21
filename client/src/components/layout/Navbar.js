@@ -60,9 +60,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
         className='inline-block text-green-600 align-middle text-xl mx-3 hover:text-white transition ease-in duration-150'
       >
         <FontAwesomeIcon icon={faSignInAlt} />
-        <span className='hidden md:inline ml-2 text-lg font-semibold'>
-          Login
-        </span>
+        <span className='ml-2 text-lg font-semibold'>Login</span>
       </Link>
       <Link
         to='/signup'
@@ -70,9 +68,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
         className='inline-block text-green-600 align-middle text-xl mx-3 hover:text-white transition ease-in duration-150'
       >
         <FontAwesomeIcon icon={faUserPlus} />
-        <span className='hidden md:inline ml-2 text-lg font-semibold'>
-          Signup
-        </span>
+        <span className='ml-2 text-lg font-semibold'>Signup</span>
       </Link>
     </Fragment>
   );
