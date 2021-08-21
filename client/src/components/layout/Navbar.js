@@ -79,7 +79,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
     <nav className='w-full top-0 md:sticky flex flex-wrap items-center bg-green-200 z-50 shadow-md'>
       <div className='container flex flex-wrap items-center py-2 md:py-4 align-middle justify-between'>
         <div className='flex flex-shrink-0 mr-6'>
-          <Link to='/'>
+          <Link to='/' onClick={clickHandler}>
             <span className='inline-block text-green-600 text-2xl font-bold pl-6'>
               <div className='inline-block w-6 align-middle'>
                 <img src={logo} alt='logo' />
