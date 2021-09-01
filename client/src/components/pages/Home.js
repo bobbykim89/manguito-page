@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react';
-import Info from './partials/Info';
 import Landing from './partials/Landing';
+import LandingGrid from '../layout/LandingGrid';
+import ToTop from '../layout/ToTop';
 
 const Home = () => {
   return (
     <Fragment>
       <Landing />
-      <Info />
+      <LandingGrid />
+      <ToTop />
     </Fragment>
   );
 };

@@ -13,12 +13,22 @@ import logo from './logo.png';
 import { AuthContext } from '../../context/auth/AuthContext';
 import { PostContext } from '../../context/post/PostContext';
 
-const Navbar = ({ title, home, gallery, about, signup }) => {
+const Navbar = ({ title, home, gallery, about }) => {
   const authContext = useContext(AuthContext);
   const postContext = useContext(PostContext);
 
   const { isAuthenticated, logout, user } = authContext;
   const { clearCurrent } = postContext;
+
+  const [navScroll, setNavScroll] = useState(false);
+
+  window.addEventListener('scroll', (e) => {
+    if (window.scrollY >= 50) {
+      setNavScroll(true);
+    } else {
+      setNavScroll(false);
+    }
+  });
 
   const onLogout = () => {
     logout();
@@ -32,7 +42,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
 
   const authLinks = (
     <Fragment>
-      <li className='inline-block text-green-600 align-middle text-lg mx-2 font-semibold'>
+      <li className='inline-block text-pink-500 align-middle text-lg mx-2 font-semibold'>
         <span>Welcome! </span>
         {user && user.name}{' '}
         {user && user.admin ? (
@@ -41,7 +51,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
           ''
         )}
       </li>
-      <li className='inline-block text-green-600 align-middle text-xl mx-2 hover:text-white transition ease-in duration-150'>
+      <li className='inline-block text-pink-500 align-middle text-xl mx-2 hover:text-black transition ease-in duration-150'>
         <a onClick={onLogout} href='/'>
           <FontAwesomeIcon icon={faSignOutAlt} />
           <span className='hidden md:inline ml-2 text-lg font-semibold'>
@@ -57,7 +67,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
       <Link
         to='/login'
         onClick={clickHandler}
-        className='inline-block text-green-600 align-middle text-xl mx-3 hover:text-white transition ease-in duration-150'
+        className='inline-block text-pink-500 align-middle text-xl mx-3 hover:text-black transition ease-in duration-150'
       >
         <FontAwesomeIcon icon={faSignInAlt} />
         <span className='ml-2 text-lg font-semibold'>Login</span>
@@ -65,7 +75,7 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
       <Link
         to='/signup'
         onClick={clickHandler}
-        className='inline-block text-green-600 align-middle text-xl mx-3 hover:text-white transition ease-in duration-150'
+        className='inline-block text-pink-500 align-middle text-xl mx-3 hover:text-black transition ease-in duration-150'
       >
         <FontAwesomeIcon icon={faUserPlus} />
         <span className='ml-2 text-lg font-semibold'>Signup</span>
@@ -76,15 +86,20 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
   const [navBarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <nav className='w-full top-0 md:sticky flex flex-wrap items-center bg-green-200 z-50 shadow-md'>
+    <nav
+      className={
+        'w-full top-0 md:sticky flex flex-wrap items-center z-50 transition ease-in duration-500 delay-150 font-inter' +
+        (navScroll ? ' bg-white bg-opacity-70 shadow-md' : ' bg-transparent')
+      }
+    >
       <div className='container flex flex-wrap items-center py-2 md:py-4 align-middle justify-between'>
-        <div className='flex flex-shrink-0 mr-6'>
+        <div className='flex flex-shrink-0 mr-6 self-center'>
           <Link to='/' onClick={clickHandler}>
-            <span className='inline-block text-green-600 text-2xl font-bold pl-6'>
+            <span className='inline-block text-black text-2xl font-bold pl-6'>
               <div className='inline-block w-6 align-middle'>
                 <img src={logo} alt='logo' />
               </div>{' '}
-              {title}
+              MANGU<span className='text-pink-500'>IT</span>O
             </span>
           </Link>
         </div>
@@ -107,27 +122,27 @@ const Navbar = ({ title, home, gallery, about, signup }) => {
             <Link
               to='/'
               onClick={clickHandler}
-              className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300 mr-4'
+              className='block lg:inline-block text-black font-semibold align-middle text-lg hover:text-pink-500 mr-4'
             >
               {home}
             </Link>
-            <span className='inline-block lg:hidden align-middle pt-1 text-red-400 text-sm pr-4'>
+            <span className='inline-block lg:hidden align-middle pt-1 text-black text-sm pr-4'>
               |
             </span>
             <Link
               to='/gallery'
               onClick={clickHandler}
-              className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300 mr-4'
+              className='block lg:inline-block text-black font-semibold align-middle text-lg hover:text-pink-500 mr-4'
             >
               {gallery}
             </Link>
-            <span className='inline-block lg:hidden align-middle pt-1 text-red-400 text-sm pr-4'>
+            <span className='inline-block lg:hidden align-middle pt-1 text-black text-sm pr-4'>
               |
             </span>
             <Link
               to='/about'
               onClick={clickHandler}
-              className='block lg:inline-block text-red-400 font-semibold align-middle text-lg hover:text-red-300'
+              className='block lg:inline-block text-black font-semibold align-middle text-lg hover:text-pink-500'
             >
               {about}
             </Link>

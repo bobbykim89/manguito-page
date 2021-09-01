@@ -74,19 +74,19 @@ const UploadForm = () => {
       <div className={toggleForm ? 'block' : 'hidden'}>
         <form
           onSubmit={onSubmit}
-          className='flex flex-col mb-6 border-dashed border-4 rounded-lg border-red-300 px-4 py-4 md:px-8 md:py-8'
+          className='flex flex-col mb-6 border-dashed border-4 rounded-lg border-pink-500 px-4 py-4 md:px-8 md:py-8 shadow-lg'
           encType='multipart/form-data'
         >
           <div className='mb-4'>
             <label
               htmlFor='image'
-              className='block w-full pl-2 border-2 border-red-300'
+              className='block w-full pl-2 border-2 border-blue-500 font-inter'
             >
               <div className='grid grid-cols-4'>
-                <span className='col-span-3 py-2 text-green-600 text-lg font-semibold'>
+                <span className='col-span-3 py-2 text-black text-lg bg-transparent font-semibold'>
                   {filename}
                 </span>
-                <span className='text-center text-white bg-green-400 hover:bg-green-300 text-lg font-semibold py-2 tracking-wider shadow-md'>
+                <span className='text-center text-white bg-blue-700 hover:bg-blue-500 md:text-lg font-semibold py-2 tracking-wider shadow-md'>
                   Browse
                 </span>
               </div>
@@ -104,7 +104,7 @@ const UploadForm = () => {
           <div className='mb-4'>
             <label
               htmlFor='content'
-              className='text-green-600 text-lg font-semibold'
+              className='text-black text-lg font-inter font-semibold'
             >
               Please Write something
             </label>
@@ -114,7 +114,7 @@ const UploadForm = () => {
               onChange={onChange}
               cols='30'
               rows='10'
-              className='block w-full p-2 border-2 border-red-300'
+              className='block w-full p-2 border-2 border-blue-500 bg-transparent'
               placeholder='Write something about Manguito'
             ></textarea>
           </div>
@@ -122,14 +122,14 @@ const UploadForm = () => {
             <input
               type='submit'
               value='Submit'
-              className='block w-full px-4 py-2 bg-green-400 hover:bg-green-300 text-lg text-white font-semibold tracking-wider'
+              className='block w-full px-4 py-2 bg-blue-700 hover:bg-blue-500 text-lg text-white font-semibold tracking-wider'
             />
           </div>
         </form>
       </div>
       <div
         className={
-          'flex text-4xl justify-center align-middle font-semibold text-green-400 hover:text-green-300' +
+          'flex text-4xl justify-center align-middle font-semibold text-blue-700 hover:text-blue-500' +
           (user !== null && user.admin ? ' block' : ' hidden')
         }
         onClick={handleToggler}

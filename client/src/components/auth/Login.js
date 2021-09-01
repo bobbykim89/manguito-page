@@ -45,7 +45,7 @@ const Login = (props) => {
         <title>Login: Manguito page</title>
         <meta name='description' content='Logging into Manguito Page!' />
       </Helmet>
-      <section className='bg-blue-200 py-20 min-h-85v'>
+      <section className='bg-blue-200 py-20 min-h-85v font-inter'>
         <div className='container w-11/12 md:w-1/3 bg-blue-400 mx-auto px-4 md:px-8 py-8 rounded shadow-lg'>
           <h1 className='mx-auto text-4xl text-white font-bold text-center mb-4 tracking-wider'>
             Login
@@ -65,7 +65,7 @@ const Login = (props) => {
                 value={email}
                 onChange={onChange}
                 required
-                className='block w-full p-2 border-2 border-indigo-400'
+                className='block w-full p-2 border-2 border-indigo-400 outline-none'
               />
             </div>
             <div className='mb-6'>
@@ -82,13 +82,13 @@ const Login = (props) => {
                 value={password}
                 onChange={onChange}
                 required
-                className='block w-full p-2 border-2 border-indigo-400'
+                className='block w-full p-2 border-2 border-indigo-400 outline-none'
               />
             </div>
             <input
               type='submit'
               value='Login'
-              className='px-4 py-2 bg-indigo-700 hover:bg-indigo-600 text-lg text-white font-semibold tracking-wider shadow-md'
+              className='px-4 py-2 bg-blue-700 hover:bg-blue-500 text-lg text-white font-semibold tracking-wider shadow-md'
             />
           </form>
         </div>

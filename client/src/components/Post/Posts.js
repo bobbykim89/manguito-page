@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import ImageGrid from './ImageGrid';
 import UploadForm from './UploadForm';
 import PostItem from './PostItem';
+import ToTop from '../layout/ToTop';
 import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 
@@ -46,6 +47,7 @@ const Posts = () => {
             <PostItem post={post} setPost={setPost} />
           </div>
         </section>
+        <ToTop />
       </Fragment>
     );
   }
@@ -59,16 +61,17 @@ const Posts = () => {
           content='Photo gallery for Manguito! Please click on image to enjoy daily life of Manguito!'
         />
       </Helmet>
-      <section className='bg-pink-100 py-10 lg:py-16 min-h-85v'>
+      <section className='py-10 lg:py-16 min-h-85v font-inter'>
         <div className='w-full mx-auto md:w-1/2'>
-          <h1 className='text-3xl text-center font-semibold tracking-wider text-green-600'>
-            This is a beautiful day!
+          <h1 className='text-3xl text-center font-semibold tracking-wider text-black font-light'>
+            Enjoy the gallery!
           </h1>
           <UploadForm />
 
           <ImageGrid posts={posts} />
         </div>
       </section>
+      <ToTop />
     </Fragment>
   );
 };
