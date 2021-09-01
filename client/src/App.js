@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import './App.css';
+import './app.css';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Footer from './components/layout/Footer';
