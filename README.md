@@ -40,7 +40,6 @@ nodemon\
 
 ### `Frontend Dependencies`
 
-craco\
 fontawesome\
 tailwindcss/aspect-ratio\
 aos\
@@ -48,11 +47,18 @@ autoprefixer\
 axios\
 hamburger-react\
 moment\
-postcss\
+postcss-cli\
 react-router-dom\
 react-moment\
 tailwindcss\
+chokidar-cli\
+uuid\
 
 ## Changes
 
 TBD
+
+## Issues
+
+1. npm run dev on frontend side does not work properly somehow. watch keep turns off as soon as it started.
+2. Need to run npm run dev to run backend and frontend, and npm run watch from client directory to run properly on on dev environment.
