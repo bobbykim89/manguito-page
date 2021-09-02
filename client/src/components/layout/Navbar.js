@@ -13,7 +13,7 @@ import logo from './logo.png';
 import { AuthContext } from '../../context/auth/AuthContext';
 import { PostContext } from '../../context/post/PostContext';
 
-const Navbar = ({ title, home, gallery, about }) => {
+const Navbar = ({ home, gallery, about }) => {
   const authContext = useContext(AuthContext);
   const postContext = useContext(PostContext);
 

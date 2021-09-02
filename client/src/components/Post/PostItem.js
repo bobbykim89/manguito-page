@@ -96,8 +96,7 @@ const PostItem = ({ post, setPost }) => {
                     name='content'
                     value={content}
                     onChange={onChange}
-                    rows='5'
-                    className='block w-full border-gray-500 mb-2'
+                    className='block w-full bg-transparent h-28 border-gray-400 mb-2 outline-none border-b-2'
                   ></textarea>
                   <div className='text-right'>
                     <button type='submit' value='Done'>

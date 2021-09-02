@@ -112,9 +112,7 @@ const UploadForm = () => {
               name='content'
               value={content}
               onChange={onChange}
-              cols='30'
-              rows='10'
-              className='block w-full p-2 border-2 border-blue-500 bg-transparent'
+              className='block w-full p-2 border-2 h-32 md:h-48 border-blue-500 bg-transparent outline-none'
               placeholder='Write something about Manguito'
             ></textarea>
           </div>

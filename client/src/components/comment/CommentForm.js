@@ -49,10 +49,9 @@ const CommentForm = () => {
       <form onSubmit={onSubmit}>
         <textarea
           name='text'
-          rows='5'
           value={text}
           onChange={onChange}
-          className='block w-full border-gray-500 mb-2'
+          className='block w-full mb-2 bg-transparent h-28 border-gray-400 outline-none border-b-2'
           placeholder=' Please write comment here'
         ></textarea>
         <div className='text-right'>
