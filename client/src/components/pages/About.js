@@ -42,13 +42,13 @@ const About = () => {
           <div className='inline-block items-center grid grid-flow-row lg:grid-cols-2'>
             {/* Left */}
             <div
-              className='inline-block flex flex-wrap mx-auto justify-center lg:justify-start'
+              className='inline-block py-20 justify-center'
               data-aos='flip-left'
             >
               <img
                 src={about}
                 alt='bird on monitor'
-                className='aspect-w-1 aspect-h-1 inline-block rounded-full my-8 w-2/3 shadow-md'
+                className='w-2/3 mx-auto rounded-full border-4 border-white shadow-lg'
               />
             </div>
             <div className='flex flex-col inline-block px-2 mx-auto'>
