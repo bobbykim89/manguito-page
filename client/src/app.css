@@ -1401,6 +1401,9 @@ video {
 .animation-delay-4000 {
     animation-delay: 4s;
   }
+.perspective {
+    perspective: 1800px;
+  }
 .card {
     transform-style: preserve-3d;
     transform: rotateY(0deg);

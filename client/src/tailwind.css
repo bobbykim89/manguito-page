@@ -11,6 +11,12 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+
+  .perspective {
+    -webkit-perspective: 1800px;
+    perspective: 1800px;
+  }
+
   .card {
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;

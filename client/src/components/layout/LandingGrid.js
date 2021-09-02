@@ -22,7 +22,7 @@ const LandingGrid = () => {
   return (
     <Fragment>
       {posts.length !== 0 && !loading ? (
-        <section className='bg-white grid place-items-center py-20'>
+        <section className='bg-white grid place-items-center py-20 perspective'>
           <div className='p-4 md:w-2/3 grid gap-4 grid-cols-2 md:grid-cols-4 font-inter'>
             <h1 className='text-4xl font-extrabold col-span-2 md:col-span-3 md:text-5xl grid grid-cols-2 md:grid-cols-3 gap-4'>
               <span className='row-start-2 col-span-2'>
