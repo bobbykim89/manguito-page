@@ -1374,6 +1374,9 @@ video {
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 150ms;
 }
+.delay-300 {
+	transition-delay: 300ms;
+}
 .delay-150 {
 	transition-delay: 150ms;
 }
@@ -1401,6 +1404,8 @@ video {
 .card {
     transform-style: preserve-3d;
     transform: rotateY(0deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 .flip-card {
     transform: rotateY(360deg);

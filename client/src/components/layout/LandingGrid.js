@@ -48,7 +48,7 @@ const LandingGrid = () => {
                 src={posts && posts[0].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
+                  'object-cover object-center max-w-6/4 transition delay-300 duration-1000' +
                   (img0 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -64,7 +64,7 @@ const LandingGrid = () => {
                 src={posts && posts[1].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
+                  'object-cover object-center max-w-6/4 transition delay-300 duration-1000' +
                   (img1 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -80,7 +80,7 @@ const LandingGrid = () => {
                 src={posts && posts[2].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
+                  'object-cover object-center max-w-6/4 transition delay-300 duration-1000' +
                   (img2 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -96,7 +96,7 @@ const LandingGrid = () => {
                 src={posts && posts[3].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
+                  'object-cover object-center max-w-6/4 transition delay-300  duration-1000' +
                   (img3 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -112,7 +112,7 @@ const LandingGrid = () => {
                 src={posts && posts[4].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
+                  'object-cover object-center max-w-6/4 transition delay-300  duration-1000' +
                   (img4 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -128,7 +128,7 @@ const LandingGrid = () => {
                 src={posts && posts[5].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
+                  'object-cover object-center max-w-6/4 transition delay-300  duration-1000' +
                   (img5 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -144,7 +144,7 @@ const LandingGrid = () => {
                 src={posts && posts[6].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
+                  'object-cover object-center max-w-6/4 transition delay-300 duration-1000' +
                   (img6 ? ' opacity-100' : ' opacity-0')
                 }
               />

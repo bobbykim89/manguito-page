@@ -16,6 +16,8 @@
     transform-style: preserve-3d;
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   .flip-card {
     -webkit-transform: rotateY(360deg);
