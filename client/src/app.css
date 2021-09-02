@@ -1399,6 +1399,7 @@ video {
     transform: rotateY(360deg);
     transition: transform 2s;
     transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
   }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Permanent+Marker&display=swap');
