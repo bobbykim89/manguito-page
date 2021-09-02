@@ -12,6 +12,7 @@
     animation-delay: 4s;
   }
   .flip-card {
+    overflow: visible !important;
     -ms-transform: rotateY(360deg);
     -webkit-transform: rotateY(360deg);
     -moz-transform: rotateY(360deg);
@@ -27,6 +28,5 @@
     -moz-transform-style: preserve-3d;
     -o-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    -webkit-backface-visibility: hidden;
   }
 }
