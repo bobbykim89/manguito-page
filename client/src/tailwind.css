@@ -11,4 +11,9 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+  .flip-card {
+    transform: rotateY(360deg);
+    transition: transform 2s;
+    transform-style: preserve-3d;
+  }
 }

@@ -38,92 +38,106 @@ const LandingGrid = () => {
               />
             </div>
             <div
-              className='aspect-w-1 aspect-h-1 bg-blue-500'
-              onClick={() => setImg0(!img0)}
+              className={
+                'aspect-w-1 aspect-h-1 bg-blue-500' + (img0 ? ' flip-card' : '')
+              }
+              onClick={() => setImg0(true)}
             >
               <img
                 src={posts && posts[0].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-200' +
+                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
                   (img0 ? ' opacity-100' : ' opacity-0')
                 }
               />
             </div>
             <div
-              className='aspect-w-1 aspect-h-1 bg-blue-500'
-              onClick={() => setImg1(!img1)}
+              className={
+                'aspect-w-1 aspect-h-1 bg-blue-500' + (img1 ? ' flip-card' : '')
+              }
+              onClick={() => setImg1(true)}
             >
               <img
                 src={posts && posts[1].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-200' +
+                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
                   (img1 ? ' opacity-100' : ' opacity-0')
                 }
               />
             </div>
             <div
-              className='aspect-w-1 aspect-h-1 bg-pink-500'
-              onClick={() => setImg2(!img2)}
+              className={
+                'aspect-w-1 aspect-h-1 bg-pink-500' + (img2 ? ' flip-card' : '')
+              }
+              onClick={() => setImg2(true)}
             >
               <img
                 src={posts && posts[2].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-200' +
+                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
                   (img2 ? ' opacity-100' : ' opacity-0')
                 }
               />
             </div>
             <div
-              className='aspect-w-1 aspect-h-1 bg-pink-500'
-              onClick={() => setImg3(!img3)}
+              className={
+                'aspect-w-1 aspect-h-1 bg-pink-500' + (img3 ? ' flip-card' : '')
+              }
+              onClick={() => setImg3(true)}
             >
               <img
                 src={posts && posts[3].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-200' +
+                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
                   (img3 ? ' opacity-100' : ' opacity-0')
                 }
               />
             </div>
             <div
-              className='aspect-w-1 aspect-h-1 bg-blue-500'
-              onClick={() => setImg4(!img4)}
+              className={
+                'aspect-w-1 aspect-h-1 bg-blue-500' + (img4 ? ' flip-card' : '')
+              }
+              onClick={() => setImg4(true)}
             >
               <img
                 src={posts && posts[4].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-200' +
+                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
                   (img4 ? ' opacity-100' : ' opacity-0')
                 }
               />
             </div>
             <div
-              className='aspect-w-1 aspect-h-1 bg-pink-500'
-              onClick={() => setImg5(!img5)}
+              className={
+                'aspect-w-1 aspect-h-1 bg-pink-500' + (img5 ? ' flip-card' : '')
+              }
+              onClick={() => setImg5(true)}
             >
               <img
                 src={posts && posts[5].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-200' +
+                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
                   (img5 ? ' opacity-100' : ' opacity-0')
                 }
               />
             </div>
             <div
-              className='aspect-w-1 aspect-h-1 bg-blue-500'
-              onClick={() => setImg6(!img6)}
+              className={
+                'aspect-w-1 aspect-h-1 bg-blue-500' + (img6 ? ' flip-card' : '')
+              }
+              onClick={() => setImg6(true)}
             >
               <img
                 src={posts && posts[6].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition ease-in duration-200' +
+                  'object-cover object-center max-w-6/4 transition ease-in duration-1000' +
                   (img6 ? ' opacity-100' : ' opacity-0')
                 }
               />
