@@ -1380,6 +1380,9 @@ video {
 .duration-150 {
 	transition-duration: 150ms;
 }
+.duration-\[2000ms\] {
+	transition-duration: 2000ms;
+}
 .duration-1000 {
 	transition-duration: 1000ms;
 }
@@ -1395,11 +1398,12 @@ video {
 .animation-delay-4000 {
     animation-delay: 4s;
   }
-.flip-card {
-    overflow: visible !important;
-    transform: rotateY(360deg);
-    transition: transform 2s;
+.card {
     transform-style: preserve-3d;
+    transform: rotateY(0deg);
+  }
+.flip-card {
+    transform: rotateY(360deg);
   }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Permanent+Marker&display=swap');

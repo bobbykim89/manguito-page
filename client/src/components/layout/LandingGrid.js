@@ -39,7 +39,8 @@ const LandingGrid = () => {
             </div>
             <div
               className={
-                'aspect-w-1 aspect-h-1 bg-blue-500' + (img0 ? ' flip-card' : '')
+                'aspect-w-1 aspect-h-1 bg-blue-500 card transition duration-[2000ms]' +
+                (img0 ? ' flip-card' : '')
               }
               onClick={() => setImg0(true)}
             >
@@ -54,7 +55,8 @@ const LandingGrid = () => {
             </div>
             <div
               className={
-                'aspect-w-1 aspect-h-1 bg-blue-500' + (img1 ? ' flip-card' : '')
+                'aspect-w-1 aspect-h-1 bg-blue-500 card transition duration-[2000ms]' +
+                (img1 ? ' flip-card' : '')
               }
               onClick={() => setImg1(true)}
             >
@@ -69,7 +71,8 @@ const LandingGrid = () => {
             </div>
             <div
               className={
-                'aspect-w-1 aspect-h-1 bg-pink-500' + (img2 ? ' flip-card' : '')
+                'aspect-w-1 aspect-h-1 bg-pink-500 card transition duration-[2000ms]' +
+                (img2 ? ' flip-card' : '')
               }
               onClick={() => setImg2(true)}
             >
@@ -84,7 +87,8 @@ const LandingGrid = () => {
             </div>
             <div
               className={
-                'aspect-w-1 aspect-h-1 bg-pink-500' + (img3 ? ' flip-card' : '')
+                'aspect-w-1 aspect-h-1 bg-pink-500 card transition duration-[2000ms]' +
+                (img3 ? ' flip-card' : '')
               }
               onClick={() => setImg3(true)}
             >
@@ -99,7 +103,8 @@ const LandingGrid = () => {
             </div>
             <div
               className={
-                'aspect-w-1 aspect-h-1 bg-blue-500' + (img4 ? ' flip-card' : '')
+                'aspect-w-1 aspect-h-1 bg-blue-500 card transition duration-[2000ms]' +
+                (img4 ? ' flip-card' : '')
               }
               onClick={() => setImg4(true)}
             >
@@ -114,7 +119,8 @@ const LandingGrid = () => {
             </div>
             <div
               className={
-                'aspect-w-1 aspect-h-1 bg-pink-500' + (img5 ? ' flip-card' : '')
+                'aspect-w-1 aspect-h-1 bg-pink-500 card transition duration-[2000ms]' +
+                (img5 ? ' flip-card' : '')
               }
               onClick={() => setImg5(true)}
             >
@@ -129,7 +135,8 @@ const LandingGrid = () => {
             </div>
             <div
               className={
-                'aspect-w-1 aspect-h-1 bg-blue-500' + (img6 ? ' flip-card' : '')
+                'aspect-w-1 aspect-h-1 bg-blue-500 card transition duration-[2000ms]' +
+                (img6 ? ' flip-card' : '')
               }
               onClick={() => setImg6(true)}
             >
