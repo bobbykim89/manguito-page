@@ -56,9 +56,14 @@ uuid\
 
 ## Changes
 
-TBD
+1. Redesigned the landing page, navbar, and about page with more modern looking layout.
+2. minor changes on design of most of other pages
+3. Fixed the issue of express validator normalizing dots in email address
 
-## Issues
+## Known Issues
 
 1. npm run dev on frontend side does not work properly somehow. watch keep turns off as soon as it started.
 2. Need to run npm run dev to run backend and frontend, and npm run watch from client directory to run properly on on dev environment.
+3. Images from cloudinary is too big and they are causing large delay on page loading. need to figure out how to reduce file size.
+4. Implementing a button to navigate to previous/next post would bring some convenience.
+5. Load more button or lazy loading to increase page loading speed.
