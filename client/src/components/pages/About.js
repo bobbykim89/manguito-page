@@ -48,7 +48,7 @@ const About = () => {
               <img
                 src={about}
                 alt='bird on monitor'
-                className='inline-block rounded-full my-8 w-2/3 shadow-md'
+                className='aspect-w-1 aspect-h-1 inline-block rounded-full my-8 w-2/3 shadow-md'
               />
             </div>
             <div className='flex flex-col inline-block px-2 mx-auto'>
