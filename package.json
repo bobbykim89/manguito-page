@@ -8,9 +8,10 @@
     "server": "nodemon server.js",
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
+    "watch-css": "cd client && npm run watch:css",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm run install-client && npm run build"
+    "heroku-postbuild": "npm run watch-css && npm run install-client && npm run build"
   },
   "keywords": [],
   "author": "",
