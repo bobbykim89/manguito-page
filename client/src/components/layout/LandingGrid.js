@@ -48,7 +48,7 @@ const LandingGrid = () => {
                 src={posts && posts[0].image}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition delay-500' +
+                  'object-cover object-center max-w-6/4 transition delay-500 duration-1000' +
                   (img0 ? ' opacity-100' : ' opacity-0')
                 }
               />
