@@ -1,4 +1,4 @@
-# Manguito Page v0.1.1
+# Manguito Page v0.1.2 (In Progress)
 
 App Deployed on heroku as [Manguito Page](https://manguitopage.herokuapp.com/).
 
@@ -56,10 +56,7 @@ uuid\
 
 ## Changes
 
-1. Redesigned the landing page, navbar, and about page with more modern looking layout.
-2. minor changes on design of most of other pages
-3. Fixed the issue of express validator normalizing dots in email address
-4. Fixed the issue of card flips on landing page not displaying on safari browser.
+TBD
 
 ## Known Issues
 
@@ -69,3 +66,12 @@ uuid\
 4. (Important) Implementing a button to navigate to previous/next post would bring some convenience.
 5. (Important) Load more button or lazy loading to increase page loading speed.
 6. There are some junk code that are not needed need to find them out and delete them some time to make it look cleaner.
+
+## Change Log
+
+### v0.1.1
+
+1. Redesigned the landing page, navbar, and about page with more modern looking layout.
+2. minor changes on design of most of other pages
+3. Fixed the issue of express validator normalizing dots in email address
+4. Fixed the issue of card flips on landing page not displaying on safari browser.

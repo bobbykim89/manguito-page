@@ -57,7 +57,7 @@ const About = () => {
               </h2>
               <div className='mb-4'>
                 <p className='text-md'>Photo blog for Manguito</p>
-                <p className='text-md'>Version: 0.1.1(Beta)</p>
+                <p className='text-md'>Version: 0.1.2(Beta)</p>
                 <p className='text-md'>Made by: Bobby Kim</p>
               </div>
               <ul className='text-6xl flex flex-wrap justify-center'>
