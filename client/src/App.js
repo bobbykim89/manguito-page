@@ -10,6 +10,7 @@ import About from './components/pages/About';
 import Home from './components/pages/Home';
 import Posts from './components/Post/Posts';
 import Alerts from './components/layout/Alerts';
+import NotFound from './components/pages/NotFound';
 
 import PostState from './context/post/PostContext';
 import CommentState from './context/comment/CommentContext';
@@ -45,6 +46,7 @@ function App() {
                     <Route exact path='/about' component={About} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/signup' component={Signup} />
+                    <Route path='*' component={NotFound} />
                   </Switch>
                   <Footer />
                 </Fragment>

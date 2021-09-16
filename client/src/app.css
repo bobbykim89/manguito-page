@@ -817,11 +817,11 @@ video {
 .mt-2 {
 	margin-top: 0.5rem;
 }
-.ml-12 {
-	margin-left: 3rem;
-}
 .mb-8 {
 	margin-bottom: 2rem;
+}
+.ml-12 {
+	margin-left: 3rem;
 }
 .mt-5 {
 	margin-top: 1.25rem;
@@ -982,6 +982,9 @@ video {
 }
 .items-center {
 	align-items: center;
+}
+.items-stretch {
+	align-items: stretch;
 }
 .justify-end {
 	justify-content: flex-end;
@@ -1269,6 +1272,10 @@ video {
 	font-size: 3.75rem;
 	line-height: 1;
 }
+.text-8xl {
+	font-size: 6rem;
+	line-height: 1;
+}
 .text-3xl {
 	font-size: 1.875rem;
 	line-height: 2.25rem;
@@ -1421,6 +1428,11 @@ video {
 	background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
 }
 
+.hover\:bg-pink-500:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(236, 72, 153, var(--tw-bg-opacity));
+}
+
 .hover\:bg-transparent:hover {
 	background-color: transparent;
 }
@@ -1438,6 +1450,11 @@ video {
 .hover\:text-pink-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(236, 72, 153, var(--tw-text-opacity));
+}
+
+.hover\:text-white:hover {
+	--tw-text-opacity: 1;
+	color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
 .hover\:text-blue-500:hover {
@@ -1708,6 +1725,11 @@ video {
 
 	.lg\:pt-8 {
 		padding-top: 2rem;
+	}
+
+	.lg\:text-6xl {
+		font-size: 3.75rem;
+		line-height: 1;
 	}
 
 	.lg\:text-3xl {
