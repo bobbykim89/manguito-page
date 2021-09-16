@@ -29,10 +29,10 @@ const ImageGrid = ({ posts }) => {
               className='overflow-hidden aspect-w-1 aspect-h-1 shadow-lg'
             >
               <img
-                src={post.image}
+                src={post.thumb}
                 alt='grid'
                 onClick={() => setCurrent(post)}
-                className='object-cover object-center max-w-6/4 hover:opacity-50 transition ease-in duration-150'
+                className='object-cover object-center max-w-[150%] hover:opacity-50 transition ease-in duration-150'
               />
             </div>
           ))}

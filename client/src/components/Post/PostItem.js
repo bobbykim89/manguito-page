@@ -26,7 +26,7 @@ const PostItem = ({ post, setPost }) => {
     handleToggler();
   };
 
-  const { _id, image, content, name, date } = post;
+  const { _id, url, content, name, date } = post;
 
   const onChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -77,7 +77,7 @@ const PostItem = ({ post, setPost }) => {
         </div>
         <div className='px-4 grid grid-flow-row lg:grid-cols-2 gap-4'>
           <div className='w-full shadow'>
-            <img src={image} alt='pollito' className='rounded' />
+            <img src={url} alt='pollito' className='rounded' />
           </div>
           <div>
             <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3 shadow'>

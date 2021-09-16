@@ -898,7 +898,7 @@ video {
 .w-1\/2 {
 	width: 50%;
 }
-.max-w-6\/4 {
+.max-w-\[150\%\] {
 	max-width: 150%;
 }
 .flex-shrink-0 {

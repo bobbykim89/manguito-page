@@ -45,10 +45,10 @@ const LandingGrid = () => {
               onClick={() => setImg0(true)}
             >
               <img
-                src={posts && posts[0].image}
+                src={posts && posts[0].thumb}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition delay-500 duration-1000' +
+                  'object-cover object-center max-w-[150%] transition delay-500 duration-1000' +
                   (img0 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -61,10 +61,10 @@ const LandingGrid = () => {
               onClick={() => setImg1(true)}
             >
               <img
-                src={posts && posts[1].image}
+                src={posts && posts[1].thumb}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition delay-500 duration-1000' +
+                  'object-cover object-center max-w-[150%] transition delay-500 duration-1000' +
                   (img1 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -77,10 +77,10 @@ const LandingGrid = () => {
               onClick={() => setImg2(true)}
             >
               <img
-                src={posts && posts[2].image}
+                src={posts && posts[2].thumb}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition delay-500 duration-1000' +
+                  'object-cover object-center max-w-[150%] transition delay-500 duration-1000' +
                   (img2 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -93,10 +93,10 @@ const LandingGrid = () => {
               onClick={() => setImg3(true)}
             >
               <img
-                src={posts && posts[3].image}
+                src={posts && posts[3].thumb}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition delay-500  duration-1000' +
+                  'object-cover object-center max-w-[150%] transition delay-500  duration-1000' +
                   (img3 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -109,10 +109,10 @@ const LandingGrid = () => {
               onClick={() => setImg4(true)}
             >
               <img
-                src={posts && posts[4].image}
+                src={posts && posts[4].thumb}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition delay-500  duration-1000' +
+                  'object-cover object-center max-w-[150%] transition delay-500  duration-1000' +
                   (img4 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -125,10 +125,10 @@ const LandingGrid = () => {
               onClick={() => setImg5(true)}
             >
               <img
-                src={posts && posts[5].image}
+                src={posts && posts[5].thumb}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition delay-500  duration-1000' +
+                  'object-cover object-center max-w-[150%] transition delay-500  duration-1000' +
                   (img5 ? ' opacity-100' : ' opacity-0')
                 }
               />
@@ -141,10 +141,10 @@ const LandingGrid = () => {
               onClick={() => setImg6(true)}
             >
               <img
-                src={posts && posts[6].image}
+                src={posts && posts[6].thumb}
                 alt=''
                 className={
-                  'object-cover object-center max-w-6/4 transition delay-500 duration-1000' +
+                  'object-cover object-center max-w-[150%] transition delay-500 duration-1000' +
                   (img6 ? ' opacity-100' : ' opacity-0')
                 }
               />
