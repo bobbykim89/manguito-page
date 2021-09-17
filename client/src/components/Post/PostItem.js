@@ -65,6 +65,12 @@ const PostItem = () => {
     clearCurrent();
   };
 
+  const handleBackgroundClick = (e) => {
+    if (e.target.classList.contains('backdrop')) {
+      onClose(e);
+    }
+  };
+
   const copyLink = (e) => {
     const currentUrl = window.location.href;
     navigator.clipboard.writeText(currentUrl);
@@ -105,10 +111,13 @@ const PostItem = () => {
         <title>Post: Manguito page</title>
         <meta name='description' content={currentPost && currentPost.content} />
       </Helmet>
-      <section className='bg-gray-800 bg-opacity-80 lg:py-20 min-h-80v'>
+      <section
+        className='backdrop bg-gray-800 bg-opacity-80 lg:py-20 min-h-80v'
+        onClick={handleBackgroundClick}
+      >
         {currentPost && (
           <div className='bg-white pb-4 shadow-xl w-full mx-auto md:w-2/3'>
-            <div className='text-right pb-3 sticky pt-3 bg-white top-0'>
+            <div className='relative text-right pb-3 sticky pt-3 bg-white top-0 z-10'>
               <i
                 className='material-icons align-middle text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
                 onClick={onClose}

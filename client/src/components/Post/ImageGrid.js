@@ -28,7 +28,7 @@ const ImageGrid = ({ posts }) => {
                 <img
                   src={post.thumb}
                   alt='grid'
-                  className='object-center min-h-full min-w-full max-w-[150%] hover:opacity-50 transition ease-in duration-150'
+                  className='object-none lg:object-cover object-center lg:min-h-full lg:min-w-full max-w-[150%] hover:opacity-50 transition ease-in duration-150'
                 />
               </Link>
             </div>

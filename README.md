@@ -67,6 +67,7 @@ uuid
 2. Now each post got own url instead of rendering current post every time.
 3. Add 404 page.
 4. Added copy url to clipboard feature.
+5. Added functionality to go back to gallery upon clicking on backdrop(gray background) of post in larger screen device.
 
 ## Known Issues
 
