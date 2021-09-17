@@ -1,4 +1,4 @@
-# Manguito Page v0.1.2
+# Manguito Page v0.1.3 (In Progress)
 
 App Deployed on heroku as [Manguito Page](https://manguitopage.herokuapp.com/).
 
@@ -61,13 +61,9 @@ uuid
 
 ## Changes
 
-### v0.1.2
-
-1. Optimized the image size using virtual schema and improved the page loading speed & general performance.
-2. Now each post got own url instead of rendering current post every time.
-3. Add 404 page.
-4. Added copy url to clipboard feature.
-5. Added functionality to go back to gallery upon clicking on backdrop(gray background) of post in larger screen device.
+1. (In Progress) Planning to add previous/next post buttons.
+2. (In Progress) Further optimization. and remove unused dependencies.
+3. (In Progress) Picture not getting centered should be fixed as well
 
 ## Known Issues
 
@@ -83,3 +79,11 @@ uuid
 2. minor changes on design of most of other pages
 3. Fixed the issue of express validator normalizing dots in email address
 4. Fixed the issue of card flips on landing page not displaying on safari browser.
+
+### v0.1.2
+
+1. Optimized the image size using virtual schema and improved the page loading speed & general performance.
+2. Now each post got own url instead of rendering current post every time.
+3. Add 404 page.
+4. Added copy url to clipboard feature.
+5. Added functionality to go back to gallery upon clicking on backdrop(gray background) of post in larger screen device.
