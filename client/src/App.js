@@ -11,6 +11,7 @@ import Home from './components/pages/Home';
 import Posts from './components/Post/Posts';
 import Alerts from './components/layout/Alerts';
 import NotFound from './components/pages/NotFound';
+import PostItem from './components/Post/PostItem';
 
 import PostState from './context/post/PostContext';
 import CommentState from './context/comment/CommentContext';
@@ -43,6 +44,7 @@ function App() {
                   <Switch>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/gallery' component={Posts} />
+                    <Route path='/gallery/:postId' component={PostItem} />
                     <Route exact path='/about' component={About} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/signup' component={Signup} />

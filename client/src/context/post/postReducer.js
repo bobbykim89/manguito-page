@@ -6,6 +6,7 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   POST_ERROR,
+  GET_POST,
 } from '../types';
 
 const variable = (state, action) => {
@@ -14,6 +15,12 @@ const variable = (state, action) => {
       return {
         ...state,
         posts: action.payload,
+        loading: false,
+      };
+    case GET_POST:
+      return {
+        ...state,
+        currentPost: action.payload,
         loading: false,
       };
     case ADD_POST:
@@ -44,6 +51,7 @@ const variable = (state, action) => {
     case CLEAR_CURRENT:
       return {
         ...state,
+        currentPost: null,
         current: null,
       };
     case POST_ERROR:

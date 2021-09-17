@@ -21,7 +21,7 @@ const CommentState = (props) => {
   // Get Comment
   const getComments = async () => {
     try {
-      const res = await axios.get('api/comments');
+      const res = await axios.get('/api/comments');
       dispatch({ type: GET_COMMENTS, payload: res.data });
     } catch (err) {
       dispatch({ type: COMMENT_ERROR, payload: err.response.msg });
@@ -36,7 +36,7 @@ const CommentState = (props) => {
       },
     };
     try {
-      const res = await axios.post('api/comments', comment, config);
+      const res = await axios.post('/api/comments', comment, config);
       dispatch({ type: ADD_COMMENT, payload: res.data });
     } catch (err) {
       dispatch({ type: COMMENT_ERROR, payload: err.response.msg });
@@ -46,7 +46,7 @@ const CommentState = (props) => {
   // Delete Comment
   const deleteComment = async (id) => {
     try {
-      await axios.delete(`api/comments/${id}`);
+      await axios.delete(`/api/comments/${id}`);
       dispatch({ type: DELETE_COMMENT, payload: id });
     } catch (err) {
       dispatch({ type: COMMENT_ERROR, payload: err.response.msg });

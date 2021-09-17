@@ -11,7 +11,7 @@ const CommentForm = () => {
   const alertContext = useContext(AlertContext);
 
   const { addComment } = commentContext;
-  const { current, clearCurrent, setCurrent } = postContext;
+  const { currentPost } = postContext;
   const { isAuthenticated, user } = authContext;
   const { setAlert } = alertContext;
 
@@ -19,7 +19,7 @@ const CommentForm = () => {
     text: '',
     name: user && user.name,
     author: user && user._id,
-    post: current && current._id,
+    post: currentPost && currentPost._id,
   });
   const { text } = comment;
 
@@ -31,16 +31,14 @@ const CommentForm = () => {
     e.preventDefault();
     if (!isAuthenticated) {
       setAlert('Please login');
-      clearCurrent();
+      return;
     } else {
       addComment(comment);
-      clearCurrent();
-      setCurrent(current);
       setComment({
         text: '',
         name: user && user.name,
         author: user && user._id,
-        post: current && current._id,
+        post: currentPost && currentPost._id,
       });
     }
   };

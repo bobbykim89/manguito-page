@@ -9,6 +9,7 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   POST_ERROR,
+  GET_POST,
 } from '../types';
 
 export const PostContext = createContext();
@@ -16,6 +17,7 @@ export const PostContext = createContext();
 const PostState = (props) => {
   const initialState = {
     posts: [],
+    currentPost: null,
     current: null,
     error: null,
   };
@@ -24,8 +26,18 @@ const PostState = (props) => {
   // Get Posts
   const getPosts = async () => {
     try {
-      const res = await axios.get('api/posts');
+      const res = await axios.get('/api/posts');
       dispatch({ type: GET_POSTS, payload: res.data });
+    } catch (err) {
+      dispatch({ type: POST_ERROR, payload: err.response.msg });
+    }
+  };
+
+  // Get Post - Get current post data
+  const getPost = async (id) => {
+    try {
+      const res = await axios.get(`/api/posts/${id}`);
+      dispatch({ type: GET_POST, payload: res.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response.msg });
     }
@@ -39,7 +51,7 @@ const PostState = (props) => {
       },
     };
     try {
-      const res = await axios.post('api/posts', post, config);
+      const res = await axios.post('/api/posts', post, config);
       dispatch({ type: ADD_POST, payload: res.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response.msg });
@@ -49,7 +61,7 @@ const PostState = (props) => {
   // Delete Post
   const deletePost = async (id) => {
     try {
-      await axios.delete(`api/posts/${id}`);
+      await axios.delete(`/api/posts/${id}`);
       dispatch({ type: DELETE_POST, payload: id });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response.msg });
@@ -64,7 +76,7 @@ const PostState = (props) => {
       },
     };
     try {
-      const res = await axios.put(`api/posts/${post._id}`, post, config);
+      const res = await axios.put(`/api/posts/${post._id}`, post, config);
       dispatch({ type: UPDATE_POST, payload: res.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response.msg });
@@ -85,9 +97,11 @@ const PostState = (props) => {
     <PostContext.Provider
       value={{
         posts: state.posts,
+        currentPost: state.currentPost,
         current: state.current,
         error: state.error,
         getPosts,
+        getPost,
         addPost,
         deletePost,
         setCurrent,

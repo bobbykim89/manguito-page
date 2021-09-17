@@ -2,15 +2,12 @@ import React, { useContext, Fragment, useEffect } from 'react';
 import CommentForm from './CommentForm';
 import CommentItem from './CommentItem';
 import { CommentContext } from '../../context/comment/CommentContext';
-import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 
-const Comments = () => {
-  const postContext = useContext(PostContext);
+const Comments = ({ currentPost }) => {
   const commentContext = useContext(CommentContext);
   const authContext = useContext(AuthContext);
 
-  const { current } = postContext;
   const { comments, getComments } = commentContext;
   const { isAuthenticated } = authContext;
 
@@ -19,9 +16,11 @@ const Comments = () => {
     // eslint-disable-next-line
   }, []);
 
+  // console.log('comment section', currentPost);
+
   if (comments.length !== 0) {
     const filteredComments = comments.filter(
-      (comment) => comment.post === current._id
+      (comment) => comment.post === currentPost._id
     );
     return (
       <Fragment>
@@ -29,11 +28,7 @@ const Comments = () => {
         <p className='ml-2 font-semibold'>Comments:</p>
         {filteredComments.length ? (
           filteredComments.map((comment) => (
-            <CommentItem
-              key={comment._id}
-              comment={comment}
-              current={current}
-            />
+            <CommentItem key={comment._id} comment={comment} />
           ))
         ) : (
           <p className='text-center mb-4'>No comment yet!</p>

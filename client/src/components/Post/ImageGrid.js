@@ -1,10 +1,11 @@
 import React, { Fragment, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { PostContext } from '../../context/post/PostContext';
 import Spinner from '../layout/Spinner';
 
 const ImageGrid = ({ posts }) => {
   const postContext = useContext(PostContext);
-  const { setCurrent, getPosts, loading } = postContext;
+  const { getPosts, loading } = postContext;
 
   useEffect(() => {
     getPosts();
@@ -28,12 +29,14 @@ const ImageGrid = ({ posts }) => {
               key={post._id}
               className='overflow-hidden aspect-w-1 aspect-h-1 shadow-lg'
             >
-              <img
-                src={post.thumb}
-                alt='grid'
-                onClick={() => setCurrent(post)}
-                className='object-cover object-center max-w-[150%] hover:opacity-50 transition ease-in duration-150'
-              />
+              <Link to={`/gallery/${post._id}`}>
+                <img
+                  src={post.thumb}
+                  alt='grid'
+                  // onClick={() => setCurrent(post)}
+                  className='object-cover object-center min-h-full min-w-full max-w-[150%] hover:opacity-50 transition ease-in duration-150'
+                />
+              </Link>
             </div>
           ))}
         </div>

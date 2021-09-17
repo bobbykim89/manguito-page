@@ -1,17 +1,14 @@
 import React, { useContext, Fragment } from 'react';
 import Moment from 'react-moment';
 import { CommentContext } from '../../context/comment/CommentContext';
-import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 import { AlertContext } from '../../context/alert/AlertContext';
 
-const CommentItem = ({ comment, current }) => {
-  const postContext = useContext(PostContext);
+const CommentItem = ({ comment }) => {
   const commentContext = useContext(CommentContext);
   const authContext = useContext(AuthContext);
   const alertContext = useContext(AlertContext);
 
-  const { clearCurrent, setCurrent } = postContext;
   const { deleteComment } = commentContext;
   const { isAuthenticated, user } = authContext;
   const { setAlert } = alertContext;
@@ -19,15 +16,13 @@ const CommentItem = ({ comment, current }) => {
   const handleDelete = () => {
     if (!isAuthenticated) {
       setAlert('Please login');
-      clearCurrent();
+      return;
     } else if (user._id === comment.author || user.admin) {
       deleteComment(comment._id);
-      clearCurrent();
       setAlert('Successfully deleted a comment');
-      setCurrent(current);
     } else {
       setAlert('Sorry, You are not authorized to do so');
-      clearCurrent();
+      return;
     }
   };
 

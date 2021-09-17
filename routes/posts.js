@@ -21,6 +21,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route GET api/posts/:id
+// @ desc GET single post
+// access Public
+router.get('/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    res.json(post);
+  } catch (err) {
+    console.err(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route POST api/posts
 // @desc  ADD new post
 // @access  Private
