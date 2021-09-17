@@ -22,16 +22,11 @@ const PostItem = () => {
 
   const [toggleEdit, setToggleEdit] = useState(false);
   const [post, setPost] = useState({
-    name: '',
     content: '',
-    _id: '',
-    url: '',
-    date: '',
   });
 
   useEffect(() => {
     getPost(postId);
-    postGrabber();
     if (authContext.token !== null) {
       authContext.loadUser();
     }
@@ -46,9 +41,11 @@ const PostItem = () => {
 
   const postGrabber = async () => {
     if (currentPost) {
-      await setPost(currentPost.content);
+      await setPost({ content: currentPost.content });
     } else {
-      setPost({});
+      setPost({
+        content: '',
+      });
     }
   };
 
@@ -63,11 +60,7 @@ const PostItem = () => {
     e.preventDefault();
     history.goBack();
     setPost({
-      name: '',
       content: '',
-      _id: '',
-      url: '',
-      date: '',
     });
     clearCurrent();
   };
@@ -81,7 +74,9 @@ const PostItem = () => {
       setAlert('Sorry You are not authorized to do so');
       return;
     } else {
-      updatePost(post);
+      currentPost.content = post.content;
+      console.log('beforeSubmit', currentPost);
+      updatePost(currentPost);
       setAlert('Successfully updated!');
     }
   };
@@ -149,7 +144,7 @@ const PostItem = () => {
                         <button type='submit' value='Done'>
                           <i
                             className='material-icons align-middle text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
-                            onClick={editHandler}
+                            onClick={() => setToggleEdit(!toggleEdit)}
                           >
                             done
                           </i>
