@@ -86,7 +86,7 @@ const Signup = (props) => {
                 value={name}
                 onChange={onChange}
                 required
-                className='block w-full p-2 border-2 border-indigo-400 outline-none'
+                className='block w-full p-2 outline-none bg-blue-200'
               />
             </div>
             <div className='mb-4'>
@@ -103,7 +103,7 @@ const Signup = (props) => {
                 value={email}
                 onChange={onChange}
                 required
-                className='block w-full p-2 border-2 border-indigo-400 outline-none'
+                className='block w-full p-2 outline-none bg-blue-200'
               />
             </div>
             <div className='mb-4'>
@@ -122,7 +122,7 @@ const Signup = (props) => {
                 required
                 pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
                 title='Password must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters'
-                className='block w-full p-2 border-2 border-indigo-400 outline-none'
+                className='block w-full p-2 outline-none bg-blue-200'
               />
             </div>
             <div className='mb-4'>
@@ -130,7 +130,7 @@ const Signup = (props) => {
                 htmlFor='password2'
                 className='text-white text-lg font-semibold'
               >
-                Password
+                Confirm Password
               </label>
               <input
                 type='password'
@@ -141,7 +141,7 @@ const Signup = (props) => {
                 required
                 minLength='6'
                 maxLength='16'
-                className='block w-full p-2 border-2 border-indigo-400 outline-none'
+                className='block w-full p-2 outline-none bg-blue-200'
               />
             </div>
             <div className='mb-6'>

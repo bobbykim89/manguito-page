@@ -2,43 +2,26 @@ import React, { useContext, useEffect, Fragment } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ImageGrid from './ImageGrid';
 import UploadForm from './UploadForm';
-// import PostItem from './PostItem';
 import ToTop from '../layout/ToTop';
 import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
+import { useLocation } from 'react-router';
 
 const Posts = () => {
   const postContext = useContext(PostContext);
-  const { posts, clearCurrent } = postContext;
+  const { getPosts, posts } = postContext;
   const authContext = useContext(AuthContext);
 
+  const location = useLocation();
+
   useEffect(() => {
+    getPosts();
     if (authContext.token !== null) {
       authContext.loadUser();
     }
-    clearCurrent();
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     // eslint-disable-next-line
-  }, []);
-
-  // if (current) {
-  //   return (
-  //     <Fragment>
-  //       <Helmet>
-  //         <title>Gallery: Manguito page</title>
-  //         <meta
-  //           name='description'
-  //           content='Photo gallery for Manguito! Please click on image to enjoy daily life of Manguito!'
-  //         />
-  //       </Helmet>
-  //       <section className='bg-black bg-opacity-70 lg:py-20 min-h-80v'>
-  //         <div className='w-full mx-auto md:w-2/3'>
-  //           <PostItem post={post} setPost={setPost} />
-  //         </div>
-  //       </section>
-  //       <ToTop />
-  //     </Fragment>
-  //   );
-  // }
+  }, [location]);
 
   return (
     <Fragment>

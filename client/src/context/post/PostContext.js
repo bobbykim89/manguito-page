@@ -6,7 +6,6 @@ import {
   ADD_POST,
   DELETE_POST,
   UPDATE_POST,
-  SET_CURRENT,
   CLEAR_CURRENT,
   POST_ERROR,
   GET_POST,
@@ -18,7 +17,6 @@ const PostState = (props) => {
   const initialState = {
     posts: [],
     currentPost: null,
-    current: null,
     error: null,
   };
   const [state, dispatch] = useReducer(postReducer, initialState);
@@ -83,11 +81,6 @@ const PostState = (props) => {
     }
   };
 
-  // Set Current Post
-  const setCurrent = (post) => {
-    dispatch({ type: SET_CURRENT, payload: post });
-  };
-
   // Clear Current Post
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
@@ -104,7 +97,6 @@ const PostState = (props) => {
         getPost,
         addPost,
         deletePost,
-        setCurrent,
         clearCurrent,
         updatePost,
       }}

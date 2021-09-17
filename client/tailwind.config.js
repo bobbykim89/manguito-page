@@ -3,13 +3,6 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    maxWidth: {
-      '1/4': '25%',
-      '1/2': '50%',
-      '3/4': '75%',
-      '6/4': '150%',
-    },
-
     extend: {
       minHeight: {
         '10v': '10vh',
@@ -53,5 +46,8 @@ module.exports = {
       borderColor: ['checked'],
     },
   },
-  plugins: [require('@tailwindcss/aspect-ratio')],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('tailwindcss-textshadow'),
+  ],
 };

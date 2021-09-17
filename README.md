@@ -1,4 +1,4 @@
-# Manguito Page v0.1.2 (In Progress)
+# Manguito Page v0.1.2
 
 App Deployed on heroku as [Manguito Page](https://manguitopage.herokuapp.com/).
 
@@ -46,6 +46,7 @@ nodemon
 
 fontawesome\
 tailwindcss/aspect-ratio\
+tailwindcss-textshadow\
 aos\
 autoprefixer\
 axios\
@@ -63,17 +64,15 @@ uuid
 ### v0.1.2
 
 1. Optimized the image size using virtual schema and improved the page loading speed & general performance.
-2. (In Progress) Add route to go to each post.
-3. (In Progress) Add 404 page.
-4. (In Progress) Add Share post feature.
+2. Now each post got own url instead of rendering current post every time.
+3. Add 404 page.
+4. Added copy url to clipboard feature.
 
 ## Known Issues
 
-1. npm run dev on frontend side does not work properly somehow. watch keep turns off as soon as it started.
-2. Need to run npm run dev to run backend and frontend, and npm run watch from client directory to run properly on on dev environment.
-3. (Important) Implementing a button to navigate to previous/next post would bring some convenience.
-4. (Important) Load more button or lazy loading to increase page loading speed.
-5. There are some junk code that are not needed need to find them out and delete them some time to make it look cleaner.
+1. (Important) Implementing a button to navigate to previous/next post would bring some convenience.
+2. (Important) Load more button or lazy loading to increase page loading speed.
+3. There are some junk code that are not needed need to find them out and delete them some time to make it look cleaner.(working progress)
 
 ## Update Log
 

@@ -50,19 +50,25 @@ const PostItem = () => {
   };
 
   const { content } = post;
-  console.log('post', post);
 
   const onChange = (e) => {
-    setPost({ ...post, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setPost({ ...post, [name]: value });
   };
 
   const onClose = (e) => {
     e.preventDefault();
-    history.goBack();
+    history.push('/gallery');
     setPost({
       content: '',
     });
     clearCurrent();
+  };
+
+  const copyLink = (e) => {
+    const currentUrl = window.location.href;
+    navigator.clipboard.writeText(currentUrl);
+    setAlert('Copied to clipboard!');
   };
 
   const onSubmit = (e) => {
@@ -75,7 +81,6 @@ const PostItem = () => {
       return;
     } else {
       currentPost.content = post.content;
-      console.log('beforeSubmit', currentPost);
       updatePost(currentPost);
       setAlert('Successfully updated!');
     }
@@ -113,11 +118,21 @@ const PostItem = () => {
             </div>
             <div className='px-4 grid grid-flow-row lg:grid-cols-2 gap-4'>
               <div className='w-full'>
-                <img
-                  src={currentPost.url}
-                  alt='pollito'
-                  className='rounded shadow'
-                />
+                <div className='relative'>
+                  <img
+                    src={currentPost.url}
+                    alt='pollito'
+                    className='rounded shadow relative'
+                  />
+                  <button
+                    onClick={copyLink}
+                    className='absolute top-0 right-0 mr-3 mt-3'
+                  >
+                    <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
+                      share
+                    </i>
+                  </button>
+                </div>
               </div>
               <div>
                 <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3 shadow'>
@@ -138,7 +153,7 @@ const PostItem = () => {
                         name='content'
                         value={content}
                         onChange={onChange}
-                        className='block w-full bg-transparent h-28 border-gray-400 mb-2 outline-none border-b-2'
+                        className='block w-full bg-transparent h-28 border-gray-400 mb-2 p-2 outline-none border-b-2'
                       ></textarea>
                       <div className='text-right'>
                         <button type='submit' value='Done'>

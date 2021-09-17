@@ -1,16 +1,11 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { PostContext } from '../../context/post/PostContext';
 import Spinner from '../layout/Spinner';
 
 const ImageGrid = ({ posts }) => {
   const postContext = useContext(PostContext);
-  const { getPosts, loading } = postContext;
-
-  useEffect(() => {
-    getPosts();
-    // eslint-disable-next-line
-  }, []);
+  const { loading } = postContext;
 
   if (posts.length === 0 && !loading) {
     return (
@@ -33,8 +28,7 @@ const ImageGrid = ({ posts }) => {
                 <img
                   src={post.thumb}
                   alt='grid'
-                  // onClick={() => setCurrent(post)}
-                  className='object-cover object-center min-h-full min-w-full max-w-[150%] hover:opacity-50 transition ease-in duration-150'
+                  className='object-center min-h-full min-w-full max-w-[150%] hover:opacity-50 transition ease-in duration-150'
                 />
               </Link>
             </div>

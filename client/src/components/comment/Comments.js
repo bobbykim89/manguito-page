@@ -16,8 +16,6 @@ const Comments = ({ currentPost }) => {
     // eslint-disable-next-line
   }, []);
 
-  // console.log('comment section', currentPost);
-
   if (comments.length !== 0) {
     const filteredComments = comments.filter(
       (comment) => comment.post === currentPost._id

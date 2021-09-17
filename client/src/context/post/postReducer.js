@@ -3,7 +3,6 @@ import {
   ADD_POST,
   DELETE_POST,
   UPDATE_POST,
-  SET_CURRENT,
   CLEAR_CURRENT,
   POST_ERROR,
   GET_POST,
@@ -43,16 +42,10 @@ const variable = (state, action) => {
         posts: state.posts.filter((post) => post._id !== action.payload),
         loading: false,
       };
-    case SET_CURRENT:
-      return {
-        ...state,
-        current: action.payload,
-      };
     case CLEAR_CURRENT:
       return {
         ...state,
         currentPost: null,
-        current: null,
       };
     case POST_ERROR:
       return {
