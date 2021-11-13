@@ -6,6 +6,7 @@ import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 import { AlertContext } from '../../context/alert/AlertContext';
 import Comments from '../comment/Comments';
+import { Link } from 'react-router-dom';
 
 const PostItem = () => {
   const postContext = useContext(PostContext);
@@ -31,6 +32,10 @@ const PostItem = () => {
   const [post, setPost] = useState({
     content: '',
   });
+  const [prevNext, setPrevNext] = useState({
+    next: '',
+    prev: '',
+  });
 
   useEffect(() => {
     getPosts();
@@ -38,36 +43,38 @@ const PostItem = () => {
     if (authContext.token !== null) {
       authContext.loadUser();
     }
-    getAdjacentPosts();
+    // getAdjacentPosts(postId);
 
     // eslint-disable-next-line
-  }, []);
+  }, [postId]);
 
-  const getAdjacentPosts = () => {
-    const postIndex = posts.findIndex((item) => item.id === postId);
+  console.log(postId, authContext.token);
+
+  const getAdjacentPosts = async (id) => {
+    const postIndex = await posts.findIndex((item) => item._id === id);
     // const nextPost = posts[postIndex + 1]._id;
     // const prevPost = posts[postIndex - 1]._id;
     // const firstPost = posts[0]._id;
     // const lastPost = posts[posts.length - 1]._id;
     if (postIndex === 0) {
-      return {
-        next: posts[postIndex + 1]._id,
-        prev: posts[posts.length - 1]._id,
-      };
+      await setPrevNext({
+        next: posts && posts[postIndex + 1]._id,
+        prev: posts && posts[posts.length - 1]._id,
+      });
     } else if (postIndex === posts.length - 1) {
-      return {
-        next: posts[0]._id,
-        prev: posts[postIndex - 1]._id,
-      };
+      await setPrevNext({
+        next: posts && posts[0]._id,
+        prev: posts && posts[postIndex - 1]._id,
+      });
     } else {
-      return {
-        next: posts[postIndex + 1]._id,
-        prev: posts[postIndex - 1]._id,
-      };
+      await setPrevNext({
+        next: posts && posts[postIndex + 1]._id,
+        prev: posts && posts[postIndex - 1]._id,
+      });
     }
   };
 
-  console.log(getAdjacentPosts());
+  // console.log(prevNext);
 
   const editHandler = () => {
     postGrabber();
@@ -168,6 +175,20 @@ const PostItem = () => {
                     alt='pollito'
                     className='rounded shadow relative'
                   />
+                  {/* <button className='absolute top-1/2 -translate-y-1/2 left-0 ml-1'>
+                    <Link to={`/gallery/${getAdjacentPosts().prev}`}>
+                      <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
+                        navigate_before
+                      </i>
+                    </Link>
+                  </button>
+                  <button className='absolute top-1/2 -translate-y-1/2 right-0 mr-1'>
+                    <Link to={`/gallery/${getAdjacentPosts().next}`}>
+                      <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
+                        navigate_next
+                      </i>
+                    </Link>
+                  </button> */}
                   <button
                     onClick={copyLink}
                     className='absolute top-0 right-0 mr-3 mt-3'
