@@ -15,8 +15,15 @@ const PostItem = () => {
   const { postId } = useParams();
   const history = useHistory();
 
-  const { getPost, currentPost, deletePost, updatePost, clearCurrent } =
-    postContext;
+  const {
+    getPosts,
+    getPost,
+    posts,
+    currentPost,
+    deletePost,
+    updatePost,
+    clearCurrent,
+  } = postContext;
   const { isAuthenticated, user } = authContext;
   const { setAlert } = alertContext;
 
@@ -26,13 +33,41 @@ const PostItem = () => {
   });
 
   useEffect(() => {
+    getPosts();
     getPost(postId);
     if (authContext.token !== null) {
       authContext.loadUser();
     }
+    getAdjacentPosts();
 
     // eslint-disable-next-line
   }, []);
+
+  const getAdjacentPosts = () => {
+    const postIndex = posts.findIndex((item) => item.id === postId);
+    // const nextPost = posts[postIndex + 1]._id;
+    // const prevPost = posts[postIndex - 1]._id;
+    // const firstPost = posts[0]._id;
+    // const lastPost = posts[posts.length - 1]._id;
+    if (postIndex === 0) {
+      return {
+        next: posts[postIndex + 1]._id,
+        prev: posts[posts.length - 1]._id,
+      };
+    } else if (postIndex === posts.length - 1) {
+      return {
+        next: posts[0]._id,
+        prev: posts[postIndex - 1]._id,
+      };
+    } else {
+      return {
+        next: posts[postIndex + 1]._id,
+        prev: posts[postIndex - 1]._id,
+      };
+    }
+  };
+
+  console.log(getAdjacentPosts());
 
   const editHandler = () => {
     postGrabber();
