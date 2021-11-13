@@ -877,6 +877,9 @@ video {
 .min-h-90v {
 	min-height: 90vh;
 }
+.min-h-full {
+	min-height: 100%;
+}
 .min-h-80v {
 	min-height: 80vh;
 }
@@ -1155,9 +1158,6 @@ video {
 }
 .object-cover {
 	object-fit: cover;
-}
-.object-none {
-	object-fit: none;
 }
 .object-center {
 	object-position: center;
@@ -1683,10 +1683,6 @@ video {
 		min-height: 85vh;
 	}
 
-	.lg\:min-h-full {
-		min-height: 100%;
-	}
-
 	.lg\:w-auto {
 		width: auto;
 	}
@@ -1725,10 +1721,6 @@ video {
 
 	.lg\:justify-start {
 		justify-content: flex-start;
-	}
-
-	.lg\:object-cover {
-		object-fit: cover;
 	}
 
 	.lg\:py-20 {
