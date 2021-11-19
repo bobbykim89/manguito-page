@@ -38,14 +38,16 @@ const PostItem = () => {
   });
 
   useEffect(() => {
-    getPosts();
     getPost(postId);
+    getPosts();
     if (authContext.token !== null) {
       authContext.loadUser();
     }
-    getAdjacentPosts(postId);
+    if (posts.length !== 0) {
+      getAdjacentPosts(postId);
+    }
     // eslint-disable-next-line
-  }, [postId]);
+  }, [posts.length, postId]);
 
   const getAdjacentPosts = async (identifier) => {
     // const nextPost = posts[postIndex + 1]._id;
@@ -60,18 +62,18 @@ const PostItem = () => {
       console.log('postindex:', postIndex);
       if (postIndex === 0) {
         setPrevNext({
-          next: posts && posts[postIndex + 1]._id,
-          prev: posts && posts[posts.length - 1]._id,
+          next: posts[postIndex + 1]._id,
+          prev: posts[posts.length - 1]._id,
         });
       } else if (postIndex === posts.length - 1) {
         setPrevNext({
-          next: posts && posts[0]._id,
-          prev: posts && posts[postIndex - 1]._id,
+          next: posts[0]._id,
+          prev: posts[postIndex - 1]._id,
         });
       } else {
         setPrevNext({
-          next: posts && posts[postIndex + 1]._id,
-          prev: posts && posts[postIndex - 1]._id,
+          next: posts[postIndex + 1]._id,
+          prev: posts[postIndex - 1]._id,
         });
       }
     } catch (err) {
@@ -180,20 +182,20 @@ const PostItem = () => {
                     alt='pollito'
                     className='rounded shadow relative'
                   />
-                  {/* <button className='absolute top-1/2 -translate-y-1/2 left-0 ml-1'>
-                    <Link to={`/gallery/${getAdjacentPosts().prev}`}>
+                  <button className='absolute top-1/2 -translate-y-1/2 left-0 ml-1'>
+                    <Link to={`/gallery/${prevNext.prev}`}>
                       <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
                         navigate_before
                       </i>
                     </Link>
                   </button>
                   <button className='absolute top-1/2 -translate-y-1/2 right-0 mr-1'>
-                    <Link to={`/gallery/${getAdjacentPosts().next}`}>
+                    <Link to={`/gallery/${prevNext.next}`}>
                       <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
                         navigate_next
                       </i>
                     </Link>
-                  </button> */}
+                  </button>
                   <button
                     onClick={copyLink}
                     className='absolute top-0 right-0 mr-3 mt-3'
