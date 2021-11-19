@@ -45,9 +45,19 @@ const PostItem = () => {
     }
     if (posts.length !== 0) {
       getAdjacentPosts(postId);
+      postValidator();
     }
     // eslint-disable-next-line
   }, [posts.length, postId]);
+
+  const postValidator = async () => {
+    const validator = await posts.filter((post) => post._id === postId);
+    if (validator.length !== 0) {
+      return;
+    } else {
+      history.push('/notfound');
+    }
+  };
 
   const getAdjacentPosts = async (identifier) => {
     // const nextPost = posts[postIndex + 1]._id;
@@ -58,8 +68,6 @@ const PostItem = () => {
       const postIndex = await posts.findIndex(
         (item) => item._id === identifier
       );
-      console.log('postId', postId);
-      console.log('postindex:', postIndex);
       if (postIndex === 0) {
         setPrevNext({
           next: posts[postIndex + 1]._id,
@@ -80,8 +88,6 @@ const PostItem = () => {
       console.log(err);
     }
   };
-
-  console.log(prevNext);
 
   const editHandler = () => {
     postGrabber();

@@ -48,7 +48,7 @@ function App() {
                     <Route exact path='/about' component={About} />
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/signup' component={Signup} />
-                    <Route path='*' component={NotFound} />
+                    <Route component={NotFound} />
                   </Switch>
                   <Footer />
                 </Fragment>

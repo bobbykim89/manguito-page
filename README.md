@@ -61,15 +61,15 @@ uuid
 
 ## Changes
 
-1. (In Progress) Planning to add previous/next post buttons.
+1. Added previous/next post buttons. you are going to sent to first post if you click next button on last post. also you will be sent to last post if you click previous button on first post.
 2. (In Progress) Further optimization. and remove unused dependencies.
-3. (In Progress) Picture not getting centered should be fixed as well
+3. Fixed issue of pictures not displayed properly in mobile page
+4. Redesigned the 404 Not Found Page
 
 ## Known Issues
 
-1. (Important) Implementing a button to navigate to previous/next post would bring some convenience.
-2. (Important) Load more button or lazy loading to increase page loading speed.
-3. There are some junk code that are not needed need to find them out and delete them some time to make it look cleaner.(working progress)
+1. (Important) Load more button or lazy loading to increase page loading speed.
+2. There are some junk code that are not needed need to find them out and delete them some time to make it look cleaner.(working progress)
 
 ## Update Log
 
