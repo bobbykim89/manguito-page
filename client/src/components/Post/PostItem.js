@@ -43,38 +43,43 @@ const PostItem = () => {
     if (authContext.token !== null) {
       authContext.loadUser();
     }
-    // getAdjacentPosts(postId);
-
+    getAdjacentPosts(postId);
     // eslint-disable-next-line
   }, [postId]);
 
-  console.log(postId, authContext.token);
-
-  const getAdjacentPosts = async (id) => {
-    const postIndex = await posts.findIndex((item) => item._id === id);
+  const getAdjacentPosts = async (identifier) => {
     // const nextPost = posts[postIndex + 1]._id;
     // const prevPost = posts[postIndex - 1]._id;
     // const firstPost = posts[0]._id;
     // const lastPost = posts[posts.length - 1]._id;
-    if (postIndex === 0) {
-      await setPrevNext({
-        next: posts && posts[postIndex + 1]._id,
-        prev: posts && posts[posts.length - 1]._id,
-      });
-    } else if (postIndex === posts.length - 1) {
-      await setPrevNext({
-        next: posts && posts[0]._id,
-        prev: posts && posts[postIndex - 1]._id,
-      });
-    } else {
-      await setPrevNext({
-        next: posts && posts[postIndex + 1]._id,
-        prev: posts && posts[postIndex - 1]._id,
-      });
+    try {
+      const postIndex = await posts.findIndex(
+        (item) => item._id === identifier
+      );
+      console.log('postId', postId);
+      console.log('postindex:', postIndex);
+      if (postIndex === 0) {
+        setPrevNext({
+          next: posts && posts[postIndex + 1]._id,
+          prev: posts && posts[posts.length - 1]._id,
+        });
+      } else if (postIndex === posts.length - 1) {
+        setPrevNext({
+          next: posts && posts[0]._id,
+          prev: posts && posts[postIndex - 1]._id,
+        });
+      } else {
+        setPrevNext({
+          next: posts && posts[postIndex + 1]._id,
+          prev: posts && posts[postIndex - 1]._id,
+        });
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  // console.log(prevNext);
+  console.log(prevNext);
 
   const editHandler = () => {
     postGrabber();
