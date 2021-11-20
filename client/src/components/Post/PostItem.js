@@ -51,6 +51,7 @@ const PostItem = () => {
   }, [posts.length, postId]);
 
   const postValidator = async () => {
+    // Redirect to notfound page when matching ID doesn't exist in list of posts
     const validator = await posts.find((post) => post._id === postId);
     if (validator) {
       console.log('validator', validator);
@@ -61,6 +62,7 @@ const PostItem = () => {
   };
 
   const getAdjacentPosts = async (identifier) => {
+    // Get ID of previous/next posts for selected post
     // const nextPost = posts[postIndex + 1]._id;
     // const prevPost = posts[postIndex - 1]._id;
     // const firstPost = posts[0]._id;

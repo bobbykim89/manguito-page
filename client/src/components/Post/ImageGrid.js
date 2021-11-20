@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PostContext } from '../../context/post/PostContext';
 import Spinner from '../layout/Spinner';
@@ -6,6 +6,14 @@ import Spinner from '../layout/Spinner';
 const ImageGrid = ({ posts }) => {
   const postContext = useContext(PostContext);
   const { loading } = postContext;
+
+  // Currently working on load more button
+  const [loadMore, setLoadMore] = useState(30);
+  const postsPerPage = 30;
+
+  const postsController = (start, end) => {
+    const slicedPosts = posts.slice(start, end);
+  };
 
   if (posts.length === 0 && !loading) {
     return (
