@@ -51,8 +51,9 @@ const PostItem = () => {
   }, [posts.length, postId]);
 
   const postValidator = async () => {
-    const validator = await posts.filter((post) => post._id === postId);
-    if (validator.length !== 0) {
+    const validator = await posts.find((post) => post._id === postId);
+    if (validator) {
+      console.log('validator', validator);
       return;
     } else {
       history.push('/notfound');
