@@ -62,10 +62,6 @@ const PostItem = () => {
 
   const getAdjacentPosts = async (identifier) => {
     // Get ID of previous/next posts for selected post
-    // const nextPost = posts[postIndex + 1]._id;
-    // const prevPost = posts[postIndex - 1]._id;
-    // const firstPost = posts[0]._id;
-    // const lastPost = posts[posts.length - 1]._id;
     try {
       const postIndex = await posts.findIndex(
         (item) => item._id === identifier
@@ -110,6 +106,7 @@ const PostItem = () => {
     clearCurrent();
   };
 
+  // Handles edit post feature
   const editHandler = () => {
     postGrabber();
     setToggleEdit(!toggleEdit);
@@ -130,21 +127,6 @@ const PostItem = () => {
   const onChange = (e) => {
     const { name, value } = e.target;
     setPost({ ...post, [name]: value });
-  };
-
-  const onClose = (e) => {
-    e.preventDefault();
-    history.push('/gallery');
-    setPost({
-      content: '',
-    });
-    clearCurrent();
-  };
-
-  const handleBackgroundClick = (e) => {
-    if (e.target.classList.contains('backdrop')) {
-      onClose(e);
-    }
   };
 
   const copyLink = (e) => {
@@ -168,6 +150,7 @@ const PostItem = () => {
     }
   };
 
+  // Handle delete post functionality
   const onDelete = () => {
     if (!isAuthenticated) {
       setAlert('Please login');
@@ -181,6 +164,23 @@ const PostItem = () => {
       setAlert('Successfully deleted a post');
     }
   };
+
+  // Handle actions on close and redirects to gallery page
+  const onClose = (e) => {
+    e.preventDefault();
+    history.push('/gallery');
+    setPost({
+      content: '',
+    });
+    clearCurrent();
+  };
+
+  const handleBackgroundClick = (e) => {
+    if (e.target.classList.contains('backdrop')) {
+      onClose(e);
+    }
+  };
+
   return (
     <Fragment>
       <Helmet>

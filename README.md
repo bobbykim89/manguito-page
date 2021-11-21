@@ -62,10 +62,9 @@ uuid
 ## Changes
 
 1. Added previous/next post buttons. you are going to sent to first post if you click next button on last post. also you will be sent to last post if you click previous button on first post.
-2. (In Progress) Further optimization. and remove unused dependencies.
-3. Fixed issue of pictures not displayed properly in mobile page
-4. Redesigned the 404 Not Found Page
-5. Added Load More Feature to the gallery page
+2. Fixed issue of pictures not displayed properly in mobile page
+3. Redesigned the 404 Not Found Page
+4. Added Load More Feature to the gallery page
 
 ## Known Issues
 

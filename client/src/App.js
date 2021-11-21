@@ -36,6 +36,10 @@ function App() {
                   name='description'
                   content='Welcome to Manguito page! This is little photo blog app for Manguito, my peachfaced lovebird!'
                 />
+                <meta
+                  name='keywords'
+                  content='manguito, lovebird, pets, photo gallery, parrot'
+                />
               </Helmet>
               <Router>
                 <Fragment>
