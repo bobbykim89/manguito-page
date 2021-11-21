@@ -1,4 +1,4 @@
-# Manguito Page v0.1.3 (In Progress)
+# Manguito Page v0.1.3
 
 App Deployed on heroku as [Manguito Page](https://manguitopage.herokuapp.com/).
 
