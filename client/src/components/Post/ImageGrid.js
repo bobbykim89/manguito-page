@@ -11,8 +11,11 @@ const ImageGrid = ({ posts }) => {
   let postsArray = [];
   const [loadMore, setLoadMore] = useState(30);
   const [displayedPosts, setDisplayedPosts] = useState([]);
+  const [loadCounter, setLoadCounter] = useState(1);
+  const [showLoader, setShowLoader] = useState(true);
   const postsPerPage = 30;
 
+  // Set List of posts to be displayed (determined by postsPerPage variable)
   const postsController = async (start, end) => {
     const slicedPosts = await posts.slice(start, end);
     postsArray = [...postsArray, ...slicedPosts];
@@ -25,11 +28,22 @@ const ImageGrid = ({ posts }) => {
     // eslint-disable-next-line
   }, [posts.length]);
 
-  console.log(displayedPosts);
-
+  // Increase Number of posts to displayed by postsPerPage, disables the load more button when maximum posts displayed
   const handleLoadMore = () => {
     postsController(0, loadMore + postsPerPage);
     setLoadMore(loadMore + postsPerPage);
+    setLoadCounter(loadCounter + 1);
+    loadStopper();
+  };
+
+  // Set when to disable load more button
+  const loadStopper = () => {
+    const lastPage = Math.ceil(posts.length / postsPerPage);
+    if (loadCounter <= lastPage) {
+      setShowLoader(false);
+    } else {
+      setShowLoader(true);
+    }
   };
 
   if (posts.length === 0 && !loading) {
@@ -61,7 +75,10 @@ const ImageGrid = ({ posts }) => {
           <div className='col-span-3'>
             <button
               onClick={handleLoadMore}
-              className='px-4 py-2 w-full bg-pink-500 hover:bg-pink-600 text-lg text-white font-semibold tracking-wider shadow-md transition ease-in duration-150'
+              className={
+                'px-4 py-2 w-full bg-pink-500 hover:bg-pink-600 text-lg text-white font-semibold tracking-wider shadow-md transition ease-in duration-150' +
+                (showLoader ? '' : ' hidden')
+              }
             >
               Load More
             </button>

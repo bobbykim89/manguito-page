@@ -54,7 +54,6 @@ const PostItem = () => {
     // Redirect to notfound page when matching ID doesn't exist in list of posts
     const validator = await posts.find((post) => post._id === postId);
     if (validator) {
-      console.log('validator', validator);
       return;
     } else {
       history.push('/notfound');
