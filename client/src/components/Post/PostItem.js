@@ -6,7 +6,6 @@ import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 import { AlertContext } from '../../context/alert/AlertContext';
 import Comments from '../comment/Comments';
-import { Link } from 'react-router-dom';
 import ToTop from '../layout/ToTop';
 
 const PostItem = () => {
@@ -92,6 +91,25 @@ const PostItem = () => {
     }
   };
 
+  // onClick Controller function for prev/next navigator
+  const onPrev = (e) => {
+    e.preventDefault();
+    history.push(`/gallery/${prevNext.prev}`);
+    setPost({
+      content: '',
+    });
+    clearCurrent();
+  };
+
+  const onNext = (e) => {
+    e.preventDefault();
+    history.push(`/gallery/${prevNext.next}`);
+    setPost({
+      content: '',
+    });
+    clearCurrent();
+  };
+
   const editHandler = () => {
     postGrabber();
     setToggleEdit(!toggleEdit);
@@ -170,7 +188,7 @@ const PostItem = () => {
         <meta name='description' content={currentPost && currentPost.content} />
       </Helmet>
       <section
-        className='backdrop bg-gray-800 bg-opacity-80 lg:py-20 min-h-80v'
+        className='backdrop bg-gray-900 bg-opacity-80 lg:py-20 min-h-80v'
         onClick={handleBackgroundClick}
       >
         {currentPost && (
@@ -191,19 +209,21 @@ const PostItem = () => {
                     alt='pollito'
                     className='rounded shadow relative'
                   />
-                  <button className='absolute top-1/2 -translate-y-1/2 left-0 ml-1'>
-                    <Link to={`/gallery/${prevNext.prev}`}>
-                      <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
-                        navigate_before
-                      </i>
-                    </Link>
+                  <button
+                    className='absolute top-1/2 -translate-y-1/2 left-0 ml-1'
+                    onClick={onPrev}
+                  >
+                    <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
+                      navigate_before
+                    </i>
                   </button>
-                  <button className='absolute top-1/2 -translate-y-1/2 right-0 mr-1'>
-                    <Link to={`/gallery/${prevNext.next}`}>
-                      <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
-                        navigate_next
-                      </i>
-                    </Link>
+                  <button
+                    className='absolute top-1/2 -translate-y-1/2 right-0 mr-1'
+                    onClick={onNext}
+                  >
+                    <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
+                      navigate_next
+                    </i>
                   </button>
                   <button
                     onClick={copyLink}
@@ -272,7 +292,7 @@ const PostItem = () => {
                   </div>
                 </div>
                 <div>
-                  <Comments currentPost={currentPost} />
+                  <Comments postId={currentPost._id} />
                 </div>
               </div>
             </div>

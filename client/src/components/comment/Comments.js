@@ -4,7 +4,7 @@ import CommentItem from './CommentItem';
 import { CommentContext } from '../../context/comment/CommentContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 
-const Comments = ({ currentPost }) => {
+const Comments = ({ postId }) => {
   const commentContext = useContext(CommentContext);
   const authContext = useContext(AuthContext);
 
@@ -18,11 +18,11 @@ const Comments = ({ currentPost }) => {
 
   if (comments.length !== 0) {
     const filteredComments = comments.filter(
-      (comment) => comment.post === currentPost._id
+      (comment) => comment.post === postId
     );
     return (
       <Fragment>
-        {isAuthenticated ? <CommentForm /> : ''}
+        {isAuthenticated ? <CommentForm postId={postId} /> : ''}
         <p className='ml-2 font-semibold'>Comments:</p>
         {filteredComments.length ? (
           filteredComments.map((comment) => (
@@ -37,7 +37,7 @@ const Comments = ({ currentPost }) => {
 
   return (
     <Fragment>
-      {isAuthenticated ? <CommentForm /> : ''}
+      {isAuthenticated ? <CommentForm postId={postId} /> : ''}
       <p className='ml-2 mb-4 font-semibold'>Comments:</p>
 
       <p className='text-center mb-4'>No comment yet!</p>

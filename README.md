@@ -65,11 +65,11 @@ uuid
 2. (In Progress) Further optimization. and remove unused dependencies.
 3. Fixed issue of pictures not displayed properly in mobile page
 4. Redesigned the 404 Not Found Page
+5. Added Load More Feature to the gallery page
 
 ## Known Issues
 
-1. (Important) Load more button or lazy loading to increase page loading speed.
-2. There are some junk code that are not needed need to find them out and delete them some time to make it look cleaner.(working progress)
+1. There are some junk code that are not needed need to find them out and delete them some time to make it look cleaner.(working progress)
 
 ## Update Log
 
