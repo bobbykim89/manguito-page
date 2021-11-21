@@ -7,6 +7,7 @@ import { AuthContext } from '../../context/auth/AuthContext';
 import { AlertContext } from '../../context/alert/AlertContext';
 import Comments from '../comment/Comments';
 import { Link } from 'react-router-dom';
+import ToTop from '../layout/ToTop';
 
 const PostItem = () => {
   const postContext = useContext(PostContext);
@@ -278,6 +279,7 @@ const PostItem = () => {
           </div>
         )}
       </section>
+      <ToTop />
     </Fragment>
   );
 };

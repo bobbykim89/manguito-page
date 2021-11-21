@@ -91,7 +91,6 @@ const PostState = (props) => {
       value={{
         posts: state.posts,
         currentPost: state.currentPost,
-        current: state.current,
         error: state.error,
         getPosts,
         getPost,

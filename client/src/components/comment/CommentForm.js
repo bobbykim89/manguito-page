@@ -3,15 +3,18 @@ import { CommentContext } from '../../context/comment/CommentContext';
 import { PostContext } from '../../context/post/PostContext';
 import { AuthContext } from '../../context/auth/AuthContext';
 import { AlertContext } from '../../context/alert/AlertContext';
+import { useParams } from 'react-router';
 
 const CommentForm = () => {
   const commentContext = useContext(CommentContext);
-  const postContext = useContext(PostContext);
+  // const postContext = useContext(PostContext);
   const authContext = useContext(AuthContext);
   const alertContext = useContext(AlertContext);
 
+  const { postId } = useParams();
+
   const { addComment } = commentContext;
-  const { currentPost } = postContext;
+  // const { currentPost } = postContext;
   const { isAuthenticated, user } = authContext;
   const { setAlert } = alertContext;
 
@@ -19,7 +22,7 @@ const CommentForm = () => {
     text: '',
     name: user && user.name,
     author: user && user._id,
-    post: currentPost && currentPost._id,
+    post: postId,
   });
   const { text } = comment;
 
@@ -38,7 +41,7 @@ const CommentForm = () => {
         text: '',
         name: user && user.name,
         author: user && user._id,
-        post: currentPost && currentPost._id,
+        post: postId,
       });
     }
   };
