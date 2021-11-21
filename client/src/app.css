@@ -1459,6 +1459,11 @@ video {
 	background-color: rgba(236, 72, 153, var(--tw-bg-opacity));
 }
 
+.hover\:bg-pink-600:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(219, 39, 119, var(--tw-bg-opacity));
+}
+
 .hover\:bg-transparent:hover {
 	background-color: transparent;
 }

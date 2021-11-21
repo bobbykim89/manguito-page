@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PostContext } from '../../context/post/PostContext';
 import Spinner from '../layout/Spinner';
@@ -8,11 +8,28 @@ const ImageGrid = ({ posts }) => {
   const { loading } = postContext;
 
   // Currently working on load more button
+  let postsArray = [];
   const [loadMore, setLoadMore] = useState(30);
+  const [displayedPosts, setDisplayedPosts] = useState([]);
   const postsPerPage = 30;
 
-  const postsController = (start, end) => {
-    const slicedPosts = posts.slice(start, end);
+  const postsController = async (start, end) => {
+    const slicedPosts = await posts.slice(start, end);
+    postsArray = [...postsArray, ...slicedPosts];
+    setDisplayedPosts(postsArray);
+  };
+
+  useEffect(() => {
+    postsController(0, postsPerPage);
+
+    // eslint-disable-next-line
+  }, [posts.length]);
+
+  console.log(displayedPosts);
+
+  const handleLoadMore = () => {
+    postsController(0, loadMore + postsPerPage);
+    setLoadMore(loadMore + postsPerPage);
   };
 
   if (posts.length === 0 && !loading) {
@@ -27,7 +44,7 @@ const ImageGrid = ({ posts }) => {
     <Fragment>
       {posts.length !== 0 && !loading ? (
         <div className='grid grid-cols-3 gap-2 mx-auto my-8'>
-          {posts.map((post) => (
+          {displayedPosts.map((post) => (
             <div
               key={post._id}
               className='overflow-hidden aspect-w-1 aspect-h-1 shadow-lg'
@@ -41,6 +58,14 @@ const ImageGrid = ({ posts }) => {
               </Link>
             </div>
           ))}
+          <div className='col-span-3'>
+            <button
+              onClick={handleLoadMore}
+              className='px-4 py-2 w-full bg-pink-500 hover:bg-pink-600 text-lg text-white font-semibold tracking-wider shadow-md transition ease-in duration-150'
+            >
+              Load More
+            </button>
+          </div>
         </div>
       ) : (
         <Spinner />
