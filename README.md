@@ -1,4 +1,4 @@
-# Manguito Page v0.1.3
+# Manguito Page v0.1.4
 
 App Deployed on heroku as [Manguito Page](https://manguitopage.herokuapp.com/).
 
@@ -27,7 +27,7 @@ Runs watching css on separate terminal to update app.css file automatically as f
 
 ## Dependencies
 
-### `Backend Dependencies`
+### Backend Dependencies
 
 bcryptjs\
 cloudinary\
@@ -42,7 +42,7 @@ multer-storage-cloudinary\
 concurrently\
 nodemon
 
-### `Frontend Dependencies`
+### Frontend Dependencies
 
 fontawesome\
 tailwindcss/aspect-ratio\
@@ -61,16 +61,15 @@ uuid
 
 ## Changes
 
-1. Added previous/next post buttons. you are going to sent to first post if you click next button on last post. also you will be sent to last post if you click previous button on first post.
-2. Fixed issue of pictures not displayed properly in mobile page
-3. Redesigned the 404 Not Found Page
-4. Added Load More Feature to the gallery page
-
 ## Known Issues
 
 1. There are some junk code that are not needed need to find them out and delete them some time to make it look cleaner.(working progress)
 
-## Update Log
+## Change Log
+
+### v0.1.0
+
+1. Initial release
 
 ### v0.1.1
 
@@ -86,3 +85,10 @@ uuid
 3. Add 404 page.
 4. Added copy url to clipboard feature.
 5. Added functionality to go back to gallery upon clicking on backdrop(gray background) of post in larger screen device.
+
+### v0.1.3
+
+1. Added previous/next post buttons. you are going to sent to first post if you click next button on last post. also you will be sent to last post if you click previous button on first post.
+2. Fixed issue of pictures not displayed properly in mobile page
+3. Redesigned the 404 Not Found Page
+4. Added Load More Feature to the gallery page
