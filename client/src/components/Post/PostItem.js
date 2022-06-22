@@ -1,20 +1,21 @@
-import React, { useContext, useState, Fragment, useEffect } from 'react';
-import Moment from 'react-moment';
-import { Helmet } from 'react-helmet-async';
-import { useHistory, useParams } from 'react-router';
-import { PostContext } from '../../context/post/PostContext';
-import { AuthContext } from '../../context/auth/AuthContext';
-import { AlertContext } from '../../context/alert/AlertContext';
-import Comments from '../comment/Comments';
-import ToTop from '../layout/ToTop';
+import React, { useContext, useState, Fragment, useEffect } from 'react'
+import Moment from 'react-moment'
+import { Helmet } from 'react-helmet-async'
+import { useParams } from 'react-router'
+import { useNavigate } from 'react-router-dom'
+import { PostContext } from '../../context/post/PostContext'
+import { AuthContext } from '../../context/auth/AuthContext'
+import { AlertContext } from '../../context/alert/AlertContext'
+import Comments from '../comment/Comments'
+import ToTop from '../layout/ToTop'
 
 const PostItem = () => {
-  const postContext = useContext(PostContext);
-  const authContext = useContext(AuthContext);
-  const alertContext = useContext(AlertContext);
+  const postContext = useContext(PostContext)
+  const authContext = useContext(AuthContext)
+  const alertContext = useContext(AlertContext)
 
-  const { postId } = useParams();
-  const history = useHistory();
+  const { postId } = useParams()
+  const history = useNavigate()
 
   const {
     getPosts,
@@ -24,162 +25,160 @@ const PostItem = () => {
     deletePost,
     updatePost,
     clearCurrent,
-  } = postContext;
-  const { isAuthenticated, user } = authContext;
-  const { setAlert } = alertContext;
+  } = postContext
+  const { isAuthenticated, user } = authContext
+  const { setAlert } = alertContext
 
-  const [toggleEdit, setToggleEdit] = useState(false);
+  const [toggleEdit, setToggleEdit] = useState(false)
   const [post, setPost] = useState({
     content: '',
-  });
+  })
   const [prevNext, setPrevNext] = useState({
     next: '',
     prev: '',
-  });
+  })
 
   useEffect(() => {
-    getPost(postId);
-    getPosts();
+    getPost(postId)
+    getPosts()
     if (authContext.token !== null) {
-      authContext.loadUser();
+      authContext.loadUser()
     }
     if (posts.length !== 0) {
-      getAdjacentPosts(postId);
-      postValidator();
+      getAdjacentPosts(postId)
+      postValidator()
     }
     // eslint-disable-next-line
-  }, [posts.length, postId]);
+  }, [posts.length, postId])
 
   const postValidator = async () => {
     // Redirect to notfound page when matching ID doesn't exist in list of posts
-    const validator = await posts.find((post) => post._id === postId);
+    const validator = await posts.find((post) => post._id === postId)
     if (validator) {
-      return;
+      return
     } else {
-      history.push('/notfound');
+      history('/notfound')
     }
-  };
+  }
 
   const getAdjacentPosts = async (identifier) => {
     // Get ID of previous/next posts for selected post
     try {
-      const postIndex = await posts.findIndex(
-        (item) => item._id === identifier
-      );
+      const postIndex = await posts.findIndex((item) => item._id === identifier)
       if (postIndex === 0) {
         setPrevNext({
           next: posts[postIndex + 1]._id,
           prev: posts[posts.length - 1]._id,
-        });
+        })
       } else if (postIndex === posts.length - 1) {
         setPrevNext({
           next: posts[0]._id,
           prev: posts[postIndex - 1]._id,
-        });
+        })
       } else {
         setPrevNext({
           next: posts[postIndex + 1]._id,
           prev: posts[postIndex - 1]._id,
-        });
+        })
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   // onClick Controller function for prev/next navigator
   const onPrev = (e) => {
-    e.preventDefault();
-    history.push(`/gallery/${prevNext.prev}`);
+    e.preventDefault()
+    history(`/gallery/${prevNext.prev}`)
     setPost({
       content: '',
-    });
-    clearCurrent();
-  };
+    })
+    clearCurrent()
+  }
 
   const onNext = (e) => {
-    e.preventDefault();
-    history.push(`/gallery/${prevNext.next}`);
+    e.preventDefault()
+    history(`/gallery/${prevNext.next}`)
     setPost({
       content: '',
-    });
-    clearCurrent();
-  };
+    })
+    clearCurrent()
+  }
 
   // Handles edit post feature
   const editHandler = () => {
-    postGrabber();
-    setToggleEdit(!toggleEdit);
-  };
+    postGrabber()
+    setToggleEdit(!toggleEdit)
+  }
 
   const postGrabber = async () => {
     if (currentPost) {
-      await setPost({ content: currentPost.content });
+      await setPost({ content: currentPost.content })
     } else {
       setPost({
         content: '',
-      });
+      })
     }
-  };
+  }
 
-  const { content } = post;
+  const { content } = post
 
   const onChange = (e) => {
-    const { name, value } = e.target;
-    setPost({ ...post, [name]: value });
-  };
+    const { name, value } = e.target
+    setPost({ ...post, [name]: value })
+  }
 
   const copyLink = (e) => {
-    const currentUrl = window.location.href;
-    navigator.clipboard.writeText(currentUrl);
-    setAlert('Copied to clipboard!');
-  };
+    const currentUrl = window.location.href
+    navigator.clipboard.writeText(currentUrl)
+    setAlert('Copied to clipboard!')
+  }
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!isAuthenticated) {
-      setAlert('Please login');
-      return;
+      setAlert('Please login')
+      return
     } else if (!user.admin) {
-      setAlert('Sorry You are not authorized to do so');
-      return;
+      setAlert('Sorry You are not authorized to do so')
+      return
     } else {
-      currentPost.content = post.content;
-      updatePost(currentPost);
-      setAlert('Successfully updated!');
+      currentPost.content = post.content
+      updatePost(currentPost)
+      setAlert('Successfully updated!')
     }
-  };
+  }
 
   // Handle delete post functionality
   const onDelete = () => {
     if (!isAuthenticated) {
-      setAlert('Please login');
-      return;
+      setAlert('Please login')
+      return
     } else if (!user.admin) {
-      setAlert('Sorry You are not authorized to do so');
-      return;
+      setAlert('Sorry You are not authorized to do so')
+      return
     } else {
-      deletePost(currentPost._id);
-      history.goBack();
-      setAlert('Successfully deleted a post');
+      deletePost(currentPost._id)
+      history(-1)
+      setAlert('Successfully deleted a post')
     }
-  };
+  }
 
   // Handle actions on close and redirects to gallery page
   const onClose = (e) => {
-    e.preventDefault();
-    history.push('/gallery');
+    e.preventDefault()
+    history('/gallery')
     setPost({
       content: '',
-    });
-    clearCurrent();
-  };
+    })
+    clearCurrent()
+  }
 
   const handleBackgroundClick = (e) => {
     if (e.target.classList.contains('backdrop')) {
-      onClose(e);
+      onClose(e)
     }
-  };
+  }
 
   return (
     <Fragment>
@@ -301,7 +300,7 @@ const PostItem = () => {
       </section>
       <ToTop />
     </Fragment>
-  );
-};
+  )
+}
 
-export default PostItem;
+export default PostItem

@@ -1,66 +1,68 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { PostContext } from '../../context/post/PostContext';
-import Spinner from '../layout/Spinner';
+import React, { Fragment, useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { PostContext } from '../../context/post/PostContext'
+import Spinner from '../layout/Spinner'
 
 const ImageGrid = ({ posts }) => {
-  const postContext = useContext(PostContext);
-  const { loading } = postContext;
+  const postContext = useContext(PostContext)
+  const { loading } = postContext
 
   // Currently working on load more button
-  let postsArray = [];
-  const [loadMore, setLoadMore] = useState(30);
-  const [displayedPosts, setDisplayedPosts] = useState([]);
-  const [loadCounter, setLoadCounter] = useState(1);
-  const [showLoader, setShowLoader] = useState(true);
-  const postsPerPage = 30;
+  let postsArray = []
+  const [loadMore, setLoadMore] = useState(30)
+  const [displayedPosts, setDisplayedPosts] = useState([])
+  const [loadCounter, setLoadCounter] = useState(1)
+  const [showLoader, setShowLoader] = useState(true)
+  const postsPerPage = 30
 
   // Set List of posts to be displayed (determined by postsPerPage variable)
   const postsController = async (start, end) => {
-    const slicedPosts = await posts.slice(start, end);
-    postsArray = [...postsArray, ...slicedPosts];
-    setDisplayedPosts(postsArray);
-  };
+    const slicedPosts = await posts.slice(start, end)
+    postsArray = [...postsArray, ...slicedPosts]
+    setDisplayedPosts(postsArray)
+  }
 
   useEffect(() => {
-    postsController(0, postsPerPage);
+    postsController(0, postsPerPage)
 
     // eslint-disable-next-line
-  }, [posts.length]);
+  }, [posts.length])
 
   // Increase Number of posts to displayed by postsPerPage, disables the load more button when maximum posts displayed
   const handleLoadMore = () => {
-    postsController(0, loadMore + postsPerPage);
-    setLoadMore(loadMore + postsPerPage);
-    setLoadCounter(loadCounter + 1);
-    loadStopper();
-  };
+    postsController(0, loadMore + postsPerPage)
+    setLoadMore(loadMore + postsPerPage)
+    setLoadCounter(loadCounter + 1)
+    loadStopper()
+    console.log(Math.floor(posts.length / postsPerPage))
+    console.log(loadCounter)
+  }
 
   // Set when to disable load more button
   const loadStopper = () => {
-    const lastPage = Math.ceil(posts.length / postsPerPage);
-    if (loadCounter <= lastPage) {
-      setShowLoader(false);
+    const lastPage = Math.floor(posts.length / postsPerPage)
+    if (loadCounter < lastPage) {
+      setShowLoader(true)
     } else {
-      setShowLoader(true);
+      setShowLoader(false)
     }
-  };
+  }
 
   if (posts.length === 0 && !loading) {
     return (
       <h1 className='text-xl text-center font-semibold text-green-600'>
         No post yet! Time to add picture of Manguito!
       </h1>
-    );
+    )
   }
 
   return (
     <Fragment>
       {posts.length !== 0 && !loading ? (
         <div className='grid grid-cols-3 gap-2 mx-auto my-8'>
-          {displayedPosts.map((post) => (
+          {displayedPosts.map((post, index) => (
             <div
-              key={post._id}
+              key={`post-${index}-id-${post._id}`}
               className='overflow-hidden aspect-w-1 aspect-h-1 shadow-lg'
             >
               <Link to={`/gallery/${post._id}`}>
@@ -88,7 +90,7 @@ const ImageGrid = ({ posts }) => {
         <Spinner />
       )}
     </Fragment>
-  );
-};
+  )
+}
 
-export default ImageGrid;
+export default ImageGrid
