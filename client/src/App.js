@@ -20,11 +20,6 @@ import PostState from './context/post/PostContext'
 import CommentState from './context/comment/CommentContext'
 import AuthState from './context/auth/AuthContext'
 import AlertState from './context/alert/AlertContext'
-import setAuthToken from './utils/setAuthToken'
-
-if (localStorage.token) {
-  setAuthToken(localStorage.token)
-}
 
 function App() {
   return (

@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import {
   AUTH_ERROR,
   CLEAR_ERRORS,
@@ -7,9 +8,9 @@ import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   USER_LOADED,
-} from '../types';
+} from '../types'
 
-const variable = (state, action) => {
+const authReducer = (state, action) => {
   switch (action.type) {
     case USER_LOADED:
       return {
@@ -17,21 +18,20 @@ const variable = (state, action) => {
         isAuthenticated: true,
         loading: false,
         user: action.payload,
-      };
+      }
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      localStorage.setItem('token', action.payload.token);
+      Cookies.set('token', action.payload.token, { expires: 1 })
       return {
         ...state,
         ...action.payload,
         isAuthenticated: true,
         loading: false,
-      };
+      }
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT:
-      localStorage.removeItem('token');
       return {
         ...state,
         token: null,
@@ -39,15 +39,15 @@ const variable = (state, action) => {
         loading: false,
         user: null,
         error: action.payload,
-      };
+      }
     case CLEAR_ERRORS:
       return {
         ...state,
         error: null,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default variable;
+export default authReducer
