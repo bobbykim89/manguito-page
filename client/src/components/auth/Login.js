@@ -1,44 +1,49 @@
-import React, { useState, useContext, useEffect, Fragment } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { AlertContext } from '../../context/alert/AlertContext';
-import { AuthContext } from '../../context/auth/AuthContext';
+import React, { useState, useContext, useEffect, Fragment } from 'react'
+import { Helmet } from 'react-helmet-async'
+import { useNavigate } from 'react-router-dom'
 
-const Login = (props) => {
-  const alertContext = useContext(AlertContext);
-  const authContext = useContext(AuthContext);
+// Import contexts
+import { AlertContext } from '../../context/alert/AlertContext'
+import { AuthContext } from '../../context/auth/AuthContext'
 
-  const { setAlert } = alertContext;
-  const { login, error, clearErrors, isAuthenticated } = authContext;
+const Login = () => {
+  const alertContext = useContext(AlertContext)
+  const authContext = useContext(AuthContext)
+
+  const history = useNavigate()
+
+  const { setAlert } = alertContext
+  const { login, error, clearErrors, isAuthenticated } = authContext
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push('/gallery');
+      history('/gallery')
     }
     if (error === 'Invalid Credentials') {
-      setAlert(error);
-      clearErrors();
+      setAlert(error)
+      clearErrors()
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, isAuthenticated])
 
   const [user, setUser] = useState({
     email: '',
     password: '',
-  });
-  const { email, password } = user;
-  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+  })
+  const { email, password } = user
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value })
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (email === '' || password === '') {
-      setAlert('Please fill in all fields');
+      setAlert('Please fill in all fields')
     } else {
       login({
         email,
         password,
-      });
+      })
     }
-  };
+  }
   return (
     <Fragment>
       <Helmet>
@@ -94,7 +99,7 @@ const Login = (props) => {
         </div>
       </section>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

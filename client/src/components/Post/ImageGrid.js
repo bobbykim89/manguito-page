@@ -34,8 +34,6 @@ const ImageGrid = ({ posts }) => {
     setLoadMore(loadMore + postsPerPage)
     setLoadCounter(loadCounter + 1)
     loadStopper()
-    console.log(Math.floor(posts.length / postsPerPage))
-    console.log(loadCounter)
   }
 
   // Set when to disable load more button
