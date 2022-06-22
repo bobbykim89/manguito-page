@@ -50,7 +50,7 @@ function App() {
                     <Route exact path='/about' element={<About />} />
                     <Route exact path='/login' element={<Login />} />
                     <Route exact path='/signup' element={<Signup />} />
-                    <Route element={<NotFound />} />
+                    <Route path='*' element={<NotFound />} />
                   </Routes>
                   <Footer />
                 </Fragment>
