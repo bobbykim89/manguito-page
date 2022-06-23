@@ -9,13 +9,14 @@ import { useLocation } from 'react-router'
 
 const Gallery = () => {
   const postContext = useContext(PostContext)
-  const { getPosts, posts } = postContext
+  const { getPosts, posts, clearCurrent } = postContext
   const authContext = useContext(AuthContext)
 
   const location = useLocation()
 
   useEffect(() => {
     getPosts()
+    clearCurrent()
     if (authContext.token !== null) {
       authContext.loadUser()
     }
