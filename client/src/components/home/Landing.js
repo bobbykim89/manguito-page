@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import banner from './banner.png';
-import second from './second.jpg';
-import { Link } from 'react-router-dom';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
+import banner from 'assets/images/banner.png'
+import second from 'assets/images/second.jpg'
+import { Link } from 'react-router-dom'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const Landing = ({
   landingHeader,
@@ -18,7 +18,7 @@ const Landing = ({
     duration: 1400,
     once: false,
     easing: 'ease',
-  });
+  })
 
   return (
     <Fragment>
@@ -126,8 +126,8 @@ const Landing = ({
         </div>
       </section>
     </Fragment>
-  );
-};
+  )
+}
 
 Landing.propTypes = {
   landingHeader: PropTypes.string.isRequired,
@@ -135,7 +135,7 @@ Landing.propTypes = {
   landingLink: PropTypes.string.isRequired,
   infoTitle: PropTypes.string.isRequired,
   infoText: PropTypes.string.isRequired,
-};
+}
 
 Landing.defaultProps = {
   landingHeader: 'Manguito Page',
@@ -145,5 +145,5 @@ Landing.defaultProps = {
   infoTitle: "Manguito's Story",
   infoText:
     "We found Manguito in late May. He was barely a baby bird, looking really fragile, cant even chew banana. Honestly I didn't think he will make it over night. Luckily he survived the night and he got more active. These days he is almost grown up bird, chirping and flying around the house, glued to my wife mostly and bothering her doing her work and stealing our food!!",
-};
-export default Landing;
+}
+export default Landing

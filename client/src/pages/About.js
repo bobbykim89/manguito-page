@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
-import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { Helmet } from 'react-helmet-async';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import about from './partials/about.jpg';
+import React, { Fragment } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons'
+import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { Helmet } from 'react-helmet-async'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import about from 'assets/images/about.jpg'
 
 const About = () => {
   AOS.init({
@@ -13,7 +13,7 @@ const About = () => {
     duration: 1400,
     once: false,
     easing: 'ease',
-  });
+  })
 
   return (
     <Fragment>
@@ -94,7 +94,7 @@ const About = () => {
         </div>
       </section>
     </Fragment>
-  );
-};
+  )
+}
 
-export default About;
+export default About

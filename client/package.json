@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch:css": "tailwindcss -o src/app.css --watch",
+    "watch:css": "tailwindcss -o src/assets/css/app.css --watch",
     "watch": "chokidar \"./src/**/*.js\" -c \"npm run watch:css\"",
     "dev": "concurrently \"npm run watch:css\" \"npm run start\""
   },

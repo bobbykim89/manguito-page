@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import spinner from './spinner.gif';
+import React, { Fragment } from 'react'
+import spinner from 'assets/images/spinner.gif'
 
 const Spinner = () => (
   <Fragment>
@@ -9,6 +9,6 @@ const Spinner = () => (
       className='w-20 lg:w-40 mx-auto block'
     />
   </Fragment>
-);
+)
 
-export default Spinner;
+export default Spinner

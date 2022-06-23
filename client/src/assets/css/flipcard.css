@@ -1,0 +1,24 @@
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+.perspective {
+  -webkit-perspective: 1800px;
+  perspective: 1800px;
+}
+
+.card {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flip-card {
+  -webkit-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}

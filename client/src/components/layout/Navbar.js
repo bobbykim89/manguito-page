@@ -1,44 +1,44 @@
-import React, { Fragment, useContext, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { Fragment, useContext, useState } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCrown,
   faSignInAlt,
   faSignOutAlt,
   faUserPlus,
-} from '@fortawesome/free-solid-svg-icons';
-import Hamburger from 'hamburger-react';
-import logo from './logo.png';
-import { AuthContext } from '../../context/auth/AuthContext';
-import { PostContext } from '../../context/post/PostContext';
+} from '@fortawesome/free-solid-svg-icons'
+import Hamburger from 'hamburger-react'
+import logo from 'assets/images/logo.png'
+import { AuthContext } from '../../context/auth/AuthContext'
+import { PostContext } from '../../context/post/PostContext'
 
 const Navbar = ({ home, gallery, about }) => {
-  const authContext = useContext(AuthContext);
-  const postContext = useContext(PostContext);
+  const authContext = useContext(AuthContext)
+  const postContext = useContext(PostContext)
 
-  const { isAuthenticated, logout, user } = authContext;
-  const { clearCurrent } = postContext;
+  const { isAuthenticated, logout, user } = authContext
+  const { clearCurrent } = postContext
 
-  const [navScroll, setNavScroll] = useState(false);
+  const [navScroll, setNavScroll] = useState(false)
 
   window.addEventListener('scroll', (e) => {
     if (window.scrollY >= 50) {
-      setNavScroll(true);
+      setNavScroll(true)
     } else {
-      setNavScroll(false);
+      setNavScroll(false)
     }
-  });
+  })
 
   const onLogout = () => {
-    logout();
-    setNavbarOpen(false);
-  };
+    logout()
+    setNavbarOpen(false)
+  }
 
   const clickHandler = () => {
-    setNavbarOpen(false);
-    clearCurrent();
-  };
+    setNavbarOpen(false)
+    clearCurrent()
+  }
 
   const authLinks = (
     <Fragment>
@@ -60,7 +60,7 @@ const Navbar = ({ home, gallery, about }) => {
         </a>
       </li>
     </Fragment>
-  );
+  )
 
   const guestLinks = (
     <Fragment>
@@ -81,9 +81,9 @@ const Navbar = ({ home, gallery, about }) => {
         <span className='ml-2 text-lg font-semibold'>Signup</span>
       </Link>
     </Fragment>
-  );
+  )
 
-  const [navBarOpen, setNavbarOpen] = useState(false);
+  const [navBarOpen, setNavbarOpen] = useState(false)
 
   return (
     <nav
@@ -154,8 +154,8 @@ const Navbar = ({ home, gallery, about }) => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
@@ -163,7 +163,7 @@ Navbar.propTypes = {
   gallery: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,
   signup: PropTypes.string.isRequired,
-};
+}
 
 Navbar.defaultProps = {
   title: 'Manguito Page',
@@ -171,6 +171,6 @@ Navbar.defaultProps = {
   gallery: 'Gallery',
   about: 'About',
   signup: 'Signup',
-};
+}
 
-export default Navbar;
+export default Navbar

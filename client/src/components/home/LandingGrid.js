@@ -1,23 +1,24 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
-import arrow from './arrow.png';
-import { PostContext } from '../../context/post/PostContext';
-import Spinner from './Spinner';
+import React, { Fragment, useContext, useEffect, useState } from 'react'
+import arrow from 'assets/images/arrow.png'
+import { PostContext } from '../../context/post/PostContext'
+import Spinner from 'components/layout/Spinner'
+import 'assets/css/flipcard.css'
 
 const LandingGrid = () => {
-  const postContext = useContext(PostContext);
-  const { getPosts, posts, loading } = postContext;
-  const [img0, setImg0] = useState(false);
-  const [img1, setImg1] = useState(false);
-  const [img2, setImg2] = useState(false);
-  const [img3, setImg3] = useState(false);
-  const [img4, setImg4] = useState(false);
-  const [img5, setImg5] = useState(false);
-  const [img6, setImg6] = useState(false);
+  const postContext = useContext(PostContext)
+  const { getPosts, posts, loading } = postContext
+  const [img0, setImg0] = useState(false)
+  const [img1, setImg1] = useState(false)
+  const [img2, setImg2] = useState(false)
+  const [img3, setImg3] = useState(false)
+  const [img4, setImg4] = useState(false)
+  const [img5, setImg5] = useState(false)
+  const [img6, setImg6] = useState(false)
 
   useEffect(() => {
-    getPosts();
+    getPosts()
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   return (
     <Fragment>
@@ -155,7 +156,7 @@ const LandingGrid = () => {
         <Spinner />
       )}
     </Fragment>
-  );
-};
+  )
+}
 
-export default LandingGrid;
+export default LandingGrid

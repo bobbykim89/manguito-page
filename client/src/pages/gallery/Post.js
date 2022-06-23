@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import { PostContext } from '../../context/post/PostContext'
 import { AuthContext } from '../../context/auth/AuthContext'
 import { AlertContext } from '../../context/alert/AlertContext'
-import Comments from '../comment/Comments'
-import ToTop from '../layout/ToTop'
+import Comments from '../../components/comment/Comments'
+import ToTop from '../../components/layout/ToTop'
 
-const PostItem = () => {
+const Post = () => {
   const postContext = useContext(PostContext)
   const authContext = useContext(AuthContext)
   const alertContext = useContext(AlertContext)
@@ -303,4 +303,4 @@ const PostItem = () => {
   )
 }
 
-export default PostItem
+export default Post

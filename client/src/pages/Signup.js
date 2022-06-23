@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
 
 // Import contexts
-import { AlertContext } from '../../context/alert/AlertContext'
-import { AuthContext } from '../../context/auth/AuthContext'
+import { AlertContext } from '../context/alert/AlertContext'
+import { AuthContext } from '../context/auth/AuthContext'
 
 const Signup = () => {
   const alertContext = useContext(AlertContext)

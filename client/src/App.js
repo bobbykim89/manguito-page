@@ -1,25 +1,25 @@
 import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
-import './app.css'
+import 'assets/css/app.css'
 
 // Page Components
-import Login from './components/auth/Login'
-import Signup from './components/auth/Signup'
-import Footer from './components/layout/Footer'
-import Navbar from './components/layout/Navbar'
-import About from './components/pages/About'
-import Home from './components/pages/Home'
-import Posts from './components/Post/Posts'
-import Alerts from './components/layout/Alerts'
-import NotFound from './components/pages/NotFound'
-import PostItem from './components/Post/PostItem'
+import Login from 'pages/Login'
+import Signup from 'pages/Signup'
+import Footer from 'components/layout/Footer'
+import Navbar from 'components/layout/Navbar'
+import About from 'pages/About'
+import Home from 'pages/Home'
+import Gallery from 'pages/gallery/Gallery'
+import Alerts from 'components/layout/Alerts'
+import NotFound from 'pages/NotFound'
+import Post from 'pages/gallery/Post'
 
 // Contexts
-import PostState from './context/post/PostContext'
-import CommentState from './context/comment/CommentContext'
-import AuthState from './context/auth/AuthContext'
-import AlertState from './context/alert/AlertContext'
+import PostState from 'context/post/PostContext'
+import CommentState from 'context/comment/CommentContext'
+import AuthState from 'context/auth/AuthContext'
+import AlertState from 'context/alert/AlertContext'
 
 function App() {
   return (
@@ -45,8 +45,8 @@ function App() {
                   <Alerts />
                   <Routes>
                     <Route exact path='/' element={<Home />} />
-                    <Route exact path='/gallery' element={<Posts />} />
-                    <Route path='/gallery/:postId' element={<PostItem />} />
+                    <Route exact path='/gallery' element={<Gallery />} />
+                    <Route path='/gallery/:postId' element={<Post />} />
                     <Route exact path='/about' element={<About />} />
                     <Route exact path='/login' element={<Login />} />
                     <Route exact path='/signup' element={<Signup />} />
