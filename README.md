@@ -1,4 +1,4 @@
-# Manguito Page v0.1.4
+# Manguito Page v0.1.5
 
 App Deployed on heroku as [Manguito Page](https://manguitopage.herokuapp.com/).
 
@@ -6,22 +6,22 @@ App Deployed on heroku as [Manguito Page](https://manguitopage.herokuapp.com/).
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the Backend.\
 PORT 5000 assigned [http://localhost:5000](http://localhost:5000)
 
-### `npm run server`
+### `yarn server`
 
 runs backend using nodemon, any update on backend will be automatically applied.\
 
-### `npm run dev`
+### `yarn dev`
 
 Runs frontend and backend concurrently on localhost.\
 
 App can be found in [http://localhost:3000](http://localhost:5000) for more information.
 
-### `cd client && npm run watch`
+### `yarn watch:css`
 
 Runs watching css on separate terminal to update app.css file automatically as file gets updated
 
@@ -31,39 +31,56 @@ Runs watching css on separate terminal to update app.css file automatically as f
 
 bcryptjs\
 cloudinary\
-dotenv\
 express\
 express-mongo-sanitize\
 express-validator\
 helmet\
 jsonwebtoken\
 multer\
-multer-storage-cloudinary\
+multer-storage-cloudinary
+
+### Backend Dev Dependencies
+
 concurrently\
+dotenv\
 nodemon
 
 ### Frontend Dependencies
 
-fontawesome\
+vite\
+@vitejs/plugin-react\
+js-cookie\
 tailwindcss/aspect-ratio\
 tailwindcss-textshadow\
 aos\
-autoprefixer\
 axios\
 hamburger-react\
 moment\
-postcss-cli\
 react-router-dom\
 react-moment\
+uuid\
+@fortawesome/fontawesome-svg-core\
+@fortawesome/free-brands-svg-icons\
+@fortawesome/free-solid-svg-icons
+
+### Frontend Dev Dependencies
+
+autoprefixer\
 tailwindcss\
-chokidar-cli\
-uuid
+postcss
 
 ## Changes
 
-## Known Issues
+1. Use Vite as bundler for frontend page instead of Webpack.
+2. Create vite.config.js file for bundling configuration.
+3. Config absolute path to use @/\* for ./src.
+4. Update _.js file to _.jsx files.
+5. Update components to use Font Awesome package instead of Material Icons from CDN.
+6. Fix bug happening while navigating previous and next post.
+7. Fix bug of Load more button not showing up when it is not showing all available posts.
+8. Update edit/delete of post and comment to require confirmation.
 
-1. There are some junk code that are not needed need to find them out and delete them some time to make it look cleaner.(working progress)
+## Known Issues
 
 ## Change Log
 
@@ -92,3 +109,11 @@ uuid
 2. Fixed issue of pictures not displayed properly in mobile page
 3. Redesigned the 404 Not Found Page
 4. Added Load More Feature to the gallery page
+
+### v0.1.4
+
+1. Update the version of dependencies.
+2. Update frontend folder structure to make it more intuitive.
+3. Use Cookie for authentication instead of using local storage.
+4. Minor update of layout to remove glitches.
+5. Remove code that is no longer used.
