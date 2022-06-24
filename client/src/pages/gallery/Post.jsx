@@ -1,5 +1,4 @@
 import React, { useContext, useState, Fragment, useEffect } from 'react'
-import Moment from 'react-moment'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
@@ -278,9 +277,7 @@ const Post = () => {
                       {currentPost.name}{' '}
                     </small>
                     <small className='flex justify-end text-gray-500 mb-4'>
-                      <Moment format='MMMM Do YYYY h:mm:ss a'>
-                        {currentPost.date}
-                      </Moment>
+                      {new Date(currentPost.date).toDateString()}
                     </small>
                   </div>
                   <div className={toggleEdit ? 'block' : 'hidden'}>

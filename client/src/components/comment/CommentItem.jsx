@@ -1,5 +1,4 @@
 import React, { useContext, Fragment } from 'react'
-import Moment from 'react-moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // Import Context
@@ -38,7 +37,7 @@ const CommentItem = ({ comment }) => {
         <p>{comment.text}</p>
         <small className='flex justify-end text-gray-500'>{comment.name}</small>
         <small className='flex justify-end text-gray-500 mb-4'>
-          <Moment format='MMMM Do YYYY h:mm:ss a'>{comment.date}</Moment>
+          {new Date(comment.date).toDateString()}
         </small>
         <div
           className={
