@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ToTop = () => {
-  const [topScroll, setTopScroll] = useState(false);
+  const [topScroll, setTopScroll] = useState(false)
 
   window.addEventListener('scroll', (e) => {
     if (window.scrollY >= 200) {
-      setTopScroll(true);
+      setTopScroll(true)
     } else {
-      setTopScroll(false);
+      setTopScroll(false)
     }
-  });
+  })
 
   const toTop = (e) => {
-    e.preventDefault();
-    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-  };
+    e.preventDefault()
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+  }
 
   return (
     <div
@@ -24,11 +25,15 @@ const ToTop = () => {
       }
       onClick={toTop}
     >
-      <span className='material-icons mx-2 mt-2 cursor-pointer'>
+      {/* <span className='material-icons mx-2 mt-2 cursor-pointer'>
         expand_less
-      </span>
+      </span> */}
+      <FontAwesomeIcon
+        icon='fa-solid fa-chevron-up'
+        className='mx-2 mt-2 mb-[2px] cursor-pointer text-sm'
+      />
     </div>
-  );
-};
+  )
+}
 
-export default ToTop;
+export default ToTop

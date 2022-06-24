@@ -15,6 +15,7 @@ import {
   faShareFromSquare,
   faChevronLeft,
   faChevronRight,
+  faChevronUp,
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
@@ -35,6 +36,7 @@ library.add(
   faShareFromSquare,
   faChevronLeft,
   faChevronRight,
+  faChevronUp,
   faGithubSquare,
   faLinkedin
 )
