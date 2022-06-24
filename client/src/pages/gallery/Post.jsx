@@ -98,6 +98,7 @@ const Post = () => {
     setPost({
       content: '',
     })
+    setToggleEdit(false)
     clearCurrent()
   }
 
@@ -107,6 +108,7 @@ const Post = () => {
     setPost({
       content: '',
     })
+    setToggleEdit(false)
     clearCurrent()
   }
 
@@ -200,20 +202,31 @@ const Post = () => {
       <Helmet>
         <title>Post: Manguito page</title>
         <meta name='description' content={currentPost && currentPost.content} />
+        <meta
+          name='keywords'
+          content='manguito, lovebird, pets, photo gallery, parrot'
+        />
+        <meta property='og:title' content='Post: Manguito page' />
+        <meta
+          property='og:description'
+          content={currentPost && currentPost.content}
+        />
+        <meta property='og:image' content={currentPost && currentPost.url} />
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:title' content='Post: Manguito page' />
+        <meta
+          name='twitter:description'
+          content={currentPost && currentPost.content}
+        />
+        <meta name='twitter:image' content={currentPost && currentPost.url} />
       </Helmet>
       <section
-        className='backdrop bg-gray-900 bg-opacity-80 lg:py-20 min-h-80v'
+        className='backdrop bg-gray-900 bg-opacity-80 lg:py-20 min-h-85v'
         onClick={handleBackgroundClick}
       >
         {currentPost && (
           <div className='bg-white pb-4 shadow-xl w-full mx-auto md:w-2/3'>
             <div className='relative text-right pb-3 sticky pt-3 bg-white top-0 z-10'>
-              {/* <i
-                className='material-icons align-middle text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
-                onClick={onClose}
-              >
-                close
-              </i> */}
               <FontAwesomeIcon
                 icon='fa-solid fa-xmark'
                 className='align-middle text-xl text-gray-500 hover:text-gray-400 mr-4 cursor-pointer'
@@ -250,9 +263,6 @@ const Post = () => {
                     onClick={copyLink}
                     className='absolute top-0 right-0 mr-3 mt-3'
                   >
-                    {/* <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
-                      share
-                    </i> */}
                     <FontAwesomeIcon
                       icon='fa-solid fa-share-from-square'
                       className='material-icons text-2xl text-white hover:text-pink-500 text-shadow-xl'

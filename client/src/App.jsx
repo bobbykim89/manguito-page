@@ -2,9 +2,10 @@ import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 
-// Import Styles & Icons
+// Import Styles & Icons & Images
 import '@/assets/css/app.css'
 import '@/utils/fontawesome'
+import banner from '@/assets/images/banner.png'
 
 // Pages
 import Login from '@/pages/Login'
@@ -35,6 +36,7 @@ function App() {
             <HelmetProvider>
               <Helmet>
                 <title>Manguito page</title>
+                <meta name='title' content='Manguito Page' />
                 <meta
                   name='description'
                   content='Welcome to Manguito page! This is little photo blog app for Manguito, my peachfaced lovebird!'
@@ -42,6 +44,25 @@ function App() {
                 <meta
                   name='keywords'
                   content='manguito, lovebird, pets, photo gallery, parrot'
+                />
+                <meta property='og:title' content='Manguito Page' />
+                <meta
+                  property='og:description'
+                  content='Welcome to Manguito page! This is little photo blog app for Manguito, my peachfaced lovebird!'
+                />
+                <meta
+                  property='og:image'
+                  content='https://res.cloudinary.com/dwgni1x3t/image/upload/c_scale,w_1200/q_auto/v1636015741/ManguitoPage/fjwzqx9nutnmz9k3pjur.jpg'
+                />
+                <meta name='twitter:card' content='summary' />
+                <meta name='twitter:title' content='Manguito Page' />
+                <meta
+                  name='twitter:description'
+                  content='Welcome to Manguito page! This is little photo blog app for Manguito, my peachfaced lovebird!'
+                />
+                <meta
+                  name='twitter:image'
+                  content='https://res.cloudinary.com/dwgni1x3t/image/upload/c_scale,w_1200/q_auto/v1636015741/ManguitoPage/fjwzqx9nutnmz9k3pjur.jpg'
                 />
               </Helmet>
               <Router>

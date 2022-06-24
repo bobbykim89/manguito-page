@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // Import Context
 import { CommentContext } from '@/context/comment/CommentContext'
@@ -54,9 +55,9 @@ const CommentForm = ({ postId }) => {
         <div className='text-right'>
           <button
             type='submit'
-            className='material-icons align-middle text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
+            className='material-icons align-middle text-xl text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
           >
-            done
+            <FontAwesomeIcon icon='fa-solid fa-xmark' />
           </button>
         </div>
       </form>

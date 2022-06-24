@@ -66,10 +66,7 @@ const Landing = ({
             />
           </div>
         </div>
-        <div
-          className='relative top-auto bottom-0 left-0 right-0 w-full pointer-events-none overflow-hidden'
-          style={{ height: '70px' }}
-        >
+        <div className='relative top-auto bottom-0 left-0 right-0 w-full pointer-events-none overflow-hidden h-[80px]'>
           <svg
             className='absolute bottom-0 overflow-hidden'
             xmlns='http://www.w3.org/2000/svg'
@@ -107,10 +104,7 @@ const Landing = ({
             </div>
           </div>
         </div>
-        <div
-          className='relative top-auto bottom-0 left-0 right-0 w-full pointer-events-none overflow-hidden'
-          style={{ height: '70px' }}
-        >
+        <div className='relative top-auto bottom-0 left-0 right-0 w-full pointer-events-none overflow-hidden h-[80px]'>
           <svg
             className='absolute bottom-0 overflow-hidden'
             xmlns='http://www.w3.org/2000/svg'
