@@ -55,9 +55,7 @@ tailwindcss-textshadow\
 aos\
 axios\
 hamburger-react\
-moment\
 react-router-dom\
-react-moment\
 uuid\
 @fortawesome/fontawesome-svg-core\
 @fortawesome/free-brands-svg-icons\
