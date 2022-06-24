@@ -56,6 +56,7 @@ const LandingGrid = () => {
                   'object-cover object-center max-w-[150%] transition delay-500 duration-1000' +
                   (img0 ? ' opacity-100' : ' opacity-0')
                 }
+                crossorigin='anonymous'
               />
             </div>
             <div
@@ -72,6 +73,7 @@ const LandingGrid = () => {
                   'object-cover object-center max-w-[150%] transition delay-500 duration-1000' +
                   (img1 ? ' opacity-100' : ' opacity-0')
                 }
+                crossorigin='anonymous'
               />
             </div>
             <div
@@ -88,6 +90,7 @@ const LandingGrid = () => {
                   'object-cover object-center max-w-[150%] transition delay-500 duration-1000' +
                   (img2 ? ' opacity-100' : ' opacity-0')
                 }
+                crossorigin='anonymous'
               />
             </div>
             <div
@@ -104,6 +107,7 @@ const LandingGrid = () => {
                   'object-cover object-center max-w-[150%] transition delay-500  duration-1000' +
                   (img3 ? ' opacity-100' : ' opacity-0')
                 }
+                crossorigin='anonymous'
               />
             </div>
             <div
@@ -120,6 +124,7 @@ const LandingGrid = () => {
                   'object-cover object-center max-w-[150%] transition delay-500  duration-1000' +
                   (img4 ? ' opacity-100' : ' opacity-0')
                 }
+                crossorigin='anonymous'
               />
             </div>
             <div
@@ -136,6 +141,7 @@ const LandingGrid = () => {
                   'object-cover object-center max-w-[150%] transition delay-500  duration-1000' +
                   (img5 ? ' opacity-100' : ' opacity-0')
                 }
+                crossorigin='anonymous'
               />
             </div>
             <div
@@ -152,6 +158,7 @@ const LandingGrid = () => {
                   'object-cover object-center max-w-[150%] transition delay-500 duration-1000' +
                   (img6 ? ' opacity-100' : ' opacity-0')
                 }
+                crossorigin='anonymous'
               />
             </div>
           </div>

@@ -68,6 +68,7 @@ const ImageGrid = ({ posts }) => {
                   src={post.thumb}
                   alt='grid'
                   className='object-cover object-center min-h-full lg:min-w-full hover:opacity-50 transition ease-in duration-150'
+                  crossorigin='anonymous'
                 />
               </Link>
             </div>

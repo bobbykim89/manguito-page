@@ -239,6 +239,7 @@ const Post = () => {
                     src={currentPost.url}
                     alt='pollito'
                     className='rounded shadow relative'
+                    crossorigin='anonymous'
                   />
                   <button
                     className='absolute top-1/2 -translate-y-1/2 left-0 ml-1'
