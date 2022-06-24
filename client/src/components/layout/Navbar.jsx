@@ -2,12 +2,6 @@ import React, { Fragment, useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faCrown,
-  faSignInAlt,
-  faSignOutAlt,
-  faUserPlus,
-} from '@fortawesome/free-solid-svg-icons'
 import Hamburger from 'hamburger-react'
 
 // Import Images
@@ -50,14 +44,17 @@ const Navbar = ({ home, gallery, about }) => {
         <span>Welcome! </span>
         {user && user.name}{' '}
         {user && user.admin ? (
-          <FontAwesomeIcon icon={faCrown} className='text-yellow-400' />
+          <FontAwesomeIcon
+            icon='fa-solid fa-crown'
+            className='text-yellow-400'
+          />
         ) : (
           ''
         )}
       </li>
       <li className='inline-block text-pink-500 align-middle text-xl mx-2 hover:text-black transition ease-in duration-150'>
         <a onClick={onLogout} href='/'>
-          <FontAwesomeIcon icon={faSignOutAlt} />
+          <FontAwesomeIcon icon='fa-solid fa-right-from-bracket' />
           <span className='hidden md:inline ml-2 text-lg font-semibold'>
             Logout
           </span>
@@ -73,7 +70,7 @@ const Navbar = ({ home, gallery, about }) => {
         onClick={clickHandler}
         className='inline-block text-pink-500 align-middle text-xl mx-3 hover:text-black transition ease-in duration-150'
       >
-        <FontAwesomeIcon icon={faSignInAlt} />
+        <FontAwesomeIcon icon='fa-solid fa-right-to-bracket' />
         <span className='ml-2 text-lg font-semibold'>Login</span>
       </Link>
       <Link
@@ -81,7 +78,7 @@ const Navbar = ({ home, gallery, about }) => {
         onClick={clickHandler}
         className='inline-block text-pink-500 align-middle text-xl mx-3 hover:text-black transition ease-in duration-150'
       >
-        <FontAwesomeIcon icon={faUserPlus} />
+        <FontAwesomeIcon icon='fa-solid fa-user-plus' />
         <span className='ml-2 text-lg font-semibold'>Signup</span>
       </Link>
     </Fragment>

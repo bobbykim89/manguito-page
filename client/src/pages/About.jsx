@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons'
-import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { Helmet } from 'react-helmet-async'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+
+// Import Manguito Photo
 import about from '@/assets/images/about.jpg'
 
 const About = () => {
@@ -67,7 +67,7 @@ const About = () => {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    <FontAwesomeIcon icon={faGithubSquare} />
+                    <FontAwesomeIcon icon='fa-brands fa-github-square' />
                   </a>
                 </li>
                 <li className='mx-2 hover:text-black transition ease-in duration-150'>
@@ -76,7 +76,7 @@ const About = () => {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    <FontAwesomeIcon icon={faLinkedin} />
+                    <FontAwesomeIcon icon='fa-brands fa-linkedin' />
                   </a>
                 </li>
                 <li className='mx-2 hover:text-black transition ease-in duration-150'>
@@ -85,7 +85,7 @@ const About = () => {
                     target='_blank'
                     rel='noreferrer'
                   >
-                    <FontAwesomeIcon icon={faEnvelopeSquare} />
+                    <FontAwesomeIcon icon='fa-solid fa-square-envelope' />
                   </a>
                 </li>
               </ul>

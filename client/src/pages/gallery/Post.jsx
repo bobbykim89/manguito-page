@@ -3,6 +3,7 @@ import Moment from 'react-moment'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // Import Context
 import { PostContext } from '@/context/post/PostContext'
@@ -147,9 +148,12 @@ const Post = () => {
       setAlert('Sorry You are not authorized to do so')
       return
     } else {
-      currentPost.content = post.content
-      updatePost(currentPost)
-      setAlert('Successfully updated!')
+      if (window.confirm('Are you sure you want to update this post?')) {
+        currentPost.content = post.content
+        updatePost(currentPost)
+        setAlert('Successfully updated!')
+      }
+      return
     }
   }
 
@@ -162,9 +166,16 @@ const Post = () => {
       setAlert('Sorry You are not authorized to do so')
       return
     } else {
-      deletePost(currentPost._id)
-      history(-1)
-      setAlert('Successfully deleted a post')
+      if (
+        window.confirm(
+          'This will permanently delete this post. Please confirm to proceed'
+        )
+      ) {
+        deletePost(currentPost._id)
+        history(-1)
+        setAlert('Successfully deleted a post')
+      }
+      return
     }
   }
 
@@ -197,12 +208,17 @@ const Post = () => {
         {currentPost && (
           <div className='bg-white pb-4 shadow-xl w-full mx-auto md:w-2/3'>
             <div className='relative text-right pb-3 sticky pt-3 bg-white top-0 z-10'>
-              <i
+              {/* <i
                 className='material-icons align-middle text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
                 onClick={onClose}
               >
                 close
-              </i>
+              </i> */}
+              <FontAwesomeIcon
+                icon='fa-solid fa-xmark'
+                className='align-middle text-xl text-gray-500 hover:text-gray-400 mr-4 cursor-pointer'
+                onClick={onClose}
+              />
             </div>
             <div className='px-4 grid grid-flow-row lg:grid-cols-2 gap-4'>
               <div className='w-full'>
@@ -216,25 +232,31 @@ const Post = () => {
                     className='absolute top-1/2 -translate-y-1/2 left-0 ml-1'
                     onClick={onPrev}
                   >
-                    <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
-                      navigate_before
-                    </i>
+                    <FontAwesomeIcon
+                      icon='fa-solid fa-chevron-left'
+                      className='text-2xl text-white hover:text-pink-500 text-shadow-xl ml-3'
+                    />
                   </button>
                   <button
                     className='absolute top-1/2 -translate-y-1/2 right-0 mr-1'
                     onClick={onNext}
                   >
-                    <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
-                      navigate_next
-                    </i>
+                    <FontAwesomeIcon
+                      icon='fa-solid fa-chevron-right'
+                      className='material-icons text-2xl text-white hover:text-pink-500 text-shadow-xl mr-3'
+                    />
                   </button>
                   <button
                     onClick={copyLink}
                     className='absolute top-0 right-0 mr-3 mt-3'
                   >
-                    <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
+                    {/* <i className='material-icons text-4xl text-white hover:text-pink-500 text-shadow-xl'>
                       share
-                    </i>
+                    </i> */}
+                    <FontAwesomeIcon
+                      icon='fa-solid fa-share-from-square'
+                      className='material-icons text-2xl text-white hover:text-pink-500 text-shadow-xl'
+                    />
                   </button>
                 </div>
               </div>
@@ -260,37 +282,33 @@ const Post = () => {
                         className='block w-full bg-transparent h-28 border-gray-400 mb-2 p-2 outline-none border-b-2'
                       ></textarea>
                       <div className='text-right'>
-                        <button type='submit' value='Done'>
-                          <i
-                            className='material-icons align-middle text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
+                        <button type='submit' value='Done' className='mr-1'>
+                          <FontAwesomeIcon
+                            icon='fa-solid fa-check'
+                            className='align-middle text-gray-500 text-xl hover:text-gray-400 mr-2 cursor-pointer'
                             onClick={() => setToggleEdit(!toggleEdit)}
-                          >
-                            done
-                          </i>
+                          />
                         </button>
-                        <i
-                          className='material-icons align-middle text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
+                        <FontAwesomeIcon
+                          icon='fa-solid fa-xmark'
+                          className='material-icons align-middle text-xl text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
                           onClick={editHandler}
-                        >
-                          close
-                        </i>
+                        />
                       </div>
                     </form>
                   </div>
                   <div className={user && user.admin ? ' block' : ' hidden'}>
-                    <div className={toggleEdit ? '' : 'block text-right'}>
-                      <i
-                        className='material-icons text-gray-500 hover:text-gray-400 mr-2 cursor-pointer'
+                    <div className={toggleEdit ? 'hidden' : 'block text-right'}>
+                      <FontAwesomeIcon
+                        icon='fa-solid fa-pen'
+                        className='text-gray-500 text-lg hover:text-gray-400 mr-3 cursor-pointer'
                         onClick={editHandler}
-                      >
-                        {toggleEdit ? '' : 'edit'}
-                      </i>
-                      <i
-                        className='material-icons text-gray-500 hover:text-gray-400 cursor-pointer'
+                      />
+                      <FontAwesomeIcon
+                        icon='fa-solid fa-trash'
+                        className='text-gray-500 text-lg hover:text-gray-400 cursor-pointer'
                         onClick={onDelete}
-                      >
-                        {toggleEdit ? '' : 'delete'}
-                      </i>
+                      />
                     </div>
                   </div>
                 </div>

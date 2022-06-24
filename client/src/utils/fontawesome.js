@@ -1,5 +1,40 @@
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {} from '@fortawesome/free-solid-svg-icons'
-import {} from '@fortawesome/free-brands-svg-icons'
+import { library, config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import {
+  faEnvelopeSquare,
+  faCrown,
+  faRightToBracket,
+  faRightFromBracket,
+  faUserPlus,
+  faCirclePlus,
+  faPen,
+  faTrash,
+  faCheck,
+  faXmark,
+  faShareNodes,
+  faShareFromSquare,
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons'
+import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
-library.add()
+config.autoAddCss = false
+
+library.add(
+  faEnvelopeSquare,
+  faCrown,
+  faRightToBracket,
+  faRightFromBracket,
+  faUserPlus,
+  faCirclePlus,
+  faPen,
+  faTrash,
+  faCheck,
+  faXmark,
+  faShareNodes,
+  faShareFromSquare,
+  faChevronLeft,
+  faChevronRight,
+  faGithubSquare,
+  faLinkedin
+)

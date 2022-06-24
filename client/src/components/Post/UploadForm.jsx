@@ -1,74 +1,74 @@
-import React, { useContext, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { PostContext } from '../../context/post/PostContext';
-import { AuthContext } from '../../context/auth/AuthContext';
-import { AlertContext } from '../../context/alert/AlertContext';
+import React, { useContext, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { PostContext } from '../../context/post/PostContext'
+import { AuthContext } from '../../context/auth/AuthContext'
+import { AlertContext } from '../../context/alert/AlertContext'
 
 const UploadForm = () => {
-  const postContext = useContext(PostContext);
-  const authContext = useContext(AuthContext);
-  const alertContext = useContext(AlertContext);
+  const postContext = useContext(PostContext)
+  const authContext = useContext(AuthContext)
+  const alertContext = useContext(AlertContext)
 
-  const { addPost } = postContext;
-  const { user } = authContext;
-  const { setAlert } = alertContext;
+  const { addPost } = postContext
+  const { user } = authContext
+  const { setAlert } = alertContext
 
-  const [toggleForm, setToggleForm] = useState(false);
+  const [toggleForm, setToggleForm] = useState(false)
   const handleToggler = (e) => {
-    setToggleForm(!toggleForm);
-  };
+    setToggleForm(!toggleForm)
+  }
 
-  const [filename, setFilename] = useState('Please Select File:');
+  const [filename, setFilename] = useState('Please Select File:')
 
   const [post, setPost] = useState({
     image: null,
     content: '',
     name: '',
     author: '',
-  });
+  })
 
-  const { content } = post;
+  const { content } = post
 
   const onChange = (e) => {
     if (e.target.type === 'file') {
-      setPost({ ...post, image: e.target.files[0] });
-      setFilename(e.target.files[0].name);
+      setPost({ ...post, image: e.target.files[0] })
+      setFilename(e.target.files[0].name)
     } else {
       setPost({
         ...post,
         content: e.target.value,
         name: user && user.name,
         author: user && user._id,
-      });
+      })
     }
-  };
+  }
 
-  let postForm = new FormData();
-  postForm.append('image', post.image);
-  postForm.append('content', content);
-  postForm.append('name', post.name);
-  postForm.append('author', post.author);
+  let postForm = new FormData()
+  postForm.append('image', post.image)
+  postForm.append('content', content)
+  postForm.append('name', post.name)
+  postForm.append('author', post.author)
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!user.admin) {
-      setAlert("You don't have admin privilege");
-      handleToggler();
+      setAlert("You don't have admin privilege")
+      handleToggler()
       setPost({
         image: null,
         content: '',
-      });
+      })
     } else {
-      addPost(postForm);
-      handleToggler();
+      addPost(postForm)
+      handleToggler()
       setPost({
         image: null,
         content: '',
-      });
-      setFilename('Please Select File:');
+      })
+      setFilename('Please Select File:')
     }
-  };
+  }
   return (
     <section className='mx-2 md:mx-8 my-12'>
       <div className={toggleForm ? 'block' : 'hidden'}>
@@ -127,19 +127,21 @@ const UploadForm = () => {
       </div>
       <div
         className={
-          'flex text-4xl justify-center align-middle font-semibold text-blue-700 hover:text-blue-500' +
+          'flex text-4xl justify-center align-middle font-semibold ' +
           (user !== null && user.admin ? ' block' : ' hidden')
         }
-        onClick={handleToggler}
       >
-        {toggleForm ? (
-          <FontAwesomeIcon icon={faTimesCircle} />
-        ) : (
-          <FontAwesomeIcon icon={faPlusCircle} />
-        )}
+        <FontAwesomeIcon
+          icon='fa-solid fa-circle-plus'
+          className={
+            'text-blue-700 hover:text-blue-500 transition-all duration-300 ease-in ' +
+            (toggleForm ? 'rotate-45' : '')
+          }
+          onClick={handleToggler}
+        />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default UploadForm;
+export default UploadForm

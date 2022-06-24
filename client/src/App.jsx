@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
+
+// Import Styles & Icons
 import '@/assets/css/app.css'
+import '@/utils/fontawesome'
 
 // Pages
 import Login from '@/pages/Login'
