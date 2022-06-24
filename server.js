@@ -14,6 +14,15 @@ connectDB()
 // Init Middleware
 app.use(express.json({ extended: false }))
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://res.cloudinary.com/')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin,  X-Requested-With, Content-Type, Accept'
+  )
+  next()
+})
+
 app.use(mongoSanitize())
 app.use(helmet())
 

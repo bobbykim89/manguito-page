@@ -80,6 +80,7 @@ postcss
 7. Fix bug of Load more button not showing up when it is not showing all available posts.
 8. Update edit/delete of post and comment to require confirmation.
 9. Remove moment and react-moment from dependencies and display date using Date().toDateString().
+10. Update CORS policy.
 
 ## Known Issues
 
