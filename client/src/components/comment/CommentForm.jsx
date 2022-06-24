@@ -1,44 +1,46 @@
-import React, { useContext, useState } from 'react';
-import { CommentContext } from '../../context/comment/CommentContext';
-import { AuthContext } from '../../context/auth/AuthContext';
-import { AlertContext } from '../../context/alert/AlertContext';
+import React, { useContext, useState } from 'react'
+
+// Import Context
+import { CommentContext } from '@/context/comment/CommentContext'
+import { AlertContext } from '@/context/alert/AlertContext'
+import { AuthContext } from '@/context/auth/AuthContext'
 
 const CommentForm = ({ postId }) => {
-  const commentContext = useContext(CommentContext);
-  const authContext = useContext(AuthContext);
-  const alertContext = useContext(AlertContext);
+  const commentContext = useContext(CommentContext)
+  const authContext = useContext(AuthContext)
+  const alertContext = useContext(AlertContext)
 
-  const { addComment } = commentContext;
-  const { isAuthenticated, user } = authContext;
-  const { setAlert } = alertContext;
+  const { addComment } = commentContext
+  const { isAuthenticated, user } = authContext
+  const { setAlert } = alertContext
 
   const [comment, setComment] = useState({
     text: '',
     name: user && user.name,
     author: user && user._id,
     post: postId,
-  });
-  const { text } = comment;
+  })
+  const { text } = comment
 
   const onChange = (e) => {
-    setComment({ ...comment, [e.target.name]: e.target.value });
-  };
+    setComment({ ...comment, [e.target.name]: e.target.value })
+  }
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!isAuthenticated) {
-      setAlert('Please login');
-      return;
+      setAlert('Please login')
+      return
     } else {
-      addComment(comment);
+      addComment(comment)
       setComment({
         text: '',
         name: user && user.name,
         author: user && user._id,
         post: postId,
-      });
+      })
     }
-  };
+  }
   return (
     <div className='bg-gray-100 rounded px-4 py-4 md:row-span-2 row-end-3 mb-3 shadow'>
       <form onSubmit={onSubmit}>
@@ -59,7 +61,7 @@ const CommentForm = ({ postId }) => {
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default CommentForm;
+export default CommentForm

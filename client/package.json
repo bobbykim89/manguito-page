@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.1.4",
+  "name": "manguito-page-client",
+  "version": "0.1.5",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -9,9 +9,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^14.2.1",
     "aos": "^2.3.4",
     "axios": "^0.27.2",
     "hamburger-react": "^2.5.0",
@@ -22,25 +19,15 @@
     "react-helmet-async": "^1.3.0",
     "react-moment": "^1.1.2",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
     "react-transition-group": "^4.4.2",
     "tailwindcss-textshadow": "^2.1.3",
-    "web-vitals": "^2.1.4"
+    "uuid": "^8.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "watch:css": "tailwindcss -o src/assets/css/app.css --watch",
-    "watch": "chokidar \"./src/**/*.js\" -c \"npm run watch:css\"",
-    "dev": "concurrently \"npm run watch:css\" \"npm run start\""
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "watch:css": "tailwindcss -o src/assets/css/app.css --watch"
   },
   "browserslist": {
     "production": [
@@ -54,13 +41,13 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000",
   "devDependencies": {
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
+    "@vitejs/plugin-react": "^1.3.2",
     "autoprefixer": "^10.4.7",
-    "chokidar-cli": "^3.0.0",
-    "concurrently": "^7.2.2",
-    "postcss-cli": "^9.1.0",
+    "postcss": "^8.4.14",
     "tailwindcss": "^3.1.4",
-    "uuid": "^8.3.2"
-  }
+    "vite": "^2.9.12"
+  },
+  "proxy": "http://localhost:5000"
 }

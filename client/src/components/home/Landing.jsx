@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import banner from 'assets/images/banner.png'
-import second from 'assets/images/second.jpg'
 import { Link } from 'react-router-dom'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+
+// Import Image Files
+import banner from '@/assets/images/banner.png'
+import second from '@/assets/images/second.jpg'
 
 const Landing = ({
   landingHeader,

@@ -1,8 +1,12 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react'
-import arrow from 'assets/images/arrow.png'
-import { PostContext } from '../../context/post/PostContext'
-import Spinner from 'components/layout/Spinner'
-import 'assets/css/flipcard.css'
+
+// Import Components & Images & CSS
+import Spinner from '@/components/layout/Spinner'
+import arrow from '@/assets/images/arrow.png'
+import '@/assets/css/flipcard.css'
+
+// Import Context
+import { PostContext } from '@/context/post/PostContext'
 
 const LandingGrid = () => {
   const postContext = useContext(PostContext)

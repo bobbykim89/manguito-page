@@ -9,9 +9,13 @@ import {
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons'
 import Hamburger from 'hamburger-react'
-import logo from 'assets/images/logo.png'
-import { AuthContext } from '../../context/auth/AuthContext'
-import { PostContext } from '../../context/post/PostContext'
+
+// Import Images
+import logo from '@/assets/images/logo.png'
+
+// Import Context
+import { AuthContext } from '@/context/auth/AuthContext'
+import { PostContext } from '@/context/post/PostContext'
 
 const Navbar = ({ home, gallery, about }) => {
   const authContext = useContext(AuthContext)

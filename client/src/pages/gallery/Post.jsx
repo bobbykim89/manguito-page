@@ -3,11 +3,15 @@ import Moment from 'react-moment'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
-import { PostContext } from '../../context/post/PostContext'
-import { AuthContext } from '../../context/auth/AuthContext'
-import { AlertContext } from '../../context/alert/AlertContext'
-import Comments from '../../components/comment/Comments'
-import ToTop from '../../components/layout/ToTop'
+
+// Import Context
+import { PostContext } from '@/context/post/PostContext'
+import { AuthContext } from '@/context/auth/AuthContext'
+import { AlertContext } from '@/context/alert/AlertContext'
+
+// Import Components
+import Comments from '@/components/comment/Comments'
+import ToTop from '@/components/layout/ToTop'
 
 const Post = () => {
   const postContext = useContext(PostContext)

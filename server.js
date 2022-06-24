@@ -1,41 +1,41 @@
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+  require('dotenv').config()
 }
-const express = require('express');
-const path = require('path');
-const mongoSanitize = require('express-mongo-sanitize');
-const helmet = require('helmet');
-const connectDB = require('./config/db');
-const app = express();
+const express = require('express')
+const path = require('path')
+const mongoSanitize = require('express-mongo-sanitize')
+const helmet = require('helmet')
+const connectDB = require('./config/db')
+const app = express()
 
 // Connect Database
-connectDB();
+connectDB()
 
 // Init Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: false }))
 
-app.use(mongoSanitize());
-app.use(helmet());
+app.use(mongoSanitize())
+app.use(helmet())
 
 const scriptSrcUrls = [
   'https://cdn.jsdelivr.net',
   'https://kit.fontawesome.com',
   'https://cdnjs.cloudflare.com',
   'https://cdn.jsdelivr.net',
-];
+]
 const styleSrcUrls = [
   'https://kit-free.fontawesome.com',
   'https://cdn.jsdelivr.net',
   'https://api.tiles.mapbox.com',
   'https://fonts.googleapis.com',
   'https://use.fontawesome.com',
-];
-const connectSrcUrls = [];
-const defaultSrcUrls = ['https://manguitopage.herokuapp.com'];
+]
+const connectSrcUrls = []
+const defaultSrcUrls = ['https://manguitopage.herokuapp.com']
 const fontSrcUrls = [
   'https://fonts.googleapis.com',
   'https://fonts.gstatic.com',
-];
+]
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -56,24 +56,24 @@ app.use(
       fontSrc: ["'self'", ...fontSrcUrls],
     },
   })
-);
+)
 
 // Define Routes
-app.use('/api/users', require('./routes/users'));
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/posts', require('./routes/posts'));
-app.use('/api/comments', require('./routes/comments'));
+app.use('/api/users', require('./routes/users'))
+app.use('/api/auth', require('./routes/auth'))
+app.use('/api/posts', require('./routes/posts'))
+app.use('/api/comments', require('./routes/comments'))
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static('client/build'));
+  app.use(express.static('client/dist'))
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'))
+  })
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

@@ -1,25 +1,29 @@
-import React, { useContext, Fragment, useEffect } from 'react';
-import CommentForm from './CommentForm';
-import CommentItem from './CommentItem';
-import { CommentContext } from '../../context/comment/CommentContext';
-import { AuthContext } from '../../context/auth/AuthContext';
+import React, { useContext, Fragment, useEffect } from 'react'
+
+// Import Components
+import CommentForm from './CommentForm'
+import CommentItem from './CommentItem'
+
+// Import Contexts
+import { CommentContext } from '@/context/comment/CommentContext'
+import { AuthContext } from '@/context/auth/AuthContext'
 
 const Comments = ({ postId }) => {
-  const commentContext = useContext(CommentContext);
-  const authContext = useContext(AuthContext);
+  const commentContext = useContext(CommentContext)
+  const authContext = useContext(AuthContext)
 
-  const { comments, getComments } = commentContext;
-  const { isAuthenticated } = authContext;
+  const { comments, getComments } = commentContext
+  const { isAuthenticated } = authContext
 
   useEffect(() => {
-    getComments();
+    getComments()
     // eslint-disable-next-line
-  }, []);
+  }, [])
 
   if (comments.length !== 0) {
     const filteredComments = comments.filter(
       (comment) => comment.post === postId
-    );
+    )
     return (
       <Fragment>
         {isAuthenticated ? <CommentForm postId={postId} /> : ''}
@@ -32,7 +36,7 @@ const Comments = ({ postId }) => {
           <p className='text-center mb-4'>No comment yet!</p>
         )}
       </Fragment>
-    );
+    )
   }
 
   return (
@@ -42,7 +46,7 @@ const Comments = ({ postId }) => {
 
       <p className='text-center mb-4'>No comment yet!</p>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Comments;
+export default Comments

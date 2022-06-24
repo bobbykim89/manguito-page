@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, Fragment } from 'react'
 import { Helmet } from 'react-helmet-async'
-import ImageGrid from '../../components/Post/ImageGrid'
-import UploadForm from '../../components/Post/UploadForm'
-import ToTop from '../../components/layout/ToTop'
-import { PostContext } from '../../context/post/PostContext'
-import { AuthContext } from '../../context/auth/AuthContext'
 import { useLocation } from 'react-router'
+
+// Import Components
+import ImageGrid from '@/components/Post/ImageGrid'
+import UploadForm from '@/components/Post/UploadForm'
+import ToTop from '@/components/layout/ToTop'
+
+// Import Context
+import { PostContext } from '@/context/post/PostContext'
+import { AuthContext } from '@/context/auth/AuthContext'
 
 const Gallery = () => {
   const postContext = useContext(PostContext)

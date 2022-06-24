@@ -1,6 +1,6 @@
 {
   "name": "manguito-page",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "a simple network page for little manguito",
   "main": "server.js",
   "scripts": {
@@ -14,7 +14,11 @@
     "heroku-postbuild": "yarn install-client && yarn build"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Bobby Kim",
+    "url": "https://www.devbobbykim.com/"
+  },
+  "repository": "https://github.com/bobbykim89/manguito-page",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

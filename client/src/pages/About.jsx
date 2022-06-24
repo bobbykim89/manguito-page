@@ -5,7 +5,7 @@ import { faGithubSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { Helmet } from 'react-helmet-async'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import about from 'assets/images/about.jpg'
+import about from '@/assets/images/about.jpg'
 
 const About = () => {
   AOS.init({
@@ -57,7 +57,7 @@ const About = () => {
               </h2>
               <div className='mb-4'>
                 <p className='text-md'>Photo blog for Manguito</p>
-                <p className='text-md'>Version: 0.1.3(Beta)</p>
+                <p className='text-md'>Version: 0.1.5</p>
                 <p className='text-md'>Made by: Bobby Kim</p>
               </div>
               <ul className='text-6xl flex flex-wrap justify-center'>

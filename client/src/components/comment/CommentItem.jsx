@@ -1,30 +1,32 @@
-import React, { useContext, Fragment } from 'react';
-import Moment from 'react-moment';
-import { CommentContext } from '../../context/comment/CommentContext';
-import { AuthContext } from '../../context/auth/AuthContext';
-import { AlertContext } from '../../context/alert/AlertContext';
+import React, { useContext, Fragment } from 'react'
+import Moment from 'react-moment'
+
+// Import Context
+import { CommentContext } from '@/context/comment/CommentContext'
+import { AuthContext } from '@/context/auth/AuthContext'
+import { AlertContext } from '@/context/alert/AlertContext'
 
 const CommentItem = ({ comment }) => {
-  const commentContext = useContext(CommentContext);
-  const authContext = useContext(AuthContext);
-  const alertContext = useContext(AlertContext);
+  const commentContext = useContext(CommentContext)
+  const authContext = useContext(AuthContext)
+  const alertContext = useContext(AlertContext)
 
-  const { deleteComment } = commentContext;
-  const { isAuthenticated, user } = authContext;
-  const { setAlert } = alertContext;
+  const { deleteComment } = commentContext
+  const { isAuthenticated, user } = authContext
+  const { setAlert } = alertContext
 
   const handleDelete = () => {
     if (!isAuthenticated) {
-      setAlert('Please login');
-      return;
+      setAlert('Please login')
+      return
     } else if (user._id === comment.author || user.admin) {
-      deleteComment(comment._id);
-      setAlert('Successfully deleted a comment');
+      deleteComment(comment._id)
+      setAlert('Successfully deleted a comment')
     } else {
-      setAlert('Sorry, You are not authorized to do so');
-      return;
+      setAlert('Sorry, You are not authorized to do so')
+      return
     }
-  };
+  }
 
   return (
     <Fragment>
@@ -51,7 +53,7 @@ const CommentItem = ({ comment }) => {
         </div>
       </div>
     </Fragment>
-  );
-};
+  )
+}
 
-export default CommentItem;
+export default CommentItem

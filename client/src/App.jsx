@@ -1,25 +1,27 @@
 import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
-import 'assets/css/app.css'
+import '@/assets/css/app.css'
 
-// Page Components
-import Login from 'pages/Login'
-import Signup from 'pages/Signup'
-import Footer from 'components/layout/Footer'
-import Navbar from 'components/layout/Navbar'
-import About from 'pages/About'
-import Home from 'pages/Home'
-import Gallery from 'pages/gallery/Gallery'
-import Alerts from 'components/layout/Alerts'
-import NotFound from 'pages/NotFound'
-import Post from 'pages/gallery/Post'
+// Pages
+import Login from '@/pages/Login'
+import Signup from '@/pages/Signup'
+import About from '@/pages/About'
+import Home from '@/pages/Home'
+import Gallery from '@/pages/gallery/Gallery'
+import NotFound from '@/pages/NotFound'
+import Post from '@/pages/gallery/Post'
+
+// Layout Components
+import Alerts from '@/components/layout/Alerts'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
 
 // Contexts
-import PostState from 'context/post/PostContext'
-import CommentState from 'context/comment/CommentContext'
-import AuthState from 'context/auth/AuthContext'
-import AlertState from 'context/alert/AlertContext'
+import PostState from '@/context/post/PostContext'
+import CommentState from '@/context/comment/CommentContext'
+import AuthState from '@/context/auth/AuthContext'
+import AlertState from '@/context/alert/AlertContext'
 
 function App() {
   return (
